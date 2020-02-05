@@ -1,0 +1,15 @@
+<%- contentFor('title') %> Create New Questionnaire
+<%- contentFor('body') %>
+
+
+
+<form method="post" action="/questionnaire">
+    <label for="title">Name</label>
+    <input type="text" id="title" name="title">
+    <br>
+    <label for="questionnaire">full_text</label>
+    <textarea id="questionnaire" name="questionnaire" rows="10" cols="30"></textarea>
+    <br>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
