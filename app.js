@@ -18,6 +18,7 @@ var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var adminRouter = require('./routes/admin');
 var apiRouter = require('./routes/api');
+// var 
 
 var app = express();
 
