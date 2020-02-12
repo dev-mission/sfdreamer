@@ -1,0 +1,13 @@
+<%- contentFor('title') %>
+<%- contentFor('body') %>
+<h1>Resources Page</h1>
+
+<ul>
+  <%for(let record of records){%>
+    <li><a href="/resources/<%= record.id %>"><%record.from %><%=record.title%><%=record.full_text%><%=record.media_url%></a></li>
+  <% } %>
+
+
+<p><a href="/resources/new">NEW Resources!!!</a></p>
+
+</ul>

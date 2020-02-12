@@ -1,0 +1,10 @@
+<%- contentFor('title') %>
+<%- contentFor('body') %>
+<h1> EDIT new resources page</h1>
+<form method="post" action="/todo/<%= record.id %>">
+  <label for="title">Title:</label><br/>
+  <input type="text" id="title" name="title" value="<%= record.title %>" required><br/>
+  <label for="body">Body:</label><br/>
+  <textarea name="body" rows="8" cols="80"><%= record.body %></textarea><br/>
+  <button type="submit">Submit</button>
+</form>
