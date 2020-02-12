@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Form.associate = function(models) {
     // associations can be defined here
+    
   };
   return Form;
 };
