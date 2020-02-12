@@ -1,0 +1,15 @@
+<%- contentFor('title') %> Editing <%= record.title %>
+<%- contentFor('body') %>
+
+<h1>Editing:<br> <%= record.title %></h1>
+
+
+<form method="post" action="/questionnaire/<%= record.id %>">
+    <label for="title">Name</label>
+    <input type="text" value="<%= record.title %> " id="title" name="title">
+    <br>
+    <label for="explanation">Explanation</label>
+    <textarea name="explanation" id="explanation" value="<%= record.explanation %> " rows="10" cols="30"> <%= record.explanation %> </textarea>
+    <br>
+    <button type="submit">Submit</button>
+  </form>

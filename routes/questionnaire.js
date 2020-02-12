@@ -6,7 +6,7 @@ const models = require('../models');
 
 
 // 
-// view todo tasks
+// View all Questionnaires
 // 
 router.get('/', function(req, res, next) {
     models.Questionnaire.findAll().then(function(records){
@@ -16,8 +16,9 @@ router.get('/', function(req, res, next) {
       });
   });
   
+
 // 
-// Create New task
+// Create a new Questionniare
 // 
 router.get('/new', function(req, res, next) {
   res.render('questionnaire/new');
@@ -25,11 +26,13 @@ router.get('/new', function(req, res, next) {
 
 
   router.post('/', function(req, res, next) {
-    models.Todo.create({
+    models.Questionnaire.create({
       title: req.body.title,
-      body: req.body.description,
+      explanation: req.body.explanation,
     }).then(function(record){
-      res.redirect(`/questionnaire`);
+      // when a new one has been created redirect 
+      // to the all questionnaire page
+      res.redirect(`/questionnaire`); 
     });
   });
   
@@ -39,41 +42,41 @@ router.get('/new', function(req, res, next) {
 // 
 // Edit a task
 // 
-// router.get('/:id', function(req, res, next){
-//   models.Todo.findByPk(req.params.id).then(function(record) {
-//     res.render('questionnaire/edit_todo', {
-//       record: record
-//     });
-//   });
-// });
+router.get('/:id', function(req, res, next){
+  models.Questionnaire.findByPk(req.params.id).then(function(record) {
+    res.render('questionnaire/edit', {
+      record: record
+    });
+  });
+});
 
 
-// router.post('/:id', function(req, res, next) {
-//   models.Todo.findByPk(req.params.id).then(function(record) {
-//     record.update({
-//       title: req.body.title,
-//       body: req.body.body,
-//     }).then(function(record){
-//       res.redirect(`/questionnaire`)
-//     });
-//   });
-// });
+router.post('/:id', function(req, res, next) {
+  models.Questionnaire.findByPk(req.params.id).then(function(record) {
+    record.update({
+      title: req.body.title,
+      explanation: req.body.explanation,
+    }).then(function(record){
+      res.redirect(`/questionnaire`)
+    });
+  });
+});
 
 
 // 
 // Deleting a post
 // 
-// router.get('/delete_todo', function(req, res, next){
-//   models.Todo.findByPk(req.query.id).then(function(record) {
-//     res.render('delete_post', {
+// router.get('/delete', function(req, res, next){
+//   models.Questionnaire.findByPk(req.params.id).then(function(record) {
+//     res.render('delete', {
 //         record: record
 //     });
 //   });
 // });
 
 
-// router.post('/delete_todo', function(req, res, next) {
-//   models.Todo.findByPk(req.query.id).then(function(record) {
+// router.post('/:id', function(req, res, next) {
+//   models.Questionnaire.findByPk(req.params.id).then(function(record) {
 //     record.destroy().then(function(record){
 //       res.redirect('/')
 //     });

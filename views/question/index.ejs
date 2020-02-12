@@ -1,0 +1,18 @@
+<%- contentFor('title') %>Questions
+<%- contentFor('body') %>
+
+<h1>Questions</h1>
+
+<a href="questions/new">New Questions</a>
+
+<div class="blog_section">
+    <% for (let record of records) { %>
+      <div class="posts" id="<%= record.id %>">
+    <h4><%= record.prompt %></h4>
+    <a href="/questions/<%= record.id %>">Edit</a>
+      </div>
+      <br>
+      <% } %>
+  </div>
+
+

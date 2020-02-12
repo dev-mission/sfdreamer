@@ -1,0 +1,12 @@
+<%- contentFor('title') %> Create a new question
+<%- contentFor('body') %>
+
+<h1>New question</h1>
+
+<form method="post" action="/questions">
+    <label for="prompt">Question</label>
+    <input type="text" id="prompt" name="prompt">
+    <br>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
