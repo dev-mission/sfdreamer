@@ -28,12 +28,10 @@ router.get('/new', function(req, res, next) {
 router.post('/', function(req, res, next) {
   models.Question.create({
     prompt: req.body.prompt,
-    answer_type: req.body.answer_type,
-    questionnaire_type: req.body.questionnaire_type,
   }).then(function(record){
     // when a new one has been created redirect 
     // to the all questionnaire page
-    res.redirect(`/question`); 
+    res.redirect(`/questions`); 
   });
 });
   
@@ -45,7 +43,7 @@ router.post('/', function(req, res, next) {
 // 
 router.get('/:id', function(req, res, next){
   models.Question.findByPk(req.params.id).then(function(record) {
-    res.render('questions/edit', {
+    res.render('question/edit', {
       record: record
     });
   });
@@ -53,7 +51,7 @@ router.get('/:id', function(req, res, next){
 
 
 router.post('/:id', function(req, res, next) {
-  models.Questions.findByPk(req.params.id).then(function(record) {
+  models.Question.findByPk(req.params.id).then(function(record) {
     record.update({
       prompt: req.body.prompt,
       // explanation: req.body.explanation,
@@ -67,22 +65,22 @@ router.post('/:id', function(req, res, next) {
 // 
 // Deleting a post
 // 
-// router.get('/delete', function(req, res, next){
-//   models.Question.findByPk(req.params.id).then(function(record) {
-//     res.render('delete', {
-//         record: record
-//     });
-//   });
-// });
+router.get('/delete/:id', function(req, res, next){
+  models.Question.findByPk(req.params.id).then(function(record) {
+    res.render('questions/delete', {
+        record: record
+    });
+  });
+});
 
 
-// router.post('/:id', function(req, res, next) {
-//   models.Question.findByPk(req.params.id).then(function(record) {
-//     record.destroy().then(function(record){
-//       res.redirect('/')
-//     });
-//   });
-// });
+router.post('/delete/:id', function(req, res, next) {
+  models.Question.findByPk(req.params.id).then(function(record) {
+    record.destroy().then(function(record){
+      res.redirect('/')
+    });
+  });
+});
 
 
 

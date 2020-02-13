@@ -10,6 +10,8 @@
       <div class="posts" id="<%= record.id %>">
     <h4><%= record.prompt %></h4>
     <a href="/questions/<%= record.id %>">Edit</a>
+    <br>
+    <a href="/questions/delete/id=<%= record.id %>">Delete</a>
       </div>
       <br>
       <% } %>
