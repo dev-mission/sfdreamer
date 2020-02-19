@@ -28,6 +28,7 @@ router.get('/new', function(req, res, next) {
 router.post('/', function(req, res, next) {
   models.Question.create({
     prompt: req.body.prompt,
+    explanation: req.body.explanation,
   }).then(function(record){
     // when a new one has been created redirect 
     // to the all questionnaire page
@@ -65,19 +66,19 @@ router.post('/:id', function(req, res, next) {
 // 
 // Deleting a post
 // 
-router.get('/delete/:id', function(req, res, next){
+router.get('/:id/delete', function(req, res, next){
   models.Question.findByPk(req.params.id).then(function(record) {
-    res.render('questions/delete', {
+    res.render('question/delete', {
         record: record
     });
   });
 });
 
 
-router.post('/delete/:id', function(req, res, next) {
+router.post('/:id/delete', function(req, res, next) {
   models.Question.findByPk(req.params.id).then(function(record) {
     record.destroy().then(function(record){
-      res.redirect('/')
+      res.redirect('/questions')
     });
   });
 });

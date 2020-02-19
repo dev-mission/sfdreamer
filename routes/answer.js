@@ -6,11 +6,11 @@ const models = require('../models');
 
 
 // 
-// View all Questionnaires
+// View all Answers
 // 
 router.get('/', function(req, res, next) {
-    models.Questionnaire.findAll().then(function(records){
-        res.render('questionnaire/index', {
+    models.Answer.findAll().then(function(records){
+        res.render('answer/index', {
         records: records
         });
       });
@@ -18,21 +18,21 @@ router.get('/', function(req, res, next) {
   
 
 // 
-// Create a new Questionniare
+// Create a new Answer
 // 
 router.get('/new', function(req, res, next) {
-  res.render('questionnaire/new');
+  res.render('answer/new');
 });
 
 
   router.post('/', function(req, res, next) {
-    models.Questionnaire.create({
-      title: req.body.title,
-      explanation: req.body.explanation,
+    models.Answer.create({
+      // title: req.body.title,
+      // explanation: req.body.explanation,
     }).then(function(record){
       // when a new one has been created redirect 
       // to the all questionnaire page
-      res.redirect(`/questionnaire`); 
+      res.redirect(`/answer`); 
     });
   });
   
@@ -40,11 +40,11 @@ router.get('/new', function(req, res, next) {
 
 
 // 
-// Edit a task
+// Edit a Answer
 // 
 router.get('/:id', function(req, res, next){
-  models.Questionnaire.findByPk(req.params.id).then(function(record) {
-    res.render('questionnaire/edit', {
+  models.Answer.findByPk(req.params.id).then(function(record) {
+    res.render('answer/edit', {
       record: record
     });
   });
@@ -52,23 +52,23 @@ router.get('/:id', function(req, res, next){
 
 
 router.post('/:id', function(req, res, next) {
-  models.Questionnaire.findByPk(req.params.id).then(function(record) {
+  models.Answer.findByPk(req.params.id).then(function(record) {
     record.update({
-      title: req.body.title,
-      explanation: req.body.explanation,
+      // title: req.body.title,
+      // explanation: req.body.explanation,
     }).then(function(record){
-      res.redirect(`/questionnaire`)
+      res.redirect(`/answer`)
     });
   });
 });
 
 
 // 
-// Deleting a post
+// Deleting a Answer
 // 
 router.get('/:id/delete', function(req, res, next){
-  models.Questionnaire.findByPk(req.params.id).then(function(record) {
-    res.render('questionnaire/delete', {
+  models.Answer.findByPk(req.params.id).then(function(record) {
+    res.render('answer/delete', {
         record: record
     });
   });
@@ -76,9 +76,9 @@ router.get('/:id/delete', function(req, res, next){
 
 
 router.post('/:id/delete', function(req, res, next) {
-  models.Questionnaire.findByPk(req.params.id).then(function(record) {
+  models.Answer.findByPk(req.params.id).then(function(record) {
     record.destroy().then(function(record){
-      res.redirect('/questionnaire')
+      res.redirect('/answer')
     });
   });
 });

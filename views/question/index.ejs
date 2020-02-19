@@ -7,14 +7,16 @@
 
 <div class="blog_section">
     <% for (let record of records) { %>
+
       <div class="posts" id="<%= record.id %>">
-    <h4><%= record.prompt %></h4>
-    <a href="/questions/<%= record.id %>">Edit</a>
-    <br>
-    <a href="/questions/delete/id=<%= record.id %>">Delete</a>
+      <h4><%= record.prompt %></h4>
+      <a href="/questions/<%= record.id %>">Edit</a>
+      <br>
+      <a href="/questions/<%= record.id %>/delete">Delete</a>
       </div>
       <br>
-      <% } %>
-  </div>
+    <% } %>
+  
+</div>
 
 
