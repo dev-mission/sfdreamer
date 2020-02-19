@@ -1,0 +1,16 @@
+<%- contentFor('title') %>Edit forms
+<%- contentFor('body') %>
+<h1>Edit Form</h1>
+<form method="post" action="/forms">
+    <label for="name">Title:</label><br/>
+    <input type="text" id="name" name="name" value="<%= name.title %>" required><br/>
+    <label for="year">Year:</label><br>
+    <input type="number" id="year" name="year" value="<%= year.body %>" required><br/>
+    <label for="school">School:</label><br/>
+    <input type="text" id="school" name="school" value="<%= school.body %>" required><br/>
+    <label for="url">URL:</label><br/>
+    <input type="text" id="url" name="url" value="<%= url.body %>" required><br/>
+    <label for="lang">Language:</label><br/>
+    <input type="text" id="lang" name="lang" value="<%= lang.body %>" required><br/>
+    <button type="submit">Submit</button>
+</form>

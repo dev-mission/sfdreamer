@@ -18,6 +18,7 @@ var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var adminRouter = require('./routes/admin');
 var apiRouter = require('./routes/api');
+var formsRouter = require('./routes/forms');
 
 var questionnaireRouter = require('./routes/questionnaire');
 var questionsRouter = require('./routes/questions');
@@ -76,6 +77,8 @@ app.use('/questionnaire', questionnaireRouter);
 app.use('/questions', questionsRouter);
 app.use('/answer', answerRouter);
 var resourcesRouter = require('./routes/resources');
+app.use('/forms', formsRouter);
+
 
 
 // catch 404 and forward to error handler

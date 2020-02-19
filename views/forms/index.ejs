@@ -1,0 +1,14 @@
+<%- contentFor('title') %>Form
+<%- contentFor('body') %>
+<h1>Forms Page</h1>
+
+
+<a href="/forms/new">Add a New Forms</a>
+<p>Forms for Undocument Immigrants</p>
+<ul>
+  <% for (let record of records) { %>
+    <li><a href="/forms/<%= record.id %>"><%= record.title %></a><br></li>
+  <% } %>
+</ul>
+
+<a href="/forms/edit"> Edit a Form</a>
