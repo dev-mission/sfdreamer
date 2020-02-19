@@ -18,8 +18,8 @@ router.get('/new', function(req, res, next){
 
 router.post('/', function(req, res, next){
   models.Resource.create({
-    title: req.body.title,
-    body: req.body.body
+    name: req.body.name,
+    phone: req.body.phone
   }).then(function(record){
     res.redirect(`/resources`);
   });

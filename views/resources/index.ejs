@@ -1,13 +1,22 @@
 <%- contentFor('title') %>
 <%- contentFor('body') %>
-<h1>Resources Page</h1>
+<u><h1>Resources Page</h1></u>
+<body style="background-color:powderblue;">
 
 <ul>
   <%for(let record of records){%>
-    <li><a href="/resources/<%= record.id %>"><%record.from %><%=record.title%><%=record.full_text%><%=record.media_url%></a></li>
+    <li><a href="/resources/<%= record.id %>">
+      <%=record.name %>
+      <%=record.orgtype%>
+      <%=record.contactperson %>
+      <%=record.phone%>
+      <%=record.address%>
+      <%=record.email%>
+      <%=record.website%></a></li>
   <% } %>
 
 
 <p><a href="/resources/new">NEW Resources!!!</a></p>
+<p><a href="/resources/edit">Edit a resource</a></p>
 
 </ul>
