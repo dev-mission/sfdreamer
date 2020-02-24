@@ -20,6 +20,7 @@ var adminRouter = require('./routes/admin');
 var apiRouter = require('./routes/api');
 var questionnaireRouter = require('./routes/questionnaire');
 var questionsRouter = require('./routes/questions');
+var answerRouter = require('./routes/answer');
 
 
 
@@ -73,6 +74,7 @@ app.use('/api', interceptors.requireLogin);
 app.use('/api', apiRouter);
 app.use('/questionnaire', questionnaireRouter);
 app.use('/questions', questionsRouter);
+app.use('/answer', answerRouter);
 
 
 // catch 404 and forward to error handler

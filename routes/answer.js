@@ -27,7 +27,7 @@ router.get('/new', function(req, res, next) {
 
   router.post('/', function(req, res, next) {
     models.Answer.create({
-      // title: req.body.title,
+      value: req.body.value,
       // explanation: req.body.explanation,
     }).then(function(record){
       // when a new one has been created redirect 
@@ -54,7 +54,7 @@ router.get('/:id', function(req, res, next){
 router.post('/:id', function(req, res, next) {
   models.Answer.findByPk(req.params.id).then(function(record) {
     record.update({
-      // title: req.body.title,
+      value: req.body.value,
       // explanation: req.body.explanation,
     }).then(function(record){
       res.redirect(`/answer`)

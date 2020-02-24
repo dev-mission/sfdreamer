@@ -1,11 +1,11 @@
-<%- contentFor('title') %> Deleting <%= record.prompt %>
+<%- contentFor('title') %> Deleting <%= record.value %>
 <%- contentFor('body') %>
 
 
-<h1>DELETEING <%= record.title %></h1>
+<h1>DELETEING <%= record.value %></h1>
 <form method="post" action="/answer/<%= record.id %>/delete">
-    <label for="prompt"><%= record. %> </label>
-    <input type="text" value="<%= record.prompt %> " id="prompt" name="prompt">
+    <label for="value"><%= record.value %> </label>
+    <input type="text" value="<%= record.value %> " id="value" name="value">
     <br>
     <br>
     <br>
