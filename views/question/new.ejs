@@ -3,10 +3,22 @@
 
 <h1>New question</h1>
 
+
+
+<br>
+<br>
 <form method="post" action="/questions">
     <label for="prompt">Question</label>
     <input type="text" id="prompt" name="prompt">
     <br>
     <br>
+    <select name="QuestionnaireId">
+      <% for (let record of records) { %>
+        <option value="<%= record.id %>"><%= record.title %></option>
+        <% } %>
+    </select>
+    <br>
+    <br>
+
     <button type="submit">Submit</button>
   </form>

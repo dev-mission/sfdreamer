@@ -3,11 +3,23 @@
 
 <h1>Editing:<br> <%= record.prompt %></h1>
 
+<br>
+<br>
+<br>
+<br>
+
+
 
 <form method="post" action="/questions/<%= record.id %>">
     <label for="prompt">question</label>
     <input type="text" value="<%= record.prompt%> " id="prompt" name="prompt">
     <br>
+
+  <select name="QuestionnaireId">
+    <% for (let questionnaire of questionnaires) { %>
+      <option value="<%= questionnaire.id %>" <%= record.QuestionnaireId == questionnaire.id ? 'selected' : '' %>><%= questionnaire.title %></option>
+      <% } %>
+  </select>
     <!-- <label for="explanation">Explanation</label> -->
     <!-- <textarea name="explanation" id="explanation" value="<%= record.explanation %> " rows="10" cols="30"> <%= record.explanation %> </textarea> -->
     <br>

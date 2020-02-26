@@ -6,13 +6,18 @@
 <a href="answer/new">New Answer</a>
 
 <div class="blog_section">
+  
     <% for (let record of records) { %>
       <div class="posts" id="<%= record.id %>">
-    <h4><%= record.value %></h4>
+   
+        <h4><%= record.value %></h4>
     <a href="/answer/<%= record.id %>">Edit</a>
+   
     <br>
     <a href="/answer/<%= record.id %>/delete">Delete</a>
       </div>
       <br>
       <% } %>
-  </div>
+  
+  
+    </div>

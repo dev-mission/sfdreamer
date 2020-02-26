@@ -28,7 +28,7 @@ router.get('/new', function(req, res, next) {
   router.post('/', function(req, res, next) {
     models.Answer.create({
       value: req.body.value,
-      // explanation: req.body.explanation,
+      next_question: req.body.next_question,
     }).then(function(record){
       // when a new one has been created redirect 
       // to the all questionnaire page
@@ -55,7 +55,7 @@ router.post('/:id', function(req, res, next) {
   models.Answer.findByPk(req.params.id).then(function(record) {
     record.update({
       value: req.body.value,
-      // explanation: req.body.explanation,
+      next_question: req.body.next_question,
     }).then(function(record){
       res.redirect(`/answer`)
     });

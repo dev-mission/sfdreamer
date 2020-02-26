@@ -21,14 +21,20 @@ router.get('/', function(req, res, next) {
 // Create a new Question
 // 
 router.get('/new', function(req, res, next) {
-  res.render('question/new');
+  models.Questionnaire.findAll().then(function(records){
+    res.render('question/new', {
+    records: records
+    });
+  });
 });
+
 
 
 router.post('/', function(req, res, next) {
   models.Question.create({
     prompt: req.body.prompt,
     explanation: req.body.explanation,
+    QuestionnaireId: req.body.QuestionnaireId,
   }).then(function(record){
     // when a new one has been created redirect 
     // to the all questionnaire page
@@ -43,9 +49,12 @@ router.post('/', function(req, res, next) {
 // Edit a task
 // 
 router.get('/:id', function(req, res, next){
-  models.Question.findByPk(req.params.id).then(function(record) {
-    res.render('question/edit', {
-      record: record
+  models.Questionnaire.findAll().then(function(questionnaires){
+    models.Question.findByPk(req.params.id).then(function(record) {
+      res.render('question/edit', {
+        record: record,
+        questionnaires: questionnaires
+      });
     });
   });
 });
@@ -56,6 +65,7 @@ router.post('/:id', function(req, res, next) {
     record.update({
       prompt: req.body.prompt,
       // explanation: req.body.explanation,
+      QuestionnaireId: req.body.QuestionnaireId,
     }).then(function(record){
       res.redirect(`/questions`)
     });

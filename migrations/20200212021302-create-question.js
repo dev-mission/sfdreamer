@@ -20,6 +20,14 @@ module.exports = {
       step: {
         type: Sequelize.INTEGER
       },
+      QuestionnaireId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Questionnaires",
+          key: "id",
+        }
+
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
