@@ -8,9 +8,8 @@
 
 
     <li>
-      <p><a href="/resources/<%= record.id %>">Edit a resource</a></p>
-      <p><a href="/resources/delete">Delete a resource</a></p>
-    <form method="post" action="/resources/<%= record.id %>/delete">  <button type="submit">Delete</button></form>
+
+
 
       <%=record.name %>
       <%=record.orgtype%>
@@ -19,6 +18,11 @@
       <%=record.address%>
       <%=record.email%>
       <%=record.website%></li>
+
+      <form method="get" action="/resources/<%= record.id %>"> <button type="submit">Edit</button></form>
+
+      <form method="post" action="/resources/<%= record.id %>/delete"> <button type="submit">Delete</button></form>
+
   <% } %>
 <p><a href="/resources/new">NEW Resource!</a></p>
 
