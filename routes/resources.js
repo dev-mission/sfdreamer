@@ -19,7 +19,11 @@ router.get('/new', function(req, res, next){
 router.post('/', function(req, res, next){
   models.Resource.create({
     name: req.body.name,
-    phone: req.body.phone
+    orgtype: req.body.orgtype,
+    contactperson: req.body.contactperson,
+    phone: req.body.phone,
+    address: req.body.address,
+    website: req.body.website
   }).then(function(record){
     res.redirect(`/resources`);
   });
@@ -33,11 +37,23 @@ router.get('/:id', function(req, res, next){
   });
 });
 
+router.post('/:id/delete', function(req, res, next){
+  models.Resource.findByPk(req.params.id).then(function(record){
+    record.destroy().then(function() {
+      res.redirect(`/resources`);
+    });
+  });
+});
+
 router.post('/:id', function( req, res, next){
-  models.Resource.findBYPk(req.params.id).then(function(record) {
+  models.Resource.findByPk(req.params.id).then(function(record) {
     record.update({
-      title: req.body.title,
-      body: req.body.body
+      name: req.body.name,
+      orgtype: req.body.orgtype,
+      contactperson: req.body.contactperson,
+      phone: req.body.phone,
+      address: req.body.address,
+      website: req.body.website
     }).then(function(record) {
       res.redirect('/resources');
     })

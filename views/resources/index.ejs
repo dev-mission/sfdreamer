@@ -5,18 +5,21 @@
 
 <ul>
   <%for(let record of records){%>
-    <li><a href="/resources/<%= record.id %>">
+
+
+    <li>
+      <p><a href="/resources/<%= record.id %>">Edit a resource</a></p>
+      <p><a href="/resources/delete">Delete a resource</a></p>
+    <form method="post" action="/resources/<%= record.id %>/delete">  <button type="submit">Delete</button></form>
+
       <%=record.name %>
       <%=record.orgtype%>
       <%=record.contactperson %>
       <%=record.phone%>
       <%=record.address%>
       <%=record.email%>
-      <%=record.website%></a></li>
+      <%=record.website%></li>
   <% } %>
-
-
-<p><a href="/resources/new">NEW Resources!!!</a></p>
-<p><a href="/resources/edit">Edit a resource</a></p>
+<p><a href="/resources/new">NEW Resource!</a></p>
 
 </ul>
