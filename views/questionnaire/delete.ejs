@@ -4,10 +4,16 @@
 
 <h1>DELETEING <%= record.title %></h1>
 <form method="post" action="/questionnaire/<%= record.id %>/delete">
-    <label for="prompt"><%= record.title %> </label>
-    <input type="text" value="<%= record.title %> " id="prompt" name="prompt">
+    <label for="title"><%= record.title %> </label>
+    <input type="text" value="<%= record.title %> " id="title" name="title">
     <br>
+
+    <label for="explanation"><%= record.explanation %> </label>
+    <input type="text" value="<%= record.explanation %> " id="explanation" name="explanation">
     <br>
     <br>
     <button type="submit">Delete</button>
   </form>
+
+
+  explanation

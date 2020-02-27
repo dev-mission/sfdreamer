@@ -33,7 +33,9 @@ router.get('/new', function(req, res, next) {
 router.post('/', function(req, res, next) {
   models.Question.create({
     prompt: req.body.prompt,
-    explanation: req.body.explanation,
+    answer_type: req.body.answer_type,
+    questionnaire_type: req.body.questionnaire_type,
+    step: req.body.step,
     QuestionnaireId: req.body.QuestionnaireId,
   }).then(function(record){
     // when a new one has been created redirect 
@@ -64,7 +66,9 @@ router.post('/:id', function(req, res, next) {
   models.Question.findByPk(req.params.id).then(function(record) {
     record.update({
       prompt: req.body.prompt,
-      // explanation: req.body.explanation,
+      answer_type: req.body.answer_type,
+      questionnaire_type: req.body.questionnaire_type,
+      step: req.body.step,
       QuestionnaireId: req.body.QuestionnaireId,
     }).then(function(record){
       res.redirect(`/questions`)

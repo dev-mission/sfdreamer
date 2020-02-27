@@ -12,3 +12,18 @@ module.exports = (sequelize, DataTypes) => {
   };
   return Question;
 };
+
+// edit in migrations file
+// ****** migrationfile.js
+// ModelId: {
+//   type: Sequelize.INTEGER,
+//   references: {
+//     model: "Models",
+//     key: "id",
+//   } 
+// ****** modelfile.js
+// ThisModel.belongsTo(models.OtherModel);
+// ****** in command line
+// undo migrations 
+// do migrations
+// 
