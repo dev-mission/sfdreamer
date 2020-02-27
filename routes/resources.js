@@ -23,6 +23,7 @@ router.post('/', function(req, res, next){
     contactperson: req.body.contactperson,
     phone: req.body.phone,
     address: req.body.address,
+    email: req.body.email,
     website: req.body.website
   }).then(function(record){
     res.redirect(`/resources`);
@@ -53,9 +54,10 @@ router.post('/:id', function( req, res, next){
       contactperson: req.body.contactperson,
       phone: req.body.phone,
       address: req.body.address,
+      email: req.body.email,
       website: req.body.website
     }).then(function(record) {
-      res.redirect('/resources');
+      res.redirect('/resources')
     })
   })
 });
