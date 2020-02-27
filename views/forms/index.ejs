@@ -7,8 +7,6 @@
 <p>Forms for Undocument Immigrants</p>
 <ul>
   <% for (let record of records) { %>
-    <li><a href="/forms/<%= record.id %>"><%= record.title %></a><br></li>
+    <li><a href="/forms/<%= record.id %>"><%= record.name %> <%= record.year %><br><%= record.school %><br><%= record.url %><br><%= record.lang %></a><br></li>
   <% } %>
 </ul>
-
-<a href="/forms/edit"> Edit a Form</a>

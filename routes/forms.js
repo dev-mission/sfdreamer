@@ -6,30 +6,24 @@ const models = require('../models');
 
 router.get('/', function(req, res, next) {
   models.Form.findAll().then(function(records) {
+    console.log(records);
     res.render('forms/index', {
       records: records
     });
   });
 });
 
-router.get('/form-page', function(req, res, next) {
-  res.render('index', {
-    title: req.body.title,
-    body:req.body.body
-  });
-});
+
 
 router.post('/', function(req, res, next) {
   models.Form.create({
-    name: req.body.title,
-    year:req.body.body,
-    school:req.body.body,
-    url:req.body.body,
-    lang:req.body.body,
+    name: req.body.name,
+    year:req.body.year,
+    school:req.body.school,
+    url:req.body.url,
+    lang:req.body.lang,
   }).then(function(record){
-    res.redirect('/forms', {
-
-    });
+    res.redirect('/forms');
   });
 });
 
@@ -39,17 +33,31 @@ router.get('/new', function(req,res,next){
   });
 });
 
+router.get('/forms', function(req, res, next) {
+  console.log(req.body);
+  res.render('index', {
+    title: req.body.title,
+    body:req.body.body
+  });
+});
+
 router.get('/:id', function(req, res, next) {
+  console.log(req.params.id);
   models.Form.findByPk(req.params.id).then(function(record) {
-    res.render('/forms/edit');
+    res.render('forms/edit',{
+      record:record
+    });
   });
 });
 
 router.post('/:id', function(req, res, next) {
   models.Form.findByPk(req.params.id).then(function(record) {
     record.update({
-      title: req.body.title,
-      body: req.body.body
+      name: req.body.name,
+      year:req.body.year,
+      school:req.body.school,
+      url:req.body.url,
+      lang:req.body.lang,
     }).then(function(record) {
       res.redirect('/forms');
     })
