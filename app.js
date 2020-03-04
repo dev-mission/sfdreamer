@@ -24,7 +24,6 @@ var questionnaireRouter = require('./routes/questionnaire');
 var questionsRouter = require('./routes/questions');
 var answerRouter = require('./routes/answer');
 var resourcesRouter = require('./routes/resources');
-
 var app = express();
 
 // view engine setup
@@ -76,7 +75,7 @@ app.use('/api', apiRouter);
 app.use('/questionnaire', questionnaireRouter);
 app.use('/questions', questionsRouter);
 app.use('/answer', answerRouter);
-var resourcesRouter = require('./routes/resources');
+app.use('/resources', resourcesRouter);
 app.use('/forms', formsRouter);
 
 
