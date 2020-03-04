@@ -1,0 +1,15 @@
+<%- contentFor('title') %> Editing <%= record.prompt %>
+<%- contentFor('body') %>
+
+<h1>Editing:<br> <%= record.prompt %></h1>
+
+
+<form method="post" action="/answer/<%= record.id %>">
+    <label for="value">question</label>
+    <input type="text" value="<%= record.value%> " id="value" name="value">
+    <br>
+    <label for="next_question">question</label>
+    <input type="text" value="<%= record.next_question%> " id="next_question" name="next_question">
+    <br>
+    <button type="submit">Submit</button>
+  </form>

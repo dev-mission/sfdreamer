@@ -1,0 +1,15 @@
+<%- contentFor('title') %> Deleting <%= record.value %>
+<%- contentFor('body') %>
+
+
+<h1>DELETEING <%= record.value %></h1>
+<form method="post" action="/answer/<%= record.id %>/delete">
+    <label for="value"><%= record.value %> </label>
+    <input type="text" value="<%= record.value %> " id="value" name="value">
+    <br>
+    <label for="next_question"><%= record.next_question %> </label>
+    <input type="text" value="<%= record.next_question %> " id="next_question" name="next_question">
+    <br>
+    <br>
+    <button type="submit">Delete</button>
+  </form>

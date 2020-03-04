@@ -1,0 +1,42 @@
+<%- contentFor('title') %> Editing <%= record.prompt %>
+<%- contentFor('body') %>
+
+<h1>Editing:<br> <%= record.prompt %></h1>
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+<form method="post" action="/questions/<%= record.id %>">
+    <label for="prompt">question</label>
+    <input type="text" value="<%= record.prompt%> " id="prompt" name="prompt">
+    <br>
+
+    <label for="answer_type">Answer Type</label>
+    <input type="text" value="<%= record.answer_type%> " id="answer_type" name="answer_type">
+    <br>
+
+    <label for="questionnaire_type">Questionnaire Yype</label>
+    <input type="text" value="<%= record.questionnaire_type%> " id="questionnaire_type" name="questionnaire_type">
+    <br>
+
+    <label for="step">step</label>
+    <input type="text" value="<%= record.step%> " id="step" name="step">
+    <br>
+
+    
+
+  <select name="QuestionnaireId">
+    <% for (let questionnaire of questionnaires) { %>
+      <option value="<%= questionnaire.id %>" <%= record.QuestionnaireId == questionnaire.id ? 'selected' : '' %>><%= questionnaire.title %></option>
+      <% } %>
+  </select>
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+
+
+
