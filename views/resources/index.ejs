@@ -1,0 +1,26 @@
+<%- contentFor('title') %>
+<%- contentFor('body') %>
+<u><h1>Resources Page</h1></u>
+<body style="background-color:powderblue;">
+
+<ul>
+  <%for(let record of records){%>
+
+    <li>
+
+      <%=record.name %>
+      <%=record.orgtype%>
+      <%=record.contactperson %>
+      <%=record.phone%>
+      <%=record.address%>
+      <%=record.email%>
+      <%=record.website%></li>
+
+      <form method="get" action="/resources/<%= record.id %>"> <button type="submit">Edit</button></form>
+
+      <form method="post" action="/resources/<%= record.id %>/delete"> <button type="submit">Delete</button></form>
+
+  <% } %>
+<p><a href="/resources/new">NEW Resource!</a></p>
+
+</ul>

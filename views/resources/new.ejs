@@ -1,0 +1,32 @@
+<%- contentFor('title') %>
+<%- contentFor('body') %>
+<u>
+<h1> NEW Resources Page</h1></u>
+
+<body style="background-color:powderblue;">
+
+<form method="post" action="/resources">
+  <label for="name">Name:</label><br/>
+  <input type="text" id="name" name="name" required><br/>
+
+  <label for="orgtype">Type of organization:</label><br/>
+  <input type="text" id="orgtype" name="orgtype" required><br/>
+
+  <label for="contactperson">Contact Person:</label><br/>
+  <input type="text" id="contactperson" name="contactperson"></input><br/>
+
+  <label for="phone">Phone Number:</label><br/>
+  <input type="text" id="phone" name="phone"></input><br/>
+
+  <label for="address">Address:</label><br/>
+  <input type="text" id="address" name="address"></input><br/>
+
+  <label for="email">Email:</label><br/>
+  <input type="text" id="email" name="email"></input><br/>
+
+  <label for="website">Buisness Website:</label><br/>
+  <input type="text" id="website" name="website"></input><br/>
+
+  <br><button type="submit">Submit</button></<br>
+
+</form>
