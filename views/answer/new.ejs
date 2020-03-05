@@ -10,5 +10,11 @@
     <label for="next_question">next question</label>
     <input type="text" id="next_question" name="next_question">
     <br>
+    <select name="QuestionId">
+      <% for (let record of records) { %>
+        <option value="<%= record.id %>"><%= record.prompt %></option>
+        <% } %>
+    </select>
+    <br>
     <button type="submit">Submit</button>
   </form>
