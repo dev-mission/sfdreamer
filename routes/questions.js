@@ -50,7 +50,7 @@ router.post('/', function(req, res, next) {
 // 
 // Edit a task
 // 
-router.get('/:id', function(req, res, next){
+router.get('/:id/edit', function(req, res, next){
   models.Questionnaire.findAll().then(function(questionnaires){
     models.Question.findByPk(req.params.id).then(function(record) {
       res.render('question/edit', {
@@ -95,6 +95,21 @@ router.post('/:id/delete', function(req, res, next) {
       res.redirect('/questions')
     });
   });
+});
+
+
+// 
+// 
+// 
+router.get('/:id/', function(req, res, next){
+  // models.Questionnaire.findAll().then(function(questionnaires){
+    models.Question.findByPk(req.params.id).then(function(record) {
+      res.render('question/show', {
+        record: record,
+        // questionnaires: questionnaires
+      });
+    });
+  // });
 });
 
 

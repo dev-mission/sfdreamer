@@ -1,0 +1,36 @@
+.prompt {
+    /* font-family: Poppins; */
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    color: #1652A3;
+}
+
+
+.jumbotron {
+    background-color: #1377FF;
+}
+
+.jumbotron h1 {
+    color: white;
+    font-weight: bolder;
+}
+
+
+ul li {
+    list-style: none;
+    font-size: 20px;
+}
+
+.answer {
+    font-size: 20px;
+}
+
+
+
+/* 
+    git commit (other branch)
+    git push (other branch)
+    git pull (on master)
+    git merge master (other branch)
+*/
