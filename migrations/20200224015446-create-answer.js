@@ -11,16 +11,20 @@ module.exports = {
       value: {
         type: Sequelize.STRING
       },
-      next_question: {
-        type: Sequelize.INTEGER
+      NextQuestionId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Questions",
+          key: "id",
+        }
       },
       QuestionId: {
         type: Sequelize.INTEGER,
         references: {
           model: "Questions",
           key: "id",
-          }
-      }, 
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
