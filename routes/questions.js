@@ -48,7 +48,7 @@ router.post('/', function(req, res, next) {
 
 
 // 
-// Edit a task
+// Edit a Question
 // 
 router.get('/:id/edit', function(req, res, next){
   models.Questionnaire.findAll().then(function(questionnaires){
@@ -78,7 +78,7 @@ router.post('/:id', function(req, res, next) {
 
 
 // 
-// Deleting a post
+// Delete a Question
 // 
 router.get('/:id/delete', function(req, res, next){
   models.Question.findByPk(req.params.id).then(function(record) {

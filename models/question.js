@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   Question.associate = function(models) {
     // associations can be defined here
     Question.belongsTo(models.Questionnaire);
+    Question.hasMany(models.Answer);
   };
   return Question;
 };
@@ -23,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
 //   } 
 // ****** modelfile.js
 // ThisModel.belongsTo(models.OtherModel);
+// OtherModel.hasMany(models.ThisModel);
 // ****** in command line
 // undo migrations 
 // do migrations
