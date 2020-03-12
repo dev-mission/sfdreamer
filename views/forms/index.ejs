@@ -2,14 +2,18 @@
 <%- contentFor('body') %>
 <h1>AB-540 Application</h1>
 
-<a href="/forms/new">Add a New Forms</a>
 <p>What is a AB-540?</p>
-<p>AB-540 allows undocmented people to pay instate tuition in California instead of paying a out of state fees.</p>
-<ul>
-  <% for (let record of records) { %>
-    <li><a href="/forms/<%= record.id %>"><%= record.name %> <%= record.year %><br><%= record.school %><br><%= record.url %><br><%= record.lang %></a><br></li>
-    <br>
-    <a type="button" class="btn btn-primary" href="<%= record.url %>">AB-540 for <%= record.school %></a>
-  <% } %>
+<a>AB-540 allows undocmented people to pay instate tuition in California instead of paying a out of state fees.</a>
+<div padding=>   <a>show more!>></a>   </div>
 
+
+<p>AB-540 Applications<br>Find your school below:</p>
+<ul align="center">
+  <% for (let record of records) { %>
+    <li>
+      <a<%= record.id %>"><%= record.name %> <%= record.year %></a></li>
+      <a>insert school pic</a>
+      <a style=border-radius:50px; type="button" class="btn btn-primary" href="<%= record.url %>">AB-540 for <%= record.school %></a>
+
+  <% } %>
 </ul>
