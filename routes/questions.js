@@ -99,17 +99,17 @@ router.post('/:id/delete', function(req, res, next) {
 
 
 // 
-// 
+// Show a single question
 // 
 router.get('/:id/', function(req, res, next){
-  // models.Questionnaire.findAll().then(function(questionnaires){
+  models.Questionnaire.findAll().then(function(questionnaires){
     models.Question.findByPk(req.params.id).then(function(record) {
       res.render('question/show', {
         record: record,
-        // questionnaires: questionnaires
+        questionnaires: questionnaires
       });
     });
-  // });
+  });
 });
 
 
