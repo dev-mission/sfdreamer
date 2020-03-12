@@ -42,7 +42,7 @@ ul li {
 .step_progressbar {
     display: block;
     width: 100%;
-    margin: 100px auto;
+    /* margin: 100px auto; */
     /* background-color: #ffff; */
 }
 
@@ -100,12 +100,12 @@ ul li {
 }
 
 .progress-item:active + .progress-item:after {
-    background-color: #1377ff;
+    background-color: #ffff;
 }
 
 
 .progress-item.active:before {
-    background-color: #1377ff;
+    background-color: #ffff;
     color: #ffff;
 }
 
