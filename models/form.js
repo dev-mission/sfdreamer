@@ -2,6 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Form = sequelize.define('Form', {
     name: DataTypes.STRING,
+    logo: DataTypes.STRING,
     year: DataTypes.INTEGER,
     school: DataTypes.STRING,
     url: DataTypes.TEXT,
