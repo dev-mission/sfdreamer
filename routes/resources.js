@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const models = require('../models');
+const helpers = require('./helpers');
 
 router.get('/', function(req, res, next){
   models.Resource.findAll().then(function(records){
@@ -48,17 +49,20 @@ router.post('/:id/delete', function(req, res, next){
 
 router.post('/:id', function( req, res, next){
   models.Resource.findByPk(req.params.id).then(function(record) {
-    record.update({
-      name: req.body.name,
-      orgtype: req.body.orgtype,
-      contactperson: req.body.contactperson,
-      phone: req.body.phone,
-      address: req.body.address,
-      email: req.body.email,
-      website: req.body.website
-    }).then(function(record) {
-      res.redirect('/resources')
-    })
+    helpers.handleUpload(record, 'logo', req.body.logo, 'resources/logo').then(function(record) {
+      record.update({
+        name: req.body.name,
+        logo: record.logo,
+        orgtype: req.body.orgtype,
+        contactperson: req.body.contactperson,
+        phone: req.body.phone,
+        address: req.body.address,
+        email: req.body.email,
+        website: req.body.website
+      }).then(function(record) {
+        res.redirect('/resources')
+      })
+    });
   })
 });
 

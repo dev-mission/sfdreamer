@@ -48,6 +48,7 @@ app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/client', express.static(path.join(__dirname, 'dist')));
+app.use('/libraries/activestorage', express.static(path.join(__dirname, 'node_modules/activestorage/app/assets/javascripts')));
 app.use('/libraries/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 app.use('/libraries/cleave', express.static(path.join(__dirname, 'node_modules/cleave.js/dist')));
 app.use('/libraries/fontawesome', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free')));
@@ -70,7 +71,7 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/admin', interceptors.requireLogin);
 app.use('/admin', adminRouter);
-app.use('/api', interceptors.requireLogin);
+// app.use('/api', interceptors.requireLogin);
 app.use('/api', apiRouter);
 app.use('/questionnaire', questionnaireRouter);
 app.use('/questions', questionsRouter);

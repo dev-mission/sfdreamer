@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/stylesheets/navbar.css" />
     <script type="application/javascript" src="/libraries/jquery/jquery.min.js"></script>
     <script type="application/javascript" src="/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="crossorigin="anonymous"></script>
+    <script type="application/javascript" src="/libraries/activestorage/activestorage.js"></script>
     <% if (locals.head) { %><%- head %><% } %>
     <script>
       $(function() {
@@ -29,10 +29,10 @@
       <nav class="_nav">
         <ul class="_menu">
           <li class="_logo"><a href="/">Logo</a></li>
-          <li class="_item"><a href="#">Home</a></li>
+          <li class="_item"><a href="/">Home</a></li>
           <li class="_item"><a href="#">About</a></li>
-          <li class="_item"><a href="#">Ab-540's</a></li>
-          <li class="_item"><a href="#">Resources</a></li>
+          <li class="_item"><a href="/forms">Ab-540's</a></li>
+          <li class="_item"><a href="/resources">Resources</a></li>
             <li class="_toggle"><span class="_bars"></span></li>
         </ul>
       </nav>
