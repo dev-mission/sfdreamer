@@ -1,0 +1,18 @@
+<%- contentFor('title') %>Form
+<%- contentFor('body') %>
+<h1>Forms Page</h1>
+
+
+<a href="/forms/new">Add a New Forms</a>
+<p>Forms for Undocument Immigrants</p>
+<ul>
+  <% for (let record of records) { %>
+    <li>
+      <a href="/forms/<%= record.id %>">
+        <% if (record.logo) { %>
+          <img src="<%= assetUrl(record.logo) %>" />
+        <% } %>
+        <%= record.name %> <%= record.year %><br><%= record.school %><br><%= record.url %><br><%= record.lang %></a><br>
+      </li>
+  <% } %>
+</ul>

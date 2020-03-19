@@ -18,12 +18,12 @@ var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var adminRouter = require('./routes/admin');
 var apiRouter = require('./routes/api');
+var formsRouter = require('./routes/forms');
 
 var questionnaireRouter = require('./routes/questionnaire');
 var questionsRouter = require('./routes/questions');
 var answerRouter = require('./routes/answer');
 var resourcesRouter = require('./routes/resources');
-
 var app = express();
 
 // view engine setup
@@ -48,6 +48,7 @@ app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/client', express.static(path.join(__dirname, 'dist')));
+app.use('/libraries/activestorage', express.static(path.join(__dirname, 'node_modules/activestorage/app/assets/javascripts')));
 app.use('/libraries/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
 app.use('/libraries/cleave', express.static(path.join(__dirname, 'node_modules/cleave.js/dist')));
 app.use('/libraries/fontawesome', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free')));
@@ -70,12 +71,14 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/admin', interceptors.requireLogin);
 app.use('/admin', adminRouter);
-app.use('/api', interceptors.requireLogin);
+// app.use('/api', interceptors.requireLogin);
 app.use('/api', apiRouter);
 app.use('/questionnaire', questionnaireRouter);
 app.use('/questions', questionsRouter);
 app.use('/answer', answerRouter);
 app.use('/resources', resourcesRouter);
+app.use('/forms', formsRouter);
+
 
 
 // catch 404 and forward to error handler
