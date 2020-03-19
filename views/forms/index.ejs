@@ -10,11 +10,11 @@
 <ul align="center">
   <% for (let record of records) { %>
     <li>
-      <a href="/forms/<%= record.id %>"><%= record.name %> <%= record.year %></a><br>
+      <a href="/forms/<%= record.id %>"><%= record.name %> <%= record.year %></a><p></p>
       <% if (record.logo) { %>
-        <img src="<%= assetUrl(record.logo) %>" /><br>
+        <img src="<%= assetUrl(record.logo) %>" /><p></p>
       <% } %>
-      <p><a style=border-radius:50px; type="button" class="btn btn-primary" href="<%= record.url %>">AB-540 for <%= record.school %></a>
+      <a style=border-radius:50px; type="button" class="btn btn-primary" href="<%= record.url %>">AB-540 for <%= record.school %></a><p></p>
     </li>
   <% } %>
 </ul>
