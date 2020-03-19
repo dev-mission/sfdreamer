@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const models = require('../models');
+const helpers = require('./helpers');
 
 router.get('/', function(req, res, next) {
   models.Form.findAll().then(function(records) {
@@ -52,15 +53,18 @@ router.get('/:id', function(req, res, next) {
 
 router.post('/:id', function(req, res, next) {
   models.Form.findByPk(req.params.id).then(function(record) {
-    record.update({
-      name: req.body.name,
-      year:req.body.year,
-      school:req.body.school,
-      url:req.body.url,
-      lang:req.body.lang,
-    }).then(function(record) {
-      res.redirect('/forms');
-    })
+    helpers.handleUpload(record, 'logo', req.body.logo, 'forms/logo').then(function(record) {
+      record.update({
+        name: req.body.name,
+        logo: record.logo,
+        year:req.body.year,
+        school:req.body.school,
+        url:req.body.url,
+        lang:req.body.lang,
+      }).then(function(record) {
+        res.redirect('/forms');
+      })
+    });
   })
 });
 

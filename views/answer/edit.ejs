@@ -5,11 +5,22 @@
 
 
 <form method="post" action="/answer/<%= record.id %>">
-    <label for="value">question</label>
-    <input type="text" value="<%= record.value%> " id="value" name="value">
-    <br>
-    <label for="next_question">question</label>
-    <input type="text" value="<%= record.next_question%> " id="next_question" name="next_question">
-    <br>
-    <button type="submit">Submit</button>
-  </form>
+  <select name="QuestionId">
+    <% for (let question of questions) { %>
+      <option value="<%= question.id %>" <%= record.QuestionId == question.id ? 'selected' : '' %>><%= question.prompt %></option>
+      <% } %>
+  </select><br>
+  <br>
+  <label for="value">question</label>
+  <input type="text" value="<%= record.value%> " id="value" name="value">
+  <br>
+  <br>
+  <label for="NextQuestionId">Next Question</label><br>
+  <select name="NextQuestionId">
+    <% for (let question of questions) { %>
+      <option value="<%= question.id %>" <%= record.NextQuestionId == question.id ? 'selected' : '' %>><%= question.prompt %></option>
+      <% } %>
+  </select><br>
+  <br>
+  <button type="submit">Submit</button>
+</form>
