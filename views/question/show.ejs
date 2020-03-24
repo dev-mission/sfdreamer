@@ -1,26 +1,15 @@
-<%- contentFor('title') %> <%= record.id %>
+<%- contentFor('title') %> <%= question.prompt %>
 <%- contentFor('body') %>
 
-
-<!-- <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">Name of Questionnaire</h1>
-      <div class="step_progressbar float-right">
-        <ul class="progress-list">
-            <li class="_active progress-item"> </li>
-            <li class="progress-item"></li>
-            <li class="progress-item"></li>
-            <li class="progress-item"></li>
-            <li class="progress-item"></li>
-        </ul>
-      </div>
-    </div>
-  </div> -->
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <div class="row">
-            <h1 class="display-4"><%= record.QuestionnaireId %></h1>
+            <% for (let questionnaire of questionnaires) { %>
+                <% if (question.QuestionnaireId == questionnaire.id) { %>
+                    <h1 class="display-4"><%= questionnaire.title %></h1>
+                    <% } %>
+              <% } %>
                 <div class="step_progressbar">
                     <ul class="progress-list">
                         <li class="_active progress-item"> </li>
@@ -38,18 +27,21 @@
 <br>
 <div class="container">
     <form>
-        <h1 class="prompt"> <%= record.step %>.  <%= record.prompt %></h1>
-
+        <!-- current question -->
+        <h1 class="prompt"> <%= question.step %>.  <%= question.prompt %></h1>
+        <!-- load available answers -->
         <ul class="answers">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                <label class="form-check-label answer" for="exampleRadios1">
-                    <%= record.answer_type%>
-                </label>
-            </div>
+            <% for (let answer of answers) { %>
+                <% if (answer.QuestionId == question.id) { %>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <label class="form-check-label answer" for="exampleRadios1">
+                            <%= answer.value %>
+                        </label>
+                    </div>
+                    <% } %>
+              <% } %>
         </ul>
-
-
         <br>
         <br>
         <button class="btn btn-primary float-right" type="submit">Contiue</button>

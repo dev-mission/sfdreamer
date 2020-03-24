@@ -3,4 +3,15 @@
 
 <h1><%= questionnaire.title %></h1>
 
-<h1>questionnaire.que</h1>
+<div class="blog_section">
+    <% for (let question of questions) { %>
+        
+        <% if (question.QuestionnaireId == questionnaire.id) { %>
+            <h4><%= question.prompt %></h4>
+            <br>
+            <% } %>
+
+
+      <% } %>
+  </div>
+

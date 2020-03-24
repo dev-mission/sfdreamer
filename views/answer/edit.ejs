@@ -5,13 +5,14 @@
 
 
 <form method="post" action="/answer/<%= record.id %>">
+  <label for="QuestionId">Which question it belongs to</label><br>
   <select name="QuestionId">
     <% for (let question of questions) { %>
       <option value="<%= question.id %>" <%= record.QuestionId == question.id ? 'selected' : '' %>><%= question.prompt %></option>
       <% } %>
   </select><br>
   <br>
-  <label for="value">question</label>
+  <label for="value">Question Value</label><br>
   <input type="text" value="<%= record.value%> " id="value" name="value">
   <br>
   <br>
