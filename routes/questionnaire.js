@@ -42,7 +42,7 @@ router.get('/new', function(req, res, next) {
 // 
 // Edit a task
 // 
-router.get('/:id', function(req, res, next){
+router.get('/:id/edit', function(req, res, next){
   models.Questionnaire.findByPk(req.params.id).then(function(record) {
     res.render('questionnaire/edit', {
       record: record
@@ -51,7 +51,7 @@ router.get('/:id', function(req, res, next){
 });
 
 
-router.post('/:id', function(req, res, next) {
+router.post('/:id/', function(req, res, next) {
   models.Questionnaire.findByPk(req.params.id).then(function(record) {
     record.update({
       title: req.body.title,
@@ -86,7 +86,19 @@ router.post('/:id/delete', function(req, res, next) {
 
 
 
-
+// 
+// Show a questionnaire and its question
+// 
+router.get('/:id/', function(req, res, next){
+  models.Questionnaire.findByPk(req.params.id).then(function(questionnaire){
+    models.Question.findByPk(req.params.id).then(function(question) {
+      res.render('questionnaire/show', {
+        question: question,
+        questionnaire: questionnaire
+      });
+    });
+  });
+});
 
 
 module.exports = router;
