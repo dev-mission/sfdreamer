@@ -103,6 +103,7 @@ router.post('/:id/delete', function(req, res, next) {
 // 
 router.get('/:id/', function(req, res, next){
   models.Questionnaire.findAll().then(function(questionnaires){
+<<<<<<< HEAD
     models.Answer.findAll().then(function(answers){
       models.Question.findByPk(req.params.id).then(function(question) {
         res.render('question/show', {
@@ -110,6 +111,12 @@ router.get('/:id/', function(req, res, next){
           questionnaires: questionnaires,
           answers: answers
         });
+=======
+    models.Question.findByPk(req.params.id).then(function(record) {
+      res.render('question/show', {
+        record: record,
+        questionnaires: questionnaires
+>>>>>>> master
       });
     });
   });
