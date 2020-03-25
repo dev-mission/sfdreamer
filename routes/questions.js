@@ -50,7 +50,7 @@ router.post('/', function(req, res, next) {
 // 
 // Edit a Question
 // 
-router.get('/:id', function(req, res, next){
+router.get('/:id/edit', function(req, res, next){
   models.Questionnaire.findAll().then(function(questionnaires){
     models.Question.findByPk(req.params.id).then(function(record) {
       res.render('question/edit', {
@@ -93,6 +93,21 @@ router.post('/:id/delete', function(req, res, next) {
   models.Question.findByPk(req.params.id).then(function(record) {
     record.destroy().then(function(record){
       res.redirect('/questions')
+    });
+  });
+});
+
+
+// 
+// Show a single question
+// 
+router.get('/:id/', function(req, res, next){
+  models.Questionnaire.findAll().then(function(questionnaires){
+    models.Question.findByPk(req.params.id).then(function(record) {
+      res.render('question/show', {
+        record: record,
+        questionnaires: questionnaires
+      });
     });
   });
 });
