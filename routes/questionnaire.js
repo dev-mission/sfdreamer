@@ -91,20 +91,19 @@ router.post('/:id/delete', function(req, res, next) {
 // 
 router.get('/:id/', function(req, res, next){
   models.Questionnaire.findByPk(req.params.id).then(function(questionnaire){
-<<<<<<< HEAD
     models.Question.findAll().then(function(questions){
       res.render('questionnaire/show', {
         questions: questions,
-=======
-    models.Question.findByPk(req.params.id).then(function(question) {
-      res.render('questionnaire/show', {
-        question: question,
->>>>>>> master
         questionnaire: questionnaire
       });
     });
   });
 });
+
+
+
+
+
 
 
 module.exports = router;
