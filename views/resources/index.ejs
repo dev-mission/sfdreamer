@@ -1,24 +1,49 @@
 <%- contentFor('title') %>
 <%- contentFor('body') %>
-
+<head>
 <u><h1>Resources Page</h1></u>
-<body style="background-color:white;">
-  <font color="darkblue">
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px;
+  }
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  </style>
+  </head>
+  <body>
 
 <ul>
   <%for(let record of records){%>
 
     <li>
-      <% if (record.logo) { %>
+      <div class="row">
+        <div class="column">
+         <% if (record.logo) { %>
+
+
       <img src="<%= assetUrl(record.logo) %>">
       <% } %>
-      <%=record.name %>
-      <%=record.orgtype%>
-      <%=record.contactperson %>
-      <%=record.phone%>
-      <%=record.address%>
-      <%=record.email%>
-      <%=record.website%></li>
+      </div>
+        <div class="column">
+          <%=record.name %>
+          <%=record.orgtype%>
+          <%=record.contactperson %>
+          <%=record.phone%>
+          <%=record.address%>
+          <%=record.email%>
+          <%=record.website%></li>
+          </div>
+      </div>
+
 
       <form method="get" action="/resources/<%= record.id %>"> <button type="submit">Edit</button></form>
 
@@ -28,4 +53,4 @@
 <p><a href="/resources/new">NEW Resource!</a></p>
 
 </ul>
-</font>
+</body>
