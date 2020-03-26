@@ -1,22 +1,25 @@
 <%- contentFor('title') %>Form
 <%- contentFor('body') %>
 
+<!-- Experiment with /CustomNavbar.css
+<link rel="stylesheet" href="/stylesheets/CustomNavbar.css" />
+-->
+
 <h1>AB-540 Application</h1>
 
-
 <b>What is a AB-540?</b><br>
-<a>AB-540 allows undocmented people to pay instate tuition in California instead of paying a out of state fees.</a>
- <p align="right"><a href="https://ab540.com/What_Is_AB540_.html" ><u>show more!>></u></a></p>
+<p>AB-540 allows undocmented people to pay instate tuition in California instead of paying a out of state fees.</p>
+ <div align="right"><a href="https://ab540.com/What_Is_AB540_.html" ><u>show more!>></u></a></div>
 <b>AB-540 Applications</b><br>
 <b>Find your school below:</b>
-<ul>
+<ul class="Documents">
   <% for (let record of records) { %>
     <li>
-      <a href="/forms/<%= record.id %>"><%= record.name %> <%= record.year %></a><p></p>
-      <% if (record.logo) { %>
-        <img src="<%= assetUrl(record.logo) %>" /><p></p>
-      <% } %>
-      <a class="btn btn-primary" href="<%= record.url %>">AB-540 for <%= record.school %></a><p></p>
+        <a href="/forms/<%= record.id %>"><%= record.name %> <%= record.year %></a><p class="s"></p>
+        <% if (record.logo) { %>
+          <img src="<%= assetUrl(record.logo) %>" /><p class="s"></p>
+        <% } %>
+        <a class="btn btn-primary" href="<%= record.url %>">AB-540 for <%= record.school %></a><p class="s"></p>
     </li>
   <% } %>
 </ul>
