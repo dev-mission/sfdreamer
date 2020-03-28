@@ -8,9 +8,9 @@
       body {
         font-family: sans-serif;
       }
-      
+
       ._nav {
-        background: #8dc4eb;
+        background: #ffffff;
         padding: 5px 20px;
       }
 
@@ -18,7 +18,7 @@
         list-style-type: none;
       }
       ._nav a {
-        color: white;
+        color: #1377FF;
         text-decoration: none;
       }
       a:hover {
