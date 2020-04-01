@@ -102,6 +102,22 @@ router.get('/:id/', function(req, res, next){
 
 
 
+// 
+// Show info about 
+// 
+router.get('/:id/info', function(req, res, next){
+  models.Questionnaire.findByPk(req.params.id).then(function(questionnaire){
+    models.Question.findAll().then(function(questions){
+      res.render('questionnaire/info', {
+        questions: questions,
+        questionnaire: questionnaire
+      });
+    });
+  });
+});
+
+
+
 
 
 
