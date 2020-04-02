@@ -91,14 +91,35 @@ router.post('/:id/delete', function(req, res, next) {
 // 
 router.get('/:id/', function(req, res, next){
   models.Questionnaire.findByPk(req.params.id).then(function(questionnaire){
-    models.Question.findByPk(req.params.id).then(function(question) {
+    models.Question.findAll().then(function(questions){
       res.render('questionnaire/show', {
-        question: question,
+        questions: questions,
         questionnaire: questionnaire
       });
     });
   });
 });
+
+
+
+// 
+// Show info about 
+// 
+router.get('/:id/info', function(req, res, next){
+  models.Questionnaire.findByPk(req.params.id).then(function(questionnaire){
+    models.Question.findAll().then(function(questions){
+      res.render('questionnaire/info', {
+        questions: questions,
+        questionnaire: questionnaire
+      });
+    });
+  });
+});
+
+
+
+
+
 
 
 module.exports = router;

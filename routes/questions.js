@@ -62,7 +62,7 @@ router.get('/:id/edit', function(req, res, next){
 });
 
 
-router.post('/:id', function(req, res, next) {
+router.post('/:id/edit', function(req, res, next) {
   models.Question.findByPk(req.params.id).then(function(record) {
     record.update({
       prompt: req.body.prompt,
@@ -103,16 +103,32 @@ router.post('/:id/delete', function(req, res, next) {
 // 
 router.get('/:id/', function(req, res, next){
   models.Questionnaire.findAll().then(function(questionnaires){
-    models.Question.findByPk(req.params.id).then(function(record) {
-      res.render('question/show', {
-        record: record,
-        questionnaires: questionnaires
+    models.Answer.findAll().then(function(answers){
+      models.Question.findByPk(req.params.id).then(function(question) {
+        res.render('question/show', {
+          question: question,
+          questionnaires: questionnaires,
+          answers: answers
+        });
       });
     });
   });
 });
 
 
+router.post('/:id/', function(req, res, next){
+  models.Questionnaire.findAll().then(function(questionnaires){
+    models.Answer.findAll().then(function(answers){
+      models.Question.findByPk(req.params.id).then(function(question) {
+        res.render('question/show', {
+          question: question,
+          questionnaires: questionnaires,
+          answers: answers
+        });
+      });
+    });
+  });
+});
 
 
 
