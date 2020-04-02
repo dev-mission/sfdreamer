@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title><%= title %> - <%= process.env.APP_NAME %></title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="/libraries/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="/stylesheets/navbar.css" />
     <link rel="stylesheet" href="/stylesheets/question.css" />
@@ -18,34 +19,29 @@
     <% if (locals.head) { %><%- head %><% } %>
     <script>
       $(function() {
-      $("._toggle").on("click", function() {
+        $("._toggle").on("click", function() {
           if ($("._item").hasClass("active")) {
-              $("._item").removeClass("active");
+            $("._item").removeClass("active");
           } else {
-              $("._item").addClass("active");
+            $("._item").addClass("active");
           }
+        });
       });
-  });
-  </script>
-</head>
-<body>
-
-
-      <nav class="_nav">
-
-        <ul class="_menu">
-
-          <li class="_logo"><a href="/"><img src="/images/Logo.jpg" alt="Sf Dreamer"></a></li>
-          <li class="_item"><a href="#">Home</a></li>
-          <li class="_item"><a href="#">About</a></li>
-          <li class="_item"><a href="/forms">Ab-540's</a></li>
-          <li class="_item"><a href="/resources">Resources</a></li>
-            <li class="_toggle"><span class="_bars"></span></li>
-        </ul>
-      </nav>
-
-
-
+    </script>
+  </head>
+  <body>
+    <nav class="_nav">
+      <ul class="_menu">
+        <li class="_logo"><a href="/"><img src="/images/Logo.png" alt="SF Dreamer"></a></li>
+        <li class="_item collapsed"><a href="">Dream Act Info</a></li>
+        <li class="_item"><a href="">Eligibility Survey</a></li>
+        <li class="_item collapsed"><a href="">Mock Application</a></li>
+        <li class="_item"><a href="/forms">AB-540 Forms</a></li>
+        <li class="_item"><a href="/resources">Resources</a></li>
+        <li class="_item collapsed"><a href="/about">About</a></li>
+        <li class="_toggle"><span class="_bars"></span></li>
+      </ul>
+    </nav>
     <% if (flash.info || flash.error) { %>
       <div style="position: absolute; top: 0; right: 0;">
         <% if (flash.info) { %>
@@ -66,5 +62,8 @@
       <script type="application/javascript">$('.toast').toast({delay: 2000}).toast('show');</script>
     <% } %>
     <%- body %>
+    <footer>
+      Copyright &copy; 2020 SF Dreamer
+    </footer>
   </body>
 </html>
