@@ -26,9 +26,31 @@
     background-size: cover;
   }
 
+  @media all and (max-width: 468px){
+    .Welcome h1{
+      font-size: 40px;
+      padding-left: 30px;
+      padding-top: 30px;
+      padding-bottom: 0px;
+      text-align: left;
+    }
+
+    .Welcome h2{
+      font-size: 13px;
+      padding-top: 0px;
+      padding-left: 30px;
+      padding-right: 15px;
+      text-align: left;
+    }
+  }
+
   div.container{
     padding-top:20px;
     margin-bottom: 75px;
+  }
+
+  div.step{
+    padding-bottom: 15px;
   }
 
   div.row{
@@ -40,7 +62,6 @@
     font-style: normal;
     font-weight: 600;
     font-size: 30px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     text-align:center;
   }
@@ -50,7 +71,6 @@
     font-style: normal;
     font-weight: 450;
     font-size: 15px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     text-align: center;
   }
