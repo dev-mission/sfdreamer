@@ -1,7 +1,8 @@
 <%- contentFor('title') %>
+<%- contentFor('head') %>
+<link rel="stylesheet" href="/stylesheets/CustomNavbar.css" />
 <%- contentFor('body') %>
-<u><h1>Resources Page</h1></u>
-<body style="background-color:white;">
+<h1>Resources Page</h1>
 
 <ul>
   <%for(let record of records){%>
@@ -28,11 +29,11 @@
 </div>
 
 
-      <form method="get" action="/resources/<%= record.id %>"> <button type="submit">Edit</button></form>
+      <!-- <form method="get" action="/resources/<%= record.id %>"> <button type="submit">Edit</button></form>
 
-      <form method="post" action="/resources/<%= record.id %>/delete"> <button type="submit">Delete</button></form>
+      <form method="post" action="/resources/<%= record.id %>/delete"> <button type="submit">Delete</button></form> -->
 
   <% } %>
-<p><a href="/resources/new">NEW Resource!</a></p>
+<!-- <p><a href="/resources/new">NEW Resource!</a></p> -->
 
 </ul>

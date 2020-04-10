@@ -29,10 +29,6 @@
     <h1>To see what Questionnaire it belongs to</h1>
     <br>
 
-    <!-- <% for (let answer of answers) { %>
-      <option value="<%= answer.id %>"><%= record.value %></option>
-      <% } %> -->
-
     <select name="QuestionnaireId">
       <% for (let record of records) { %>
         <option value="<%= record.id %>"><%= record.title %></option>

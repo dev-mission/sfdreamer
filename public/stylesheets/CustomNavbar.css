@@ -1,52 +1,60 @@
 
-  h1{
-    font-style: normal;
-    font-weight: bold;
-    font-size: 40px;
-    line-height: 60px;
+h1{
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 60px;
 
-    margin-bottom: 30px;
-    padding-top:60px;
-    padding-left:40px;
-    padding-bottom:60px;
-    color:#FFFFFF;
+  margin-bottom: 30px;
+  padding-top:60px;
+  padding-left:40px;
+  padding-bottom:60px;
+  color:#FFFFFF;
 
-    background-image: url("/images/Group1.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: rgba(19, 119, 255, 0.6);
+  background-image: url("/images/Group1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(19, 119, 255, 0.6);
+
+  height: 526px;
+}
+
+@media all and (max-width: 468px){
+  h1 {
+    height: 367px;
   }
+}
 
-  .btn{
-    border-radius: 50px;
-    text-align:center;
-  }
+.btn{
+  border-radius: 50px;
+  text-align:center;
+}
 
-  b{
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 30px;
+b{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
 
-    margin-left: 25px;
-    margin-top: 25px;
-  }
+  margin-left: 25px;
+  margin-top: 25px;
+}
 
-  p{
-    font-style: normal;
-    font-weight: normal;
+p{
+  font-style: normal;
+  font-weight: normal;
 
-    padding:25px;
-  }
+  padding:25px;
+}
 
-  u{
-    margin-right: 25px;
-  }
+u{
+  margin-right: 25px;
+}
 
-  ul.Documents{
-    text-align:center;
-  }
+ul.Documents{
+  text-align:center;
+}
 
-  p.s{
-    padding:0px;
-  }
+p.s{
+  padding:0px;
+}
