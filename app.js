@@ -1,103 +1,72 @@
 require('dotenv').config();
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieSession = require('cookie-session');
-var logger = require('morgan');
-var expressLayouts = require('express-ejs-layouts');
-var flash = require('connect-flash');
-var passport = require('passport');
-var fileUpload = require('express-fileupload');
-var i18n = require('i18n');
-var bodyParser = require('body-parser');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieSession = require('cookie-session');
+const logger = require('morgan');
+const passport = require('passport');
+const fileUpload = require('express-fileupload');
+const i18n = require('i18n');
+const HttpStatus = require('http-status-codes');
 
-var helpers = require('./routes/helpers');
-var interceptors = require('./routes/interceptors');
-var indexRouter = require('./routes/index');
-var loginRouter = require('./routes/login');
-var adminRouter = require('./routes/admin');
-var apiRouter = require('./routes/api');
-var formsRouter = require('./routes/forms');
+const routes = require('./routes');
 
-var questionnaireRouter = require('./routes/questionnaire');
-var questionsRouter = require('./routes/questions');
-var answerRouter = require('./routes/answer');
-var resourcesRouter = require('./routes/resources');
-var app = express();
+const app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.use(expressLayouts);
-app.use(logger('dev'));
-app.use(fileUpload({
-  useTempFiles: !process.env.AWS_S3_BUCKET
-}));
-app.use(bodyParser.raw({type: ['image/*'], limit: '10mb'}));
+/// router logging output
+if (process.env.NODE_ENV !== 'test') {
+  app.use(logger('dev'));
+}
+/// multipart file upload support (when not uploading direct to S3)
+app.use(
+  fileUpload({
+    useTempFiles: !process.env.AWS_S3_BUCKET,
+  })
+);
+/// configure allowed file upload types and max file size
+app.use(express.raw({ type: ['image/*'], limit: '10mb' }));
+/// support json content body
 app.use(express.json());
+/// support standard form urlencoded body
 app.use(express.urlencoded({ extended: false }));
+/// support forwarded headers from intermediate proxies
 app.set('trust proxy', 1);
-app.use(cookieSession({
-  secret: process.env.SESSION_SECRET,
-  secure: process.env.NODE_ENV == 'production'
-}));
-app.use(flash());
+/// set up session handling in cookies
+app.use(
+  cookieSession({
+    secret: process.env.SESSION_SECRET,
+    secure: process.env.NODE_ENV === 'production',
+  })
+);
+/// use passport for authentication
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/client', express.static(path.join(__dirname, 'dist')));
-app.use('/libraries/activestorage', express.static(path.join(__dirname, 'node_modules/activestorage/app/assets/javascripts')));
-app.use('/libraries/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
-app.use('/libraries/cleave', express.static(path.join(__dirname, 'node_modules/cleave.js/dist')));
-app.use('/libraries/fontawesome', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free')));
-app.use('/libraries/jquery', express.static(path.join(__dirname, 'node_modules/jquery/dist')));
-
+/// support internationalization of strings
 i18n.configure({
   locales: ['en'],
-  directory: path.join(__dirname, 'locales')
+  directory: path.join(__dirname, 'locales'),
 });
-
-app.use(helpers.assetHelpers);
 app.use(i18n.init);
-app.use(function(req, res, next) {
-  res.locals.flash = req.flash();
+/// set up local variables commonly used in all requests
+app.use((req, res, next) => {
+  /// set the current logged in user, if any
   res.locals.currentUser = req.user;
   next();
 });
 
-app.use('/', indexRouter);
-app.use('/login', loginRouter);
-app.use('/admin', interceptors.requireLogin);
-app.use('/admin', adminRouter);
-// app.use('/api', interceptors.requireLogin);
-app.use('/api', apiRouter);
-app.use('/questionnaire', questionnaireRouter);
-app.use('/questions', questionsRouter);
-app.use('/answer', answerRouter);
-app.use('/resources', resourcesRouter);
-app.use('/forms', formsRouter);
+/// load in all the configured routes in /routes/index.js
+app.use(routes);
 
-
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
+/// catch 404 and forward to error handler
+app.use((req, res, next) => {
   next(createError(404));
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.currentUser = null;
-  res.locals.flash = {};
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-  res.locals.title = "Error!";
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+/// error handler
+app.use((err, req, res) => {
+  /// render the error
+  res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(err);
 });
 
 module.exports = app;

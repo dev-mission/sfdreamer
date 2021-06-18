@@ -1,7 +1,7 @@
 version: '2'
 services:
   db:
-    image: postgres:11
+    image: postgres:12
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
   mailcatcher:
@@ -11,10 +11,12 @@ services:
       - 1025:1025
   server:
     build: .
-    command: bash -l -c "nf start -j Procfile.dev"
+    image: devmission/full-stack-starter:latest
+    command: bash -l -c "bin/init; nf start -j Procfile.dev"
     volumes:
       - .:/opt/node/app
       - /opt/node/app/node_modules
+      - /opt/node/app/client/node_modules
     environment:
       - SMTP_HOST=mailcatcher
       - SMTP_PORT=1025
@@ -24,7 +26,6 @@ services:
       - DATABASE_URL=postgres://postgres@db/app
     ports:
       - 3000:3000
-      - 3001:3001
-      - 8080:8080
+      - 3100:3100
     depends_on:
       - db

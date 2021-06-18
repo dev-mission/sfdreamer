@@ -1,36 +1,39 @@
-'use strict';
-
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 const passport = require('passport');
 const passportLocal = require('passport-local');
+const HttpStatus = require('http-status-codes');
+
 const models = require('../models');
 
 passport.use(
-  new passportLocal.Strategy({
-    usernameField: 'email',
-  },
-  function(email, password, done) {
-    models.User.findOne({where: {email: email}}).then(function(user) {
-      bcrypt.compare(password, user.hashedPassword).then(function(res) {
-        if (res) {
-          return done(null, user);
-        }
-        return done(null, false, { message: 'Invalid password' });
-      }).catch(function(error) {
-        return done(null, false, { message: 'Invalid password' });
-      });
-    }).catch(function(error) {
-      return done(null, false, { message: 'Invalid login' });
-    });
-  }
-));
+  new passportLocal.Strategy(
+    {
+      usernameField: 'email',
+    },
+    (email, password, done) => {
+      models.User.findOne({ where: { email } })
+        .then((user) => {
+          bcrypt
+            .compare(password, user.hashedPassword)
+            .then((res) => {
+              if (res) {
+                return done(null, user);
+              }
+              return done(null, false, { message: 'Invalid password' });
+            })
+            .catch(() => done(null, false, { message: 'Invalid password' }));
+        })
+        .catch(() => done(null, false, { message: 'Invalid login' }));
+    }
+  )
+);
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
-  models.User.findByPk(id).then(function(user) {
+passport.deserializeUser((id, done) => {
+  models.User.findByPk(id).then((user) => {
     done(null, user);
   });
 });
@@ -38,24 +41,14 @@ passport.deserializeUser(function(id, done) {
 module.exports.passport = passport;
 
 function sendErrorUnauthorized(req, res) {
-  if (req.accepts('html')) {
-    req.flash("error", "You must log in to view the page you visited.");
-    res.redirect(`/login?redirectURI=${encodeURIComponent(req.originalUrl)}`);
-  } else {
-    res.sendStatus(401);
-  }
+  res.sendStatus(HttpStatus.UNAUTHORIZED);
 }
 
 function sendErrorForbidden(req, res) {
-  if (req.accepts('html')) {
-    req.flash("error", "You are not allowed to view the page you visited.");
-    res.redirect(`/`);
-  } else {
-    res.sendStatus(403);
-  }
+  res.sendStatus(HttpStatus.FORBIDDEN);
 }
 
-function requireLogin(req, res, next, requireAdmin) {
+function requireLoginInternal(req, res, next, requireAdmin) {
   if (req.user) {
     if (requireAdmin) {
       if (req.user.isAdmin) {
@@ -71,10 +64,10 @@ function requireLogin(req, res, next, requireAdmin) {
   }
 }
 
-module.exports.requireLogin = function(req, res, next) {
-  requireLogin(req, res, next, false);
-}
+module.exports.requireLogin = function requireLogin(req, res, next) {
+  requireLoginInternal(req, res, next, false);
+};
 
-module.exports.requireAdmin = function(req, res, next) {
-  requireLogin(req, res, next, true);
-}
+module.exports.requireAdmin = function requireAdmin(req, res, next) {
+  requireLoginInternal(req, res, next, true);
+};
