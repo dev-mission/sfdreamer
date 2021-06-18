@@ -88,7 +88,7 @@
       "no-unused-vars": [
         "error",
         {
-          "argsIgnorePattern": "Sequelize|queryInterface"
+          "argsIgnorePattern": "Sequelize|queryInterface|models"
         }
       ],
       "no-param-reassign": [

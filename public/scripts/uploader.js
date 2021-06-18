@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 $(document).ready(() => {
   class Uploader {
     constructor($input, file, url, callback) {
