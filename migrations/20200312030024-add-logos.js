@@ -9,15 +9,17 @@ module.exports = {
       Example:
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
-    return queryInterface.addColumn('Resources', 'logo', Sequelize.STRING, {
-      allowNull: true,
-      defaultValue: null
-    }).then(function() {
-      return queryInterface.addColumn('Forms', 'logo', Sequelize.STRING, {
+    return queryInterface
+      .addColumn('Resources', 'logo', Sequelize.STRING, {
         allowNull: true,
-        defaultValue: null
+        defaultValue: null,
       })
-    });
+      .then(function () {
+        return queryInterface.addColumn('Forms', 'logo', Sequelize.STRING, {
+          allowNull: true,
+          defaultValue: null,
+        });
+      });
   },
 
   down: (queryInterface, Sequelize) => {
@@ -28,8 +30,8 @@ module.exports = {
       Example:
       return queryInterface.dropTable('users');
     */
-    return queryInterface.removeColumn('Resources', 'logo').then(function() {
-      return queryInterface.removeColumn('Forms', 'logo')
+    return queryInterface.removeColumn('Resources', 'logo').then(function () {
+      return queryInterface.removeColumn('Forms', 'logo');
     });
-  }
+  },
 };

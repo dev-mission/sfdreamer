@@ -1,17 +1,16 @@
-
-h1{
+h1 {
   font-style: normal;
   font-weight: bold;
   font-size: 40px;
   line-height: 60px;
 
   margin-bottom: 30px;
-  padding-top:60px;
-  padding-left:40px;
-  padding-bottom:60px;
-  color:#FFFFFF;
+  padding-top: 60px;
+  padding-left: 40px;
+  padding-bottom: 60px;
+  color: #ffffff;
 
-  background-image: url("/images/Group1.png");
+  background-image: url('/images/Group1.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-color: rgba(19, 119, 255, 0.6);
@@ -19,18 +18,18 @@ h1{
   height: 526px;
 }
 
-@media all and (max-width: 468px){
+@media all and (max-width: 468px) {
   h1 {
     height: 367px;
   }
 }
 
-.btn{
+.btn {
   border-radius: 50px;
-  text-align:center;
+  text-align: center;
 }
 
-b{
+b {
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -40,21 +39,21 @@ b{
   margin-top: 25px;
 }
 
-p{
+p {
   font-style: normal;
   font-weight: normal;
 
-  padding:25px;
+  padding: 25px;
 }
 
-u{
+u {
   margin-right: 25px;
 }
 
-ul.Documents{
-  text-align:center;
+ul.Documents {
+  text-align: center;
 }
 
-p.s{
-  padding:0px;
+p.s {
+  padding: 0px;
 }
