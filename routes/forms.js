@@ -1,36 +1,35 @@
-'use strict';
-
 const express = require('express');
+
 const router = express.Router();
 const models = require('../models');
 const helpers = require('./helpers');
 
-router.get('/', function (req, res, next) {
-  models.Form.findAll().then(function (records) {
+router.get('/', (req, res, next) => {
+  models.Form.findAll().then((records) => {
     console.log(records);
     res.render('forms/index', {
-      records: records,
+      records,
     });
   });
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', (req, res, next) => {
   models.Form.create({
     name: req.body.name,
     year: req.body.year,
     school: req.body.school,
     url: req.body.url,
     lang: req.body.lang,
-  }).then(function (record) {
+  }).then((record) => {
     res.redirect('/forms');
   });
 });
 
-router.get('/new', function (req, res, next) {
+router.get('/new', (req, res, next) => {
   res.render('forms/new', {});
 });
 
-router.get('/forms', function (req, res, next) {
+router.get('/forms', (req, res, next) => {
   console.log(req.body);
   res.render('index', {
     title: req.body.title,
@@ -38,18 +37,18 @@ router.get('/forms', function (req, res, next) {
   });
 });
 
-router.get('/:id', function (req, res, next) {
+router.get('/:id', (req, res, next) => {
   console.log(req.params.id);
-  models.Form.findByPk(req.params.id).then(function (record) {
+  models.Form.findByPk(req.params.id).then((record) => {
     res.render('forms/edit', {
-      record: record,
+      record,
     });
   });
 });
 
-router.post('/:id', function (req, res, next) {
-  models.Form.findByPk(req.params.id).then(function (record) {
-    helpers.handleUpload(record, 'logo', req.body.logo, 'forms/logo').then(function (record) {
+router.post('/:id', (req, res, next) => {
+  models.Form.findByPk(req.params.id).then((record) => {
+    helpers.handleUpload(record, 'logo', req.body.logo, 'forms/logo').then((record) => {
       record
         .update({
           name: req.body.name,
@@ -59,7 +58,7 @@ router.post('/:id', function (req, res, next) {
           url: req.body.url,
           lang: req.body.lang,
         })
-        .then(function (record) {
+        .then((record) => {
           res.redirect('/forms');
         });
     });

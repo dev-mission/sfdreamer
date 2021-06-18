@@ -1,16 +1,15 @@
-'use strict';
-
 const express = require('express');
+
 const router = express.Router();
 const models = require('../models');
 
 //
 // View all Questionnaires
 //
-router.get('/', function (req, res, next) {
-  models.Questionnaire.findAll().then(function (records) {
+router.get('/', (req, res, next) => {
+  models.Questionnaire.findAll().then((records) => {
     res.render('questionnaire/index', {
-      records: records,
+      records,
     });
   });
 });
@@ -18,15 +17,15 @@ router.get('/', function (req, res, next) {
 //
 // Create a new Questionniare
 //
-router.get('/new', function (req, res, next) {
+router.get('/new', (req, res, next) => {
   res.render('questionnaire/new');
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', (req, res, next) => {
   models.Questionnaire.create({
     title: req.body.title,
     explanation: req.body.explanation,
-  }).then(function (record) {
+  }).then((record) => {
     // when a new one has been created redirect
     // to the all questionnaire page
     res.redirect(`/questionnaire`);
@@ -36,22 +35,22 @@ router.post('/', function (req, res, next) {
 //
 // Edit a task
 //
-router.get('/:id/edit', function (req, res, next) {
-  models.Questionnaire.findByPk(req.params.id).then(function (record) {
+router.get('/:id/edit', (req, res, next) => {
+  models.Questionnaire.findByPk(req.params.id).then((record) => {
     res.render('questionnaire/edit', {
-      record: record,
+      record,
     });
   });
 });
 
-router.post('/:id/', function (req, res, next) {
-  models.Questionnaire.findByPk(req.params.id).then(function (record) {
+router.post('/:id/', (req, res, next) => {
+  models.Questionnaire.findByPk(req.params.id).then((record) => {
     record
       .update({
         title: req.body.title,
         explanation: req.body.explanation,
       })
-      .then(function (record) {
+      .then((record) => {
         res.redirect(`/questionnaire`);
       });
   });
@@ -60,17 +59,17 @@ router.post('/:id/', function (req, res, next) {
 //
 // Deleting a post
 //
-router.get('/:id/delete', function (req, res, next) {
-  models.Questionnaire.findByPk(req.params.id).then(function (record) {
+router.get('/:id/delete', (req, res, next) => {
+  models.Questionnaire.findByPk(req.params.id).then((record) => {
     res.render('questionnaire/delete', {
-      record: record,
+      record,
     });
   });
 });
 
-router.post('/:id/delete', function (req, res, next) {
-  models.Questionnaire.findByPk(req.params.id).then(function (record) {
-    record.destroy().then(function (record) {
+router.post('/:id/delete', (req, res, next) => {
+  models.Questionnaire.findByPk(req.params.id).then((record) => {
+    record.destroy().then((record) => {
       res.redirect('/questionnaire');
     });
   });
@@ -79,12 +78,12 @@ router.post('/:id/delete', function (req, res, next) {
 //
 // Show a questionnaire and its question
 //
-router.get('/:id/', function (req, res, next) {
-  models.Questionnaire.findByPk(req.params.id).then(function (questionnaire) {
-    models.Question.findAll().then(function (questions) {
+router.get('/:id/', (req, res, next) => {
+  models.Questionnaire.findByPk(req.params.id).then((questionnaire) => {
+    models.Question.findAll().then((questions) => {
       res.render('questionnaire/show', {
-        questions: questions,
-        questionnaire: questionnaire,
+        questions,
+        questionnaire,
       });
     });
   });
@@ -93,12 +92,12 @@ router.get('/:id/', function (req, res, next) {
 //
 // Show info about
 //
-router.get('/:id/info', function (req, res, next) {
-  models.Questionnaire.findByPk(req.params.id).then(function (questionnaire) {
-    models.Question.findAll().then(function (questions) {
+router.get('/:id/info', (req, res, next) => {
+  models.Questionnaire.findByPk(req.params.id).then((questionnaire) => {
+    models.Question.findAll().then((questions) => {
       res.render('questionnaire/info', {
-        questions: questions,
-        questionnaire: questionnaire,
+        questions,
+        questionnaire,
       });
     });
   });

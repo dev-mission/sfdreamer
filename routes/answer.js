@@ -1,16 +1,15 @@
-'use strict';
-
 const express = require('express');
+
 const router = express.Router();
 const models = require('../models');
 
 //
 // View all Answers
 //
-router.get('/', function (req, res, next) {
-  models.Answer.findAll().then(function (records) {
+router.get('/', (req, res, next) => {
+  models.Answer.findAll().then((records) => {
     res.render('answer/index', {
-      records: records,
+      records,
     });
   });
 });
@@ -18,20 +17,20 @@ router.get('/', function (req, res, next) {
 //
 // Create a new Answer
 //
-router.get('/new', function (req, res, next) {
-  models.Question.findAll().then(function (records) {
+router.get('/new', (req, res, next) => {
+  models.Question.findAll().then((records) => {
     res.render('answer/new', {
-      records: records,
+      records,
     });
   });
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', (req, res, next) => {
   models.Answer.create({
     value: req.body.value,
     QuestionId: req.body.QuestionId,
     NextQuestionId: req.body.NextQuestionId,
-  }).then(function (record) {
+  }).then((record) => {
     // when a new one has been created redirect
     // to the all questionnaire page
     res.redirect(`/answer`);
@@ -41,26 +40,26 @@ router.post('/', function (req, res, next) {
 //
 // Edit a Answer
 //
-router.get('/:id', function (req, res, next) {
-  models.Question.findAll().then(function (questions) {
-    models.Answer.findByPk(req.params.id).then(function (record) {
+router.get('/:id', (req, res, next) => {
+  models.Question.findAll().then((questions) => {
+    models.Answer.findByPk(req.params.id).then((record) => {
       res.render('answer/edit', {
-        record: record,
-        questions: questions,
+        record,
+        questions,
       });
     });
   });
 });
 
-router.post('/:id', function (req, res, next) {
-  models.Answer.findByPk(req.params.id).then(function (record) {
+router.post('/:id', (req, res, next) => {
+  models.Answer.findByPk(req.params.id).then((record) => {
     record
       .update({
         value: req.body.value,
         QuestionId: req.body.QuestionId,
         NextQuestionId: req.body.NextQuestionId,
       })
-      .then(function (record) {
+      .then((record) => {
         res.redirect(`/answer`);
       });
   });
@@ -69,17 +68,17 @@ router.post('/:id', function (req, res, next) {
 //
 // Deleting a Answer
 //
-router.get('/:id/delete', function (req, res, next) {
-  models.Answer.findByPk(req.params.id).then(function (record) {
+router.get('/:id/delete', (req, res, next) => {
+  models.Answer.findByPk(req.params.id).then((record) => {
     res.render('answer/delete', {
-      record: record,
+      record,
     });
   });
 });
 
-router.post('/:id/delete', function (req, res, next) {
-  models.Answer.findByPk(req.params.id).then(function (record) {
-    record.destroy().then(function (record) {
+router.post('/:id/delete', (req, res, next) => {
+  models.Answer.findByPk(req.params.id).then((record) => {
+    record.destroy().then((record) => {
       res.redirect('/answer');
     });
   });

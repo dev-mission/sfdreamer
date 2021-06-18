@@ -1,23 +1,22 @@
-'use strict';
-
 const express = require('express');
+
 const router = express.Router();
 const models = require('../models');
 const helpers = require('./helpers');
 
-router.get('/', function (req, res, next) {
-  models.Resource.findAll().then(function (records) {
+router.get('/', (req, res, next) => {
+  models.Resource.findAll().then((records) => {
     res.render('resources/index', {
-      records: records,
+      records,
     });
   });
 });
 
-router.get('/new', function (req, res, next) {
+router.get('/new', (req, res, next) => {
   res.render('resources/new');
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', (req, res, next) => {
   models.Resource.create({
     name: req.body.name,
     orgtype: req.body.orgtype,
@@ -26,30 +25,30 @@ router.post('/', function (req, res, next) {
     address: req.body.address,
     email: req.body.email,
     website: req.body.website,
-  }).then(function (record) {
+  }).then((record) => {
     res.redirect(`/resources`);
   });
 });
 
-router.get('/:id', function (req, res, next) {
-  models.Resource.findByPk(req.params.id).then(function (record) {
+router.get('/:id', (req, res, next) => {
+  models.Resource.findByPk(req.params.id).then((record) => {
     res.render('resources/edit', {
-      record: record,
+      record,
     });
   });
 });
 
-router.post('/:id/delete', function (req, res, next) {
-  models.Resource.findByPk(req.params.id).then(function (record) {
-    record.destroy().then(function () {
+router.post('/:id/delete', (req, res, next) => {
+  models.Resource.findByPk(req.params.id).then((record) => {
+    record.destroy().then(() => {
       res.redirect(`/resources`);
     });
   });
 });
 
-router.post('/:id', function (req, res, next) {
-  models.Resource.findByPk(req.params.id).then(function (record) {
-    helpers.handleUpload(record, 'logo', req.body.logo, 'resources/logo').then(function (record) {
+router.post('/:id', (req, res, next) => {
+  models.Resource.findByPk(req.params.id).then((record) => {
+    helpers.handleUpload(record, 'logo', req.body.logo, 'resources/logo').then((record) => {
       record
         .update({
           name: req.body.name,
@@ -61,7 +60,7 @@ router.post('/:id', function (req, res, next) {
           email: req.body.email,
           website: req.body.website,
         })
-        .then(function (record) {
+        .then((record) => {
           res.redirect('/resources');
         });
     });
