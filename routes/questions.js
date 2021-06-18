@@ -6,7 +6,7 @@ const models = require('../models');
 //
 // View all Questions
 //
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   models.Question.findAll().then((records) => {
     res.render('question/index', {
       records,
@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
 //
 // Create a new Question
 //
-router.get('/new', (req, res, next) => {
+router.get('/new', (req, res) => {
   models.Questionnaire.findAll().then((records) => {
     res.render('question/new', {
       records,
@@ -25,14 +25,14 @@ router.get('/new', (req, res, next) => {
   });
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
   models.Question.create({
     prompt: req.body.prompt,
     answer_type: req.body.answer_type,
     questionnaire_type: req.body.questionnaire_type,
     step: req.body.step,
     QuestionnaireId: req.body.QuestionnaireId,
-  }).then((record) => {
+  }).then(() => {
     // when a new one has been created redirect
     // to the all questionnaire page
     res.redirect(`/questions`);
@@ -42,7 +42,7 @@ router.post('/', (req, res, next) => {
 //
 // Edit a Question
 //
-router.get('/:id/edit', (req, res, next) => {
+router.get('/:id/edit', (req, res) => {
   models.Questionnaire.findAll().then((questionnaires) => {
     models.Question.findByPk(req.params.id).then((record) => {
       res.render('question/edit', {
@@ -53,7 +53,7 @@ router.get('/:id/edit', (req, res, next) => {
   });
 });
 
-router.post('/:id/edit', (req, res, next) => {
+router.post('/:id/edit', (req, res) => {
   models.Question.findByPk(req.params.id).then((record) => {
     record
       .update({
@@ -63,7 +63,7 @@ router.post('/:id/edit', (req, res, next) => {
         step: req.body.step,
         QuestionnaireId: req.body.QuestionnaireId,
       })
-      .then((record) => {
+      .then(() => {
         res.redirect(`/questions`);
       });
   });
@@ -72,7 +72,7 @@ router.post('/:id/edit', (req, res, next) => {
 //
 // Delete a Question
 //
-router.get('/:id/delete', (req, res, next) => {
+router.get('/:id/delete', (req, res) => {
   models.Question.findByPk(req.params.id).then((record) => {
     res.render('question/delete', {
       record,
@@ -80,9 +80,9 @@ router.get('/:id/delete', (req, res, next) => {
   });
 });
 
-router.post('/:id/delete', (req, res, next) => {
+router.post('/:id/delete', (req, res) => {
   models.Question.findByPk(req.params.id).then((record) => {
-    record.destroy().then((record) => {
+    record.destroy().then(() => {
       res.redirect('/questions');
     });
   });
@@ -91,7 +91,7 @@ router.post('/:id/delete', (req, res, next) => {
 //
 // Show a single question
 //
-router.get('/:id/', (req, res, next) => {
+router.get('/:id/', (req, res) => {
   models.Questionnaire.findAll().then((questionnaires) => {
     models.Answer.findAll().then((answers) => {
       models.Question.findByPk(req.params.id).then((question) => {
@@ -105,7 +105,7 @@ router.get('/:id/', (req, res, next) => {
   });
 });
 
-router.post('/:id/', (req, res, next) => {
+router.post('/:id/', (req, res) => {
   models.Questionnaire.findAll().then((questionnaires) => {
     models.Answer.findAll().then((answers) => {
       models.Question.findByPk(req.params.id).then((question) => {

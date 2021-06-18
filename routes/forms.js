@@ -2,9 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 const models = require('../models');
-const helpers = require('./helpers');
 
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   models.Form.findAll().then((records) => {
     console.log(records);
     res.render('forms/index', {
@@ -13,23 +12,23 @@ router.get('/', (req, res, next) => {
   });
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
   models.Form.create({
     name: req.body.name,
     year: req.body.year,
     school: req.body.school,
     url: req.body.url,
     lang: req.body.lang,
-  }).then((record) => {
+  }).then(() => {
     res.redirect('/forms');
   });
 });
 
-router.get('/new', (req, res, next) => {
+router.get('/new', (req, res) => {
   res.render('forms/new', {});
 });
 
-router.get('/forms', (req, res, next) => {
+router.get('/forms', (req, res) => {
   console.log(req.body);
   res.render('index', {
     title: req.body.title,
@@ -37,7 +36,7 @@ router.get('/forms', (req, res, next) => {
   });
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', (req, res) => {
   console.log(req.params.id);
   models.Form.findByPk(req.params.id).then((record) => {
     res.render('forms/edit', {
@@ -46,22 +45,20 @@ router.get('/:id', (req, res, next) => {
   });
 });
 
-router.post('/:id', (req, res, next) => {
+router.post('/:id', (req, res) => {
   models.Form.findByPk(req.params.id).then((record) => {
-    helpers.handleUpload(record, 'logo', req.body.logo, 'forms/logo').then((record) => {
-      record
-        .update({
-          name: req.body.name,
-          logo: record.logo,
-          year: req.body.year,
-          school: req.body.school,
-          url: req.body.url,
-          lang: req.body.lang,
-        })
-        .then((record) => {
-          res.redirect('/forms');
-        });
-    });
+    record
+      .update({
+        name: req.body.name,
+        logo: req.body.logo,
+        year: req.body.year,
+        school: req.body.school,
+        url: req.body.url,
+        lang: req.body.lang,
+      })
+      .then(() => {
+        res.redirect('/forms');
+      });
   });
 });
 

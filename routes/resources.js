@@ -2,9 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 const models = require('../models');
-const helpers = require('./helpers');
 
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   models.Resource.findAll().then((records) => {
     res.render('resources/index', {
       records,
@@ -12,11 +11,11 @@ router.get('/', (req, res, next) => {
   });
 });
 
-router.get('/new', (req, res, next) => {
+router.get('/new', (req, res) => {
   res.render('resources/new');
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
   models.Resource.create({
     name: req.body.name,
     orgtype: req.body.orgtype,
@@ -25,12 +24,12 @@ router.post('/', (req, res, next) => {
     address: req.body.address,
     email: req.body.email,
     website: req.body.website,
-  }).then((record) => {
+  }).then(() => {
     res.redirect(`/resources`);
   });
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', (req, res) => {
   models.Resource.findByPk(req.params.id).then((record) => {
     res.render('resources/edit', {
       record,
@@ -38,7 +37,7 @@ router.get('/:id', (req, res, next) => {
   });
 });
 
-router.post('/:id/delete', (req, res, next) => {
+router.post('/:id/delete', (req, res) => {
   models.Resource.findByPk(req.params.id).then((record) => {
     record.destroy().then(() => {
       res.redirect(`/resources`);
@@ -46,24 +45,22 @@ router.post('/:id/delete', (req, res, next) => {
   });
 });
 
-router.post('/:id', (req, res, next) => {
+router.post('/:id', (req, res) => {
   models.Resource.findByPk(req.params.id).then((record) => {
-    helpers.handleUpload(record, 'logo', req.body.logo, 'resources/logo').then((record) => {
-      record
-        .update({
-          name: req.body.name,
-          logo: record.logo,
-          orgtype: req.body.orgtype,
-          contactperson: req.body.contactperson,
-          phone: req.body.phone,
-          address: req.body.address,
-          email: req.body.email,
-          website: req.body.website,
-        })
-        .then((record) => {
-          res.redirect('/resources');
-        });
-    });
+    record
+      .update({
+        name: req.body.name,
+        logo: req.body.logo,
+        orgtype: req.body.orgtype,
+        contactperson: req.body.contactperson,
+        phone: req.body.phone,
+        address: req.body.address,
+        email: req.body.email,
+        website: req.body.website,
+      })
+      .then(() => {
+        res.redirect('/resources');
+      });
   });
 });
 
