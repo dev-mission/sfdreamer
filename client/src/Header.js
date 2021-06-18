@@ -30,55 +30,49 @@ function Header() {
   };
 
   return (
-    <nav className="header navbar navbar-expand-md navbar-light bg-light fixed-top">
-      <div className="container">
-        <Link className="navbar-brand" to="/">
-          My App
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarsExampleDefault"
-          aria-controls="navbarsExampleDefault"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul className="navbar-nav flex-grow-1 mb-2 mb-md-0">
-            <li className="nav-item active">
-              <Link className="nav-link" aria-current="page" to="/">
-                Home
-              </Link>
+    <nav className="_nav">
+      <ul className="_menu">
+        <li className="_logo">
+          <a href="/">
+            <img src="/images/Logo.png" alt="SF Dreamer" />
+          </a>
+        </li>
+        <li className="_item collapsed">
+          <a href="">Dream Act Info</a>
+        </li>
+        <li className="_item">
+          <a href="/questions/1">Eligibility Survey</a>
+        </li>
+        <li className="_item collapsed">
+          <a href="">Mock Application</a>
+        </li>
+        <li className="_item">
+          <a href="/forms">AB-540 Forms</a>
+        </li>
+        <li className="_item">
+          <a href="/resources">Resources</a>
+        </li>
+        <li className="_item collapsed">
+          <a href="/about">About</a>
+        </li>
+        {user && (
+          <>
+            <li className="_item collapsed">
+              <a href="/logout" onClick={onLogout}>
+                Log out
+              </a>
             </li>
-            <div className="flex-grow-1 d-flex justify-content-end">
-              {user && (
-                <>
-                  <li className="nav-item me-3">
-                    <span className="nav-link d-inline-block">
-                      Hello, <Link to="/account">{user.firstName}!</Link>
-                    </span>
-                    {user.pictureUrl && <div className="header__picture" style={{ backgroundImage: `url(${user.pictureUrl})` }}></div>}
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="/logout" onClick={onLogout}>
-                      Log out
-                    </a>
-                  </li>
-                </>
-              )}
-              {!user && (
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">
-                    Log in
-                  </Link>
-                </li>
-              )}
-            </div>
-          </ul>
-        </div>
-      </div>
+          </>
+        )}
+        {!user && (
+          <li className="_item collapsed">
+            <Link to="/login">Log in</Link>
+          </li>
+        )}
+        <li className="_toggle">
+          <span className="_bars"></span>
+        </li>
+      </ul>
     </nav>
   );
 }
