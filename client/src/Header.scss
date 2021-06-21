@@ -1,0 +1,140 @@
+.header__picture {
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  display: inline-block;
+  height: 36px;
+  position: relative;
+  top: -2px;
+  vertical-align: middle;
+  width: 36px;
+}
+
+._nav,
+footer {
+  padding: 5px 20px;
+}
+._nav ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+._nav a {
+  text-decoration: none;
+}
+
+._logo {
+  text-align: right;
+}
+._logo a,
+._toggle a {
+  font-size: 20px;
+}
+._logo a:hover {
+  text-decoration: none;
+}
+._logo img {
+  width: 108px;
+  height: 22px;
+}
+
+._menu li {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 15px 5px;
+  white-space: nowrap;
+}
+._button.secondary {
+  border-bottom: 1px #444 solid;
+}
+
+/* Mobile menu */
+._menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+._logo {
+  flex: 1;
+  order: 2;
+}
+._item {
+  width: 100%;
+  display: none;
+}
+._item.collapsed {
+  order: 3;
+  display: none;
+}
+._item.active {
+  order: 3;
+  display: block;
+  width: 100%;
+}
+
+/* Navbar Toggle */
+._toggle {
+  order: 1;
+  cursor: pointer;
+}
+._bars {
+  background: #1377ff;
+  display: inline-block;
+  height: 2px;
+  position: relative;
+  /* transition: background .2s ease-out; */
+  width: 18px;
+}
+._bars:before,
+._bars:after {
+  background: #1377ff;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all 0.2s ease-out;
+  width: 100%;
+}
+._bars:before {
+  top: 5px;
+}
+._bars:after {
+  top: -5px;
+}
+
+/* Desktop menu */
+@media all and (min-width: 1200px) {
+  ._logo {
+    order: 0;
+    text-align: left;
+  }
+  ._logo img {
+    width: 339px;
+    height: 69px;
+  }
+  ._toggle {
+    order: 2;
+    position: relative;
+    top: -6px;
+  }
+  ._item {
+    order: 1;
+    display: block;
+    width: auto;
+  }
+  ._item.active {
+    order: 1;
+    width: auto;
+  }
+  ._item.collapsed {
+    order: 3;
+    display: none;
+  }
+  ._item.collapsed.active {
+    display: block;
+    width: 100%;
+    text-align: right;
+  }
+  ._menu li {
+    padding: 15px 32px;
+  }
+}

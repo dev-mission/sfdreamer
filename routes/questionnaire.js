@@ -1,125 +1,106 @@
-'use strict';
-
 const express = require('express');
+
 const router = express.Router();
 const models = require('../models');
 
-
-// 
+//
 // View all Questionnaires
-// 
-router.get('/', function(req, res, next) {
-    models.Questionnaire.findAll().then(function(records){
-        res.render('questionnaire/index', {
-        records: records
-        });
-      });
+//
+router.get('/', (req, res) => {
+  models.Questionnaire.findAll().then((records) => {
+    res.render('questionnaire/index', {
+      records,
+    });
   });
-  
+});
 
-// 
+//
 // Create a new Questionniare
-// 
-router.get('/new', function(req, res, next) {
+//
+router.get('/new', (req, res) => {
   res.render('questionnaire/new');
 });
 
-
-  router.post('/', function(req, res, next) {
-    models.Questionnaire.create({
-      title: req.body.title,
-      explanation: req.body.explanation,
-    }).then(function(record){
-      // when a new one has been created redirect 
-      // to the all questionnaire page
-      res.redirect(`/questionnaire`); 
-    });
+router.post('/', (req, res) => {
+  models.Questionnaire.create({
+    title: req.body.title,
+    explanation: req.body.explanation,
+  }).then(() => {
+    // when a new one has been created redirect
+    // to the all questionnaire page
+    res.redirect(`/questionnaire`);
   });
-  
+});
 
-
-
-// 
+//
 // Edit a task
-// 
-router.get('/:id/edit', function(req, res, next){
-  models.Questionnaire.findByPk(req.params.id).then(function(record) {
+//
+router.get('/:id/edit', (req, res) => {
+  models.Questionnaire.findByPk(req.params.id).then((record) => {
     res.render('questionnaire/edit', {
-      record: record
+      record,
     });
   });
 });
 
-
-router.post('/:id/', function(req, res, next) {
-  models.Questionnaire.findByPk(req.params.id).then(function(record) {
-    record.update({
-      title: req.body.title,
-      explanation: req.body.explanation,
-    }).then(function(record){
-      res.redirect(`/questionnaire`)
-    });
+router.post('/:id/', (req, res) => {
+  models.Questionnaire.findByPk(req.params.id).then((record) => {
+    record
+      .update({
+        title: req.body.title,
+        explanation: req.body.explanation,
+      })
+      .then(() => {
+        res.redirect(`/questionnaire`);
+      });
   });
 });
 
-
-// 
+//
 // Deleting a post
-// 
-router.get('/:id/delete', function(req, res, next){
-  models.Questionnaire.findByPk(req.params.id).then(function(record) {
+//
+router.get('/:id/delete', (req, res) => {
+  models.Questionnaire.findByPk(req.params.id).then((record) => {
     res.render('questionnaire/delete', {
-        record: record
+      record,
     });
   });
 });
 
-
-router.post('/:id/delete', function(req, res, next) {
-  models.Questionnaire.findByPk(req.params.id).then(function(record) {
-    record.destroy().then(function(record){
-      res.redirect('/questionnaire')
+router.post('/:id/delete', (req, res) => {
+  models.Questionnaire.findByPk(req.params.id).then((record) => {
+    record.destroy().then(() => {
+      res.redirect('/questionnaire');
     });
   });
 });
 
-
-
-
-// 
+//
 // Show a questionnaire and its question
-// 
-router.get('/:id/', function(req, res, next){
-  models.Questionnaire.findByPk(req.params.id).then(function(questionnaire){
-    models.Question.findAll().then(function(questions){
+//
+router.get('/:id/', (req, res) => {
+  models.Questionnaire.findByPk(req.params.id).then((questionnaire) => {
+    models.Question.findAll().then((questions) => {
       res.render('questionnaire/show', {
-        questions: questions,
-        questionnaire: questionnaire
+        questions,
+        questionnaire,
       });
     });
   });
 });
 
-
-
-// 
-// Show info about 
-// 
-router.get('/:id/info', function(req, res, next){
-  models.Questionnaire.findByPk(req.params.id).then(function(questionnaire){
-    models.Question.findAll().then(function(questions){
+//
+// Show info about
+//
+router.get('/:id/info', (req, res) => {
+  models.Questionnaire.findByPk(req.params.id).then((questionnaire) => {
+    models.Question.findAll().then((questions) => {
       res.render('questionnaire/info', {
-        questions: questions,
-        questionnaire: questionnaire
+        questions,
+        questionnaire,
       });
     });
   });
 });
-
-
-
-
-
-
 
 module.exports = router;

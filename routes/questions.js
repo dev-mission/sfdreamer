@@ -1,136 +1,122 @@
-'use strict';
-
 const express = require('express');
+
 const router = express.Router();
 const models = require('../models');
 
-
-// 
+//
 // View all Questions
-// 
-router.get('/', function(req, res, next) {
-    models.Question.findAll().then(function(records){
-        res.render('question/index', {
-        records: records
-        });
-      });
-  });
-  
-
-// 
-// Create a new Question
-// 
-router.get('/new', function(req, res, next) {
-  models.Questionnaire.findAll().then(function(records){
-    res.render('question/new', {
-    records: records
+//
+router.get('/', (req, res) => {
+  models.Question.findAll().then((records) => {
+    res.render('question/index', {
+      records,
     });
   });
 });
 
+//
+// Create a new Question
+//
+router.get('/new', (req, res) => {
+  models.Questionnaire.findAll().then((records) => {
+    res.render('question/new', {
+      records,
+    });
+  });
+});
 
-
-router.post('/', function(req, res, next) {
+router.post('/', (req, res) => {
   models.Question.create({
     prompt: req.body.prompt,
     answer_type: req.body.answer_type,
     questionnaire_type: req.body.questionnaire_type,
     step: req.body.step,
     QuestionnaireId: req.body.QuestionnaireId,
-  }).then(function(record){
-    // when a new one has been created redirect 
+  }).then(() => {
+    // when a new one has been created redirect
     // to the all questionnaire page
-    res.redirect(`/questions`); 
+    res.redirect(`/questions`);
   });
 });
-  
 
-
-
-// 
+//
 // Edit a Question
-// 
-router.get('/:id/edit', function(req, res, next){
-  models.Questionnaire.findAll().then(function(questionnaires){
-    models.Question.findByPk(req.params.id).then(function(record) {
+//
+router.get('/:id/edit', (req, res) => {
+  models.Questionnaire.findAll().then((questionnaires) => {
+    models.Question.findByPk(req.params.id).then((record) => {
       res.render('question/edit', {
-        record: record,
-        questionnaires: questionnaires
+        record,
+        questionnaires,
       });
     });
   });
 });
 
-
-router.post('/:id/edit', function(req, res, next) {
-  models.Question.findByPk(req.params.id).then(function(record) {
-    record.update({
-      prompt: req.body.prompt,
-      answer_type: req.body.answer_type,
-      questionnaire_type: req.body.questionnaire_type,
-      step: req.body.step,
-      QuestionnaireId: req.body.QuestionnaireId,
-    }).then(function(record){
-      res.redirect(`/questions`)
-    });
+router.post('/:id/edit', (req, res) => {
+  models.Question.findByPk(req.params.id).then((record) => {
+    record
+      .update({
+        prompt: req.body.prompt,
+        answer_type: req.body.answer_type,
+        questionnaire_type: req.body.questionnaire_type,
+        step: req.body.step,
+        QuestionnaireId: req.body.QuestionnaireId,
+      })
+      .then(() => {
+        res.redirect(`/questions`);
+      });
   });
 });
 
-
-// 
+//
 // Delete a Question
-// 
-router.get('/:id/delete', function(req, res, next){
-  models.Question.findByPk(req.params.id).then(function(record) {
+//
+router.get('/:id/delete', (req, res) => {
+  models.Question.findByPk(req.params.id).then((record) => {
     res.render('question/delete', {
-        record: record
+      record,
     });
   });
 });
 
-
-router.post('/:id/delete', function(req, res, next) {
-  models.Question.findByPk(req.params.id).then(function(record) {
-    record.destroy().then(function(record){
-      res.redirect('/questions')
+router.post('/:id/delete', (req, res) => {
+  models.Question.findByPk(req.params.id).then((record) => {
+    record.destroy().then(() => {
+      res.redirect('/questions');
     });
   });
 });
 
-
-// 
+//
 // Show a single question
-// 
-router.get('/:id/', function(req, res, next){
-  models.Questionnaire.findAll().then(function(questionnaires){
-    models.Answer.findAll().then(function(answers){
-      models.Question.findByPk(req.params.id).then(function(question) {
+//
+router.get('/:id/', (req, res) => {
+  models.Questionnaire.findAll().then((questionnaires) => {
+    models.Answer.findAll().then((answers) => {
+      models.Question.findByPk(req.params.id).then((question) => {
         res.render('question/show', {
-          question: question,
-          questionnaires: questionnaires,
-          answers: answers
+          question,
+          questionnaires,
+          answers,
         });
       });
     });
   });
 });
 
-
-router.post('/:id/', function(req, res, next){
-  models.Questionnaire.findAll().then(function(questionnaires){
-    models.Answer.findAll().then(function(answers){
-      models.Question.findByPk(req.params.id).then(function(question) {
+router.post('/:id/', (req, res) => {
+  models.Questionnaire.findAll().then((questionnaires) => {
+    models.Answer.findAll().then((answers) => {
+      models.Question.findByPk(req.params.id).then((question) => {
         res.render('question/show', {
-          question: question,
-          questionnaires: questionnaires,
-          answers: answers
+          question,
+          questionnaires,
+          answers,
         });
       });
     });
   });
 });
-
-
-
 
 module.exports = router;

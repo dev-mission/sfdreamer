@@ -7,11 +7,11 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  color: #1652A3;
+  color: #1652a3;
 }
 
 a {
-  color: #1377FF;
+  color: #1377ff;
 }
 a:hover {
   text-decoration: underline;
@@ -21,7 +21,8 @@ footer {
   text-align: center;
 }
 
-._nav, footer {
+._nav,
+footer {
   padding: 5px 20px;
 }
 ._nav ul {
@@ -86,7 +87,7 @@ footer {
   cursor: pointer;
 }
 ._bars {
-  background: #1377FF;
+  background: #1377ff;
   display: inline-block;
   height: 2px;
   position: relative;
@@ -95,12 +96,12 @@ footer {
 }
 ._bars:before,
 ._bars:after {
-  background: #1377FF;
+  background: #1377ff;
   content: '';
   display: block;
   height: 100%;
   position: absolute;
-  transition: all .2s ease-out;
+  transition: all 0.2s ease-out;
   width: 100%;
 }
 ._bars:before {

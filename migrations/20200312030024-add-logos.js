@@ -1,7 +1,5 @@
-'use strict';
-
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: (queryInterface, Sequelize) =>
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -9,18 +7,18 @@ module.exports = {
       Example:
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
-    return queryInterface.addColumn('Resources', 'logo', Sequelize.STRING, {
-      allowNull: true,
-      defaultValue: null
-    }).then(function() {
-      return queryInterface.addColumn('Forms', 'logo', Sequelize.STRING, {
+    queryInterface
+      .addColumn('Resources', 'logo', Sequelize.STRING, {
         allowNull: true,
-        defaultValue: null
+        defaultValue: null,
       })
-    });
-  },
-
-  down: (queryInterface, Sequelize) => {
+      .then(() =>
+        queryInterface.addColumn('Forms', 'logo', Sequelize.STRING, {
+          allowNull: true,
+          defaultValue: null,
+        })
+      ),
+  down: (queryInterface, Sequelize) =>
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
@@ -28,8 +26,5 @@ module.exports = {
       Example:
       return queryInterface.dropTable('users');
     */
-    return queryInterface.removeColumn('Resources', 'logo').then(function() {
-      return queryInterface.removeColumn('Forms', 'logo')
-    });
-  }
+    queryInterface.removeColumn('Resources', 'logo').then(() => queryInterface.removeColumn('Forms', 'logo')),
 };
