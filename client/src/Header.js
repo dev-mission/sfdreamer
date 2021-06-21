@@ -40,19 +40,19 @@ function Header() {
           </a>
         </li>
         <li className={classNames('_item collapsed', { active })}>
-          <a href="">Dream Act Info</a>
+          <a href="/">Dream Act Info</a>
         </li>
         <li className={classNames('_item', { active })}>
           <a href="/questions/1">Eligibility Survey</a>
         </li>
         <li className={classNames('_item collapsed', { active })}>
-          <a href="">Mock Application</a>
+          <a href="/">Mock Application</a>
         </li>
         <li className={classNames('_item', { active })}>
           <a href="/forms">AB-540 Forms</a>
         </li>
         <li className={classNames('_item', { active })}>
-          <a href="/resources">Resources</a>
+          <Link to="/resources">Resources</Link>
         </li>
         <li className={classNames('_item collapsed', { active })}>
           <a href="/about">About</a>

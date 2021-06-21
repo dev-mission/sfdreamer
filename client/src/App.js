@@ -3,12 +3,17 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.scss';
 
 import { AuthContextProvider, AuthProtectedRoute } from './AuthContext';
+
 import Header from './Header';
+import Footer from './Footer';
+
 import Home from './Home';
 import Login from './Login';
 import Passwords from './Passwords';
 import Register from './Register';
 import Users from './Users';
+
+import Resources from './Resources';
 
 function App() {
   return (
@@ -30,10 +35,14 @@ function App() {
               <Register />
             </Route>
           )}
+          <Route path="/resources">
+            <Resources />
+          </Route>
           <AuthProtectedRoute path="/account">
             <Users />
           </AuthProtectedRoute>
         </Switch>
+        <Footer />
       </Router>
     </AuthContextProvider>
   );
