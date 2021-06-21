@@ -1,28 +1,12 @@
-# Sf Dreamer
+# SFDreamer
 
-This repository contains a "starter" project for web application development in JavaScript.
+## Setup
 
-## One-time Setup
+1. Install Docker Desktop: https://www.docker.com/products/docker-desktop
 
-1. On Github, "Fork" this git repo to your own account so that you have your own copy.
+2. Clone this repo to your computer.
 
-   Read more about "forking" here:  
-   https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo
-
-2. Clone YOUR copy of the git repo to a "local" directory (on your computer), then change
-   into the directory.
-
-   ```
-   git clone https://github.com/YOUR_ACCOUNT_ID/full-stack-starter.git
-   cd full-stack-starter
-   ```
-
-3. Install Docker Desktop: https://www.docker.com/products/docker-desktop
-
-   1. If you have Windows Home Edition, you will need to install Docker Toolbox instead.
-      See the troubleshooting notes below.
-
-4. Open a command-line shell, change into your repo directory, and execute these commands:
+3. Open a command-line shell, change into your repo directory, and execute these commands:
 
    ```
    docker compose pull
@@ -34,16 +18,13 @@ This repository contains a "starter" project for web application development in 
    like this, the server is running:
 
    ```
-   server_1       | 4:13:08 AM webpack.1 |  You can now view full-stack-starter in the browser.
+   server_1       | 4:13:08 AM webpack.1 |  You can now view sfdreamer in the browser.
    server_1       | 4:13:08 AM webpack.1 |    Local:            http://localhost:3000
    ```
 
-5. Now you should be able to open the web app in your browser at: http://localhost:3000/
+4. Now you should be able to open the web app in your browser at: http://localhost:3000/
 
-   1. If you had to install Docker Toolbox, then replace "localhost" with the IP
-      address of the Docker Virtual Machine.
-
-6. Open a new tab or window of your shell, change into your repo directory as needed, and execute this command:
+5. Open a new tab or window of your shell, change into your repo directory as needed, and execute this command:
 
    ```
    docker compose exec server bash -l
@@ -58,13 +39,13 @@ This repository contains a "starter" project for web application development in 
 
    Put in your name and email address and a password. This will create a first user in the database.
 
-7. To stop the server, press CONTROL-C in the window with the running server.
+6. To stop the server, press CONTROL-C in the window with the running server.
    If it is successful, you will see something like this:
 
    ```
-   Killing full-stack-starter_db_1           ... done
-   Killing full-stack-starter_server_1       ... done
-   Killing full-stack-starter_mailcatcher_1  ... done
+   Killing sfdreamer_db_1           ... done
+   Killing sfdreamer_server_1       ... done
+   Killing sfdreamer_mailcatcher_1  ... done
    ```
 
    If it is not successful, you may see something like this:
@@ -78,12 +59,12 @@ This repository contains a "starter" project for web application development in 
 
    ```
    docker compose stop
-   Stopping full-stack-starter_db_1          ... done
-   Stopping full-stack-starter_server_1      ... done
-   Stopping full-stack-starter_mailcatcher_1 ... done
+   Stopping sfdreamer_db_1          ... done
+   Stopping sfdreamer_server_1      ... done
+   Stopping sfdreamer_mailcatcher_1 ... done
    ```
 
-8. That's it! After all this setup is complete, the only command you need to run to get
+7. That's it! After all this setup is complete, the only command you need to run to get
    started again is the `docker compose up` command.
 
 ## Heroku Deployment Setup
@@ -121,7 +102,7 @@ This repository contains a "starter" project for web application development in 
 4. Link your repo directory to the Heroku deployed app:
 
    ```
-   heroku git:remote -a [YOUR APP NAME FROM STEP 2HERE]
+   heroku git:remote -a [YOUR APP NAME FROM STEP 2 HERE]
    ```
 
 5. Once linked, you can execute Heroku CLI commands. For example, to run the user creation script on the server:
@@ -255,9 +236,9 @@ This repository contains a "starter" project for web application development in 
 
 - On Windows, Docker Desktop cannot run on Windows Home edition. Install Docker Toolbox instead:
 
-  https://docs.docker.com/toolbox/overview/
-
   https://github.com/docker/toolbox/releases
+
+  https://docs.docker.com/toolbox/overview/
 
   Use the _Docker QuickStart shell_ installed with Docker Toolbox to open a command-line shell that launches Docker for you when it starts. On Windows, right-click on the shotcut and Run as Administrator. Note: this can take a long time to start, depending upon your computer, as it needs to start a virtual machine running Linux.
 
@@ -267,10 +248,12 @@ This repository contains a "starter" project for web application development in 
   docker-machine ip
   ```
 
+  In the instructions above, replace localhost with the IP address of the virtual machine.
+
 ## License
 
-Full-Stack Starter  
-Copyright (C) 2021 <dev/Mission>
+SFDreamer
+Copyright (C) 2021 Dev/Mission
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
