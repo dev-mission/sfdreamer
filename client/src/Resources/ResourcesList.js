@@ -35,6 +35,12 @@ function ResourcesList() {
         {resources.map((resource) => (
           <div key={resource.id} className="row">
             <div className="col-sm mb-3">
+              {resource.logo && (
+                <>
+                  <img className="img-fluid" srcSet={`${resource.logoUrl} 2x`} src={resource.logoUrl} alt={resource.name} />
+                  <br />
+                </>
+              )}
               {resource.name}
               <br />
               {resource.orgtype}
