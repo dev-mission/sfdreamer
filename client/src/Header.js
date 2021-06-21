@@ -35,7 +35,7 @@ function Header() {
     <nav className="_nav">
       <ul className="_menu">
         <li className="_logo">
-          <Link to="/">
+          <Link onClick={() => setActive(false)} to="/">
             <img src="/images/Logo.png" alt="SF Dreamer" />
           </Link>
         </li>
@@ -52,7 +52,9 @@ function Header() {
           <a href="/forms">AB-540 Forms</a>
         </li>
         <li className={classNames('_item', { active })}>
-          <Link to="/resources">Resources</Link>
+          <Link onClick={() => setActive(false)} to="/resources">
+            Resources
+          </Link>
         </li>
         <li className={classNames('_item collapsed', { active })}>
           <a href="/about">About</a>
@@ -68,7 +70,9 @@ function Header() {
         )}
         {!user && (
           <li className={classNames('_item collapsed', { active })}>
-            <Link to="/login">Log in</Link>
+            <Link onClick={() => setActive(false)} to="/login">
+              Log in
+            </Link>
           </li>
         )}
         <li className="_toggle" onClick={() => setActive(!active)}>
