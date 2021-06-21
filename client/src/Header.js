@@ -35,9 +35,9 @@ function Header() {
     <nav className="_nav">
       <ul className="_menu">
         <li className="_logo">
-          <a href="/">
+          <Link to="/">
             <img src="/images/Logo.png" alt="SF Dreamer" />
-          </a>
+          </Link>
         </li>
         <li className={classNames('_item collapsed', { active })}>
           <a href="/">Dream Act Info</a>
