@@ -10,7 +10,7 @@ function QuestionsList() {
   const [questions, setQuestions] = useState([]);
 
   useEffect(function () {
-    Api.questions.index().then((response) => setResources(response.data));
+    Api.questions.index().then((response) => setQuestions(response.data));
   }, []);
 
   async function onDelete(question) {

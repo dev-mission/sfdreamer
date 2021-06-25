@@ -17,7 +17,7 @@ function QuestionForm() {
     questionnaire_type: '',
     step: '',
   });
-  const [isUploading, setUploading] = useState(false);
+  const [isUploading] = useState(false);
 
   useEffect(
     function () {
