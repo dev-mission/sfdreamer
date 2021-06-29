@@ -7,7 +7,7 @@ function Home() {
         <h1>
           Welcome <span className="d-none d-md-inline">to SF Dreamer</span>
         </h1>
-        <h2>This is the Francis Demo.</h2>
+        <h2>SFDreamer is amazing!</h2>
       </div>
 
       <div className="container">
