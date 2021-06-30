@@ -43,7 +43,7 @@ function QuestionForm() {
       } else {
         await Api.questions.create(question);
       }
-      history.push('/resources');
+      history.push('/questions');
     } catch (error) {
       if (error.response?.status === StatusCodes.UNPROCESSABLE_ENTITY) {
         setError(new ValidationError(error.response.data));
