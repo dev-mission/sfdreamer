@@ -15,6 +15,7 @@ import Users from './Users';
 
 import Resources from './Resources';
 import Questions from './Questions';
+import Questionnaires from './Questionnaires';
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path="/questions">
             <Questions />
+          </Route>
+          <Route path="/questionnaires">
+            <Questionnaires />
           </Route>
           <AuthProtectedRoute path="/account">
             <Users />
