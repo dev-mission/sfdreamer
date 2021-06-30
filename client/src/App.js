@@ -15,6 +15,7 @@ import Users from './Users';
 
 import Resources from './Resources';
 
+import Forms from './Forms';
 function App() {
   return (
     <AuthContextProvider>
@@ -41,6 +42,9 @@ function App() {
           <AuthProtectedRoute path="/account">
             <Users />
           </AuthProtectedRoute>
+          < Route path="/forms">
+          <Forms/>
+          </Route>
         </Switch>
         <Footer />
       </Router>

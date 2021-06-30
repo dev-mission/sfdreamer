@@ -49,7 +49,9 @@ function Header() {
           <a href="/">Mock Application</a>
         </li>
         <li className={classNames('_item', { active })}>
-          <a href="/forms">AB-540 Forms</a>
+        <Link onClick={() => setActive(false)} to="/forms">
+            Forms
+          </Link>
         </li>
         <li className={classNames('_item', { active })}>
           <Link onClick={() => setActive(false)} to="/resources">
