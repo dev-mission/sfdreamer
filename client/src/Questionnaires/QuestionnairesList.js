@@ -27,7 +27,7 @@ function QuestionnairesList() {
       <div className="container">
         {user && (
           <div className="mb-3">
-            <Link className="btn btn-primary" to="/questionnaire/new">
+            <Link className="btn btn-primary" to="/questionnaires/new">
               New Questionnaire
             </Link>
           </div>
@@ -41,7 +41,7 @@ function QuestionnairesList() {
               <br />
               {user && (
                 <div className="mt-1">
-                  <Link className="btn btn-sm btn-primary me-3" to={`/questionnairess/${questionnaire.id}/edit`}>
+                  <Link className="btn btn-sm btn-primary me-3" to={`/questionnaires/${questionnaire.id}/edit`}>
                     Edit
                   </Link>
                   <button onClick={() => onDelete(questionnaire)} className="btn btn-sm btn-danger">

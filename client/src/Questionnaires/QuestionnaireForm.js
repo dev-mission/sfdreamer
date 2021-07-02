@@ -53,10 +53,10 @@ function QuestionnaireForm() {
 
   return (
     <main className="container">
-      <h1>{id ? 'Edit' : 'New'} Questionnaire </h1>
+      <h1>{id ? 'Edit' : 'New'} questionnaire</h1>
       <form onSubmit={onSubmit}>
         <div className="mb-3">
-          <label htmlFor="title">title</label>
+          <label htmlFor="title">title:</label>
           <input
             className={classNames('form-control', { 'is-invalid': error?.errorsFor?.('title') })}
             type="text"
@@ -69,12 +69,13 @@ function QuestionnaireForm() {
           {error?.errorMessagesHTMLFor?.('title')}
         </div>
         <div className="mb-3">
-          <label htmlFor="explanation">explanation</label>
+          <label htmlFor="explanation">explanation:</label>
           <input
             className={classNames('form-control', { 'is-invalid': error?.errorsFor?.('explanation') })}
             type="text"
             id="explanation"
             name="explanation"
+            required
             onChange={onChange}
             value={questionnaire.explanation}
           />
