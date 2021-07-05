@@ -64,6 +64,23 @@ const Api = {
       return instance.delete(`/api/resources/${id}`);
     },
   },
+  questionnaire: {
+    index() {
+      return instance.get('/api/questionnaire');
+    },
+    create(data) {
+      return instance.post('/api/questionnaire', data);
+    },
+    get(id) {
+      return instance.get(`/api/questionnaire/${id}`);
+    },
+    update(id, data) {
+      return instance.patch(`/api/questionnaire/${id}`, data);
+    },
+    delete(id) {
+      return instance.delete(`/api/questionnaire/${id}`);
+    },
+  },
   users: {
     me() {
       return instance.get('/api/users/me');
