@@ -14,6 +14,7 @@ import Register from './Register';
 import Users from './Users';
 
 import Resources from './Resources';
+import Questions from './Questions';
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
           )}
           <Route path="/resources">
             <Resources />
+          </Route>
+          <Route path="/questions">
+            <Questions />
           </Route>
           <AuthProtectedRoute path="/account">
             <Users />
