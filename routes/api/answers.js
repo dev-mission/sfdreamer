@@ -6,13 +6,13 @@ const router = express.Router();
 const models = require('../../models');
 
 router.get('/', async (req, res) => {
-  const records = await models.Questionnaire.findAll({ order: [['title', 'ASC']] });
+  const records = await models.Answer.findAll({ order: [['value', 'ASC']] });
   res.json(records.map((record) => record.toJSON()));
 });
 
 router.post('/', async (req, res) => {
   try {
-    const record = await models.Questionnaire.create(_.pick(req.body, ['title', 'explanation']));
+    const record = await models.Answer.create(_.pick(req.body, ['value']));
     res.status(HttpStatus.CREATED).json(record.toJSON());
   } catch (error) {
     if (error.name === 'SequelizeValidationError') {
@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-  const record = await models.Questionnaire.findByPk(req.params.id);
+  const record = await models.Answer.findByPk(req.params.id);
   if (record) {
     res.json(record.toJSON());
   } else {
@@ -36,9 +36,9 @@ router.get('/:id', async (req, res) => {
 });
 
 router.patch('/:id', async (req, res) => {
-  const record = await models.Questionnaire.findByPk(req.params.id);
+  const record = await models.Answer.findByPk(req.params.id);
   if (record) {
-    await record.update(_.pick(req.body, ['title', 'explanation']));
+    await record.update(_.pick(req.body, ['value']));
     res.json(record.toJSON());
   } else {
     res.status(HttpStatus.NOT_FOUND).end();
@@ -46,7 +46,7 @@ router.patch('/:id', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
-  const record = await models.Questionnaire.findByPk(req.params.id);
+  const record = await models.Answer.findByPk(req.params.id);
   if (record) {
     await record.destroy();
     res.status(HttpStatus.OK).end();
