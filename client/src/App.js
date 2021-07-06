@@ -15,10 +15,7 @@ import Users from './Users';
 
 import Resources from './Resources';
 import Questions from './Questions';
-<<<<<<< HEAD
 import Questionnaires from './Questionnaires';
-=======
->>>>>>> master
 
 function App() {
   return (
