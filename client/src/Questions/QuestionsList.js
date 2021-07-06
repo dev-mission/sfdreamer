@@ -1,17 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-// import './ResourcesList.scss';
 import { useAuthContext } from '../AuthContext';
 import { useEffect, useState } from 'react';
 import Api from '../Api';
 
 function QuestionsList() {
+  const { id: questionnaireId } = useParams();
   const { user } = useAuthContext();
   const [questions, setQuestions] = useState([]);
 
-  useEffect(function () {
-    Api.questions.index().then((response) => setQuestions(response.data));
-  }, []);
+  useEffect(
+    function () {
+      Api.questions.index(questionnaireId).then((response) => setQuestions(response.data));
+    },
+    [questionnaireId]
+  );
 
   async function onDelete(question) {
     if (window.confirm(`Are you sure you wish to delete "${question.prompt}"?`)) {
@@ -27,7 +30,7 @@ function QuestionsList() {
       <div className="container">
         {user && (
           <div className="mb-3">
-            <Link className="btn btn-primary" to="/questions/new">
+            <Link className="btn btn-primary" to={`/questions/new${questionnaireId ? `?QuestionnaireId=${questionnaireId}` : ''}`}>
               New Question
             </Link>
           </div>

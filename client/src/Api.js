@@ -65,8 +65,12 @@ const Api = {
     },
   },
   questions: {
-    index() {
-      return instance.get('/api/questions');
+    index(questionnaireId) {
+      const options = {};
+      if (questionnaireId) {
+        options.params = { questionnaireId };
+      }
+      return instance.get('/api/questions', options);
     },
     create(data) {
       return instance.post('/api/questions', data);

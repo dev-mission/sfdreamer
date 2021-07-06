@@ -44,6 +44,9 @@ function QuestionnairesList() {
                   <Link className="btn btn-sm btn-primary me-3" to={`/questionnaires/${questionnaire.id}/edit`}>
                     Edit
                   </Link>
+                  <Link className="btn btn-sm btn-primary me-3" to={`/questionnaires/${questionnaire.id}/questions`}>
+                    Questions
+                  </Link>
                   <button onClick={() => onDelete(questionnaire)} className="btn btn-sm btn-danger">
                     Delete
                   </button>

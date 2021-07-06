@@ -6,14 +6,22 @@ const router = express.Router();
 const models = require('../../models');
 
 router.get('/', async (req, res) => {
-  const records = await models.Question.findAll({ order: [['prompt', 'ASC']] });
+  const options = {
+    order: [['prompt', 'ASC']],
+  };
+  if (req.query.questionnaireId) {
+    options.where = {
+      QuestionnaireId: req.query.questionnaireId,
+    };
+  }
+  const records = await models.Question.findAll(options);
   res.json(records.map((record) => record.toJSON()));
 });
 
 router.post('/', async (req, res) => {
   try {
     const record = await models.Question.create(
-      _.pick(req.body, ['prompt', 'answer_type', 'questionnaire_type', 'step'])
+      _.pick(req.body, ['QuestionnaireId', 'prompt', 'answer_type', 'questionnaire_type', 'step'])
     );
     res.status(HttpStatus.CREATED).json(record.toJSON());
   } catch (error) {
@@ -40,9 +48,7 @@ router.get('/:id', async (req, res) => {
 router.patch('/:id', async (req, res) => {
   const record = await models.Question.findByPk(req.params.id);
   if (record) {
-    await record.update(
-      _.pick(req.body, ['prompt', 'answer_type', 'questionnaire_type', 'step'])
-    );
+    await record.update(_.pick(req.body, ['QuestionnaireId', 'prompt', 'answer_type', 'questionnaire_type', 'step']));
     res.json(record.toJSON());
   } else {
     res.status(HttpStatus.NOT_FOUND).end();
