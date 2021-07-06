@@ -12,9 +12,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const record = await models.Answer.create(
-      _.pick(req.body, ['value'])
-    );
+    const record = await models.Answer.create(_.pick(req.body, ['value']));
     res.status(HttpStatus.CREATED).json(record.toJSON());
   } catch (error) {
     if (error.name === 'SequelizeValidationError') {
@@ -40,9 +38,7 @@ router.get('/:id', async (req, res) => {
 router.patch('/:id', async (req, res) => {
   const record = await models.Answer.findByPk(req.params.id);
   if (record) {
-    await record.update(
-      _.pick(req.body, ['value'])
-    );
+    await record.update(_.pick(req.body, ['value']));
     res.json(record.toJSON());
   } else {
     res.status(HttpStatus.NOT_FOUND).end();
