@@ -7,7 +7,7 @@ function Home() {
         <h1>
           Welcome <span className="d-none d-md-inline">to SF Dreamer</span>
         </h1>
-        <h2>Welcome to SF Dreamer! Follow the Steps below to learn more about the Dream Act and figure out what to do.</h2>
+        <h2>SFDreamer is amazing!</h2>
       </div>
 
       <div className="container">

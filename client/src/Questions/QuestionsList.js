@@ -53,7 +53,7 @@ function QuestionsList() {
                 </div>
               )}
             </div>
-            <div className="col-sm mb-3">mapa columns</div>
+            <div className="col-sm mb-3"></div>
           </div>
         ))}
       </div>
