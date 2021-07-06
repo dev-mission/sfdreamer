@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { StatusCodes } from 'http-status-codes';
 import classNames from 'classnames';
 
@@ -9,9 +9,12 @@ import ValidationError from '../ValidationError';
 
 function QuestionForm() {
   const { id } = useParams();
+  const query = new URLSearchParams(useLocation().search);
   const history = useHistory();
   const [error, setError] = useState(null);
+  const [questionnaires, setQuestionnaires] = useState([]);
   const [question, setQuestion] = useState({
+    QuestionnaireId: query.get('QuestionnaireId') || '',
     prompt: '',
     answer_type: '',
     questionnaire_type: '',
@@ -21,9 +24,19 @@ function QuestionForm() {
 
   useEffect(
     function () {
-      if (id) {
-        Api.questions.get(id).then((response) => setQuestion(response.data));
-      }
+      Api.questionnaires
+        .index()
+        .then((response) => {
+          setQuestionnaires(response.data);
+          if (id) {
+            return Api.questions.get(id);
+          }
+        })
+        .then((response) => {
+          if (response) {
+            setQuestion(response.data);
+          }
+        });
     },
     [id]
   );
@@ -57,6 +70,23 @@ function QuestionForm() {
     <main className="container">
       <h1>{id ? 'Edit' : 'New'} Question </h1>
       <form onSubmit={onSubmit}>
+        <div className="mb-3">
+          <label htmlFor="QuestionnaireId">Questionnaire</label>
+          <select
+            className={classNames('form-select', { 'is-invalid': error?.errorsFor?.('pQuestionnaireIdrompt') })}
+            id="QuestionnaireId"
+            name="QuestionnaireId"
+            required
+            onChange={onChange}
+            value={question.QuestionnaireId}>
+            {questionnaires.map((q) => (
+              <option key={q.id} value={q.id}>
+                {q.title}
+              </option>
+            ))}
+          </select>
+          {error?.errorMessagesHTMLFor?.('proQuestionnaireIdmpt')}
+        </div>
         <div className="mb-3">
           <label htmlFor="prompt">prompt</label>
           <input

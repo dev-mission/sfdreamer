@@ -57,11 +57,6 @@ function Header() {
           </Link>
         </li>
         <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/questions">
-            Questions
-          </Link>
-        </li>
-        <li className={classNames('_item', { active })}>
           <Link onClick={() => setActive(false)} to="/questionnaires">
             Questionnaire
           </Link>
