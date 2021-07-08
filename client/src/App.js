@@ -14,6 +14,7 @@ import Register from './Register';
 import Users from './Users';
 import Resources from './Resources';
 import Questionnaire from './Questionnaire';
+import Forms from './Forms';
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path="/questionnaire">
             <Questionnaire />
+          </Route>
+          <Route path="/form">
+            <Forms />
           </Route>
           {process.env.REACT_APP_FEATURE_REGISTRATION === 'true' && (
             <Route path="/register">
