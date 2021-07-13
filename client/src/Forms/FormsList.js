@@ -7,17 +7,17 @@ import Api from '../Api';
 
 function FormList() {
   const { user } = useAuthContext();
-  const [form, setForm] = useState([]);
+  const [forms, setForms] = useState([]);
 
   useEffect(function () {
-    Api.form.index().then((response) => setForm(response.data));
+    Api.forms.index().then((response) => setForms(response.data));
   }, []);
 
   async function onDelete(form) {
     if (window.confirm(`Are you sure you wish to delete "${form.name}"?`)) {
-      await Api.form.delete(form.id);
-      const newform = form.filter((r) => r.id !== form.id);
-      setForm(newform);
+      await Api.forms.delete(form.id);
+      const newform = forms.filter((r) => r.id !== form.id);
+      setForms(newform);
     }
   }
 
@@ -27,12 +27,12 @@ function FormList() {
       <div className="container">
         {user && (
           <div className="mb-3">
-            <Link className="btn btn-primary" to="/form/new">
+            <Link className="btn btn-primary" to="/forms/new">
               New Form
             </Link>
           </div>
         )}
-        {form.map((form) => (
+        {forms.map((form) => (
           <div key={form.id} className="row">
             <div className="col-sm mb-3">
               {form.name}
@@ -49,7 +49,7 @@ function FormList() {
               <br />
               {user && (
                 <div className="mt-1">
-                  <Link className="btn btn-sm btn-primary me-3" to={`/form/${form.id}/edit`}>
+                  <Link className="btn btn-sm btn-primary me-3" to={`/forms/${form.id}/edit`}>
                     Edit
                   </Link>
                   <button onClick={() => onDelete(form)} className="btn btn-sm btn-danger">

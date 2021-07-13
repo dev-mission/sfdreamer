@@ -6,7 +6,7 @@ const router = express.Router();
 const models = require('../../models');
 
 router.get('/', async (req, res) => {
-  const records = await models.Form.findAll({ order: [['title', 'ASC']] });
+  const records = await models.Form.findAll({ order: [['name', 'ASC']] });
   res.json(records.map((record) => record.toJSON()));
 });
 

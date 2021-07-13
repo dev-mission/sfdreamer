@@ -81,7 +81,7 @@ const Api = {
       return instance.delete(`/api/questionnaire/${id}`);
     },
   },
-  form: {
+  forms: {
     index() {
       return instance.get('/api/forms');
     },

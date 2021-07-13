@@ -24,7 +24,7 @@ function FormForm() {
   useEffect(
     function () {
       if (id) {
-        Api.form.get(id).then((response) => setForm(response.data));
+        Api.forms.get(id).then((response) => setForm(response.data));
       }
     },
     [id]
@@ -41,11 +41,11 @@ function FormForm() {
     setError(null);
     try {
       if (id) {
-        await Api.form.update(id, form);
+        await Api.forms.update(id, form);
       } else {
-        await Api.form.create(form);
+        await Api.forms.create(form);
       }
-      history.push('/form');
+      history.push('/forms');
     } catch (error) {
       if (error.response?.status === StatusCodes.UNPROCESSABLE_ENTITY) {
         setError(new ValidationError(error.response.data));

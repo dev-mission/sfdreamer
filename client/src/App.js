@@ -34,7 +34,7 @@ function App() {
           <Route path="/questionnaire">
             <Questionnaire />
           </Route>
-          <Route path="/form">
+          <Route path="/forms">
             <Forms />
           </Route>
           {process.env.REACT_APP_FEATURE_REGISTRATION === 'true' && (
