@@ -13,7 +13,6 @@ import Passwords from './Passwords';
 import Register from './Register';
 import Users from './Users';
 import Resources from './Resources';
-import Questionnaire from './Questionnaire';
 import Forms from './Forms';
 
 function App() {
@@ -30,9 +29,6 @@ function App() {
           </Route>
           <Route path="/passwords">
             <Passwords />
-          </Route>
-          <Route path="/questionnaire">
-            <Questionnaire />
           </Route>
           <Route path="/forms">
             <Forms />
