@@ -4,6 +4,7 @@ import { StatusCodes } from 'http-status-codes';
 import classNames from 'classnames';
 
 import Api from '../Api';
+import PhotoUploader from '../PhotoUploader';
 import UnexpectedError from '../UnexpectedError';
 import ValidationError from '../ValidationError';
 
@@ -74,16 +75,21 @@ function FormForm() {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="logo">Logo: </label>
-          <input
-            className={classNames('form-control', { 'is-invalid': error?.errorsFor?.('logo') })}
-            type="text"
+          <label className="form-label" htmlFor="logo">
+            Logo
+          </label>
+          <PhotoUploader
+            className="card"
             id="logo"
             name="logo"
-            required
-            onChange={onChange}
             value={form.logo}
-          />
+            valueUrl={form.logoUrl}
+            onChange={onChange}
+            onUploading={setUploading}>
+            <div className="card-body">
+              <div className="card-text">Drag-and-drop a photo file here, or click here to browse and select a file.</div>
+            </div>
+          </PhotoUploader>
           {error?.errorMessagesHTMLFor?.('logo')}
         </div>
 

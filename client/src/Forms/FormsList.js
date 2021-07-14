@@ -37,7 +37,7 @@ function FormList() {
             <div className="col-sm mb-3">
               {form.name}
               <br />
-              {form.logo}
+              <img src={form.logoUrl} />
               <br />
               {form.year}
               <br />
