@@ -14,6 +14,9 @@ import Register from './Register';
 import Users from './Users';
 import Resources from './Resources';
 import Forms from './Forms';
+import Questions from './Questions';
+import Questionnaires from './Questionnaires';
+import Answers from './Answers';
 
 function App() {
   return (
@@ -40,6 +43,15 @@ function App() {
           )}
           <Route path="/resources">
             <Resources />
+          </Route>
+          <Route path="/questions">
+            <Questions />
+          </Route>
+          <Route path="/questionnaires">
+            <Questionnaires />
+          </Route>
+          <Route path="/answers">
+            <Answers />
           </Route>
           <AuthProtectedRoute path="/account">
             <Users />

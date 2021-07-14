@@ -81,6 +81,61 @@ const Api = {
       return instance.delete(`/api/forms/${id}`);
     },
   },
+  questions: {
+    index(questionnaireId) {
+      const options = {};
+      if (questionnaireId) {
+        options.params = { questionnaireId };
+      }
+      return instance.get('/api/questions', options);
+    },
+    create(data) {
+      return instance.post('/api/questions', data);
+    },
+    get(id) {
+      return instance.get(`/api/questions/${id}`);
+    },
+    update(id, data) {
+      return instance.patch(`/api/questions/${id}`, data);
+    },
+    delete(id) {
+      return instance.delete(`/api/questions/${id}`);
+    },
+  },
+  questionnaires: {
+    index() {
+      return instance.get('/api/questionnaires');
+    },
+    create(data) {
+      return instance.post('/api/questionnaires', data);
+    },
+    get(id) {
+      return instance.get(`/api/questionnaires/${id}`);
+    },
+    update(id, data) {
+      return instance.patch(`/api/questionnaires/${id}`, data);
+    },
+    delete(id) {
+      return instance.delete(`/api/questionnaires/${id}`);
+    },
+  },
+  answers: {
+    index() {
+      return instance.get('/api/answers');
+    },
+    create(data) {
+      return instance.post('/api/answers', data);
+    },
+    get(id) {
+      return instance.get(`/api/answers/${id}`);
+    },
+    update(id, data) {
+      return instance.patch(`/api/answers/${id}`, data);
+    },
+    delete(id) {
+      return instance.delete(`/api/answers/${id}`);
+    },
+  },
   users: {
     me() {
       return instance.get('/api/users/me');

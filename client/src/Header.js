@@ -61,6 +61,16 @@ function Header() {
             Forms
           </Link>
         </li>
+        <li className={classNames('_item', { active })}>
+          <Link onClick={() => setActive(false)} to="/questionnaires">
+            Questionnaire
+          </Link>
+        </li>
+        <li className={classNames('_item', { active })}>
+          <Link onClick={() => setActive(false)} to="/answers">
+            Answers
+          </Link>
+        </li>
         <li className={classNames('_item collapsed', { active })}>
           <a href="/about">About</a>
         </li>
