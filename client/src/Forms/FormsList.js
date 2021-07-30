@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 
-import './FormList.scss';
+import './FormsList.scss';
 import { useAuthContext } from '../AuthContext';
 import { useEffect, useState } from 'react';
 import Api from '../Api';
 
-function FormList() {
+function FormsList() {
   const { user } = useAuthContext();
   const [forms, setForms] = useState([]);
 
@@ -23,7 +23,7 @@ function FormList() {
 
   return (
     <main className="form-list">
-      <h1>Form Page</h1>
+      <h1>Forms</h1>
       <div className="container">
         {user && (
           <div className="mb-3">
@@ -37,7 +37,7 @@ function FormList() {
             <div className="col-sm mb-3">
               {form.name}
               <br />
-              <img src={form.logoUrl} />
+              <img src={form.logoUrl} alt={form.name} />
               <br />
               {form.year}
               <br />
@@ -66,4 +66,4 @@ function FormList() {
   );
 }
 
-export default FormList;
+export default FormsList;
