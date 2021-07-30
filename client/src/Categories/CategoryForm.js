@@ -4,6 +4,7 @@ import { StatusCodes } from 'http-status-codes';
 import classNames from 'classnames';
 
 import Api from '../Api';
+import PhotoUploader from '../PhotoUploader';
 import UnexpectedError from '../UnexpectedError';
 import ValidationError from '../ValidationError';
 
@@ -16,12 +17,12 @@ function CategoryForm() {
     summary: '',
     icon: '',
   });
-  const [isUploading] = useState(false);
+  const [isUploading, setUploading] = useState(false);
 
   useEffect(
     function () {
       if (id) {
-        Api.category.get(id).then((response) => setCategory(response.data));
+        Api.categories.get(id).then((response) => setCategory(response.data));
       }
     },
     [id]
@@ -83,16 +84,21 @@ function CategoryForm() {
           {error?.errorMessagesHTMLFor?.('summary')}
         </div>
         <div className="mb-3">
-          <label htmlFor="icon">Icon:</label>
-          <input
-            className={classNames('form-control', { 'is-invalid': error?.errorsFor?.('icon') })}
-            type="text"
+          <label className="form-label" htmlFor="icon">
+            Icon
+          </label>
+          <PhotoUploader
+            className="card"
             id="icon"
             name="icon"
-            required
-            onChange={onChange}
             value={category.icon}
-          />
+            valueUrl={category.iconUrl}
+            onChange={onChange}
+            onUploading={setUploading}>
+            <div className="card-body">
+              <div className="card-text">Drag-and-drop a photo file here, or click here to browse and select a file.</div>
+            </div>
+          </PhotoUploader>
           {error?.errorMessagesHTMLFor?.('icon')}
         </div>
         <button disabled={isUploading} className="btn btn-primary" type="submit">

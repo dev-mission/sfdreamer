@@ -39,7 +39,7 @@ function CategoriesList() {
               <br />
               {category.summary}
               <br />
-              {category.icon}
+              <img src={category.iconUrl} />
               <br />
               {user && (
                 <div className="mt-1">

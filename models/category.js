@@ -17,11 +17,22 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       summary: DataTypes.TEXT,
       icon: DataTypes.STRING,
+      iconUrl: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return this.assetUrl('icon', 'categories/icon');
+        },
+      },
     },
     {
       sequelize,
       modelName: 'Category',
     }
   );
+
+  Category.afterSave(async (category, options) => {
+    category.handleAssetFile('icon', 'categories/icon', options);
+  });
+
   return Category;
 };
