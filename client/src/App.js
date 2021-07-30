@@ -12,8 +12,8 @@ import Login from './Login';
 import Passwords from './Passwords';
 import Register from './Register';
 import Users from './Users';
-
 import Resources from './Resources';
+import Forms from './Forms';
 import Questions from './Questions';
 import Questionnaires from './Questionnaires';
 import Answers from './Answers';
@@ -32,6 +32,9 @@ function App() {
           </Route>
           <Route path="/passwords">
             <Passwords />
+          </Route>
+          <Route path="/forms">
+            <Forms />
           </Route>
           {process.env.REACT_APP_FEATURE_REGISTRATION === 'true' && (
             <Route path="/register">
