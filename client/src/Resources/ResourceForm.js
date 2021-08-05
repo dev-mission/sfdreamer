@@ -80,7 +80,7 @@ function ResourceForm() {
         <div className="mb-3">
           <label htmlFor="CategoryId">Category</label>
           <select
-            className={classNames('form-select', { 'is-invalid': error?.errorsFor?.('CategoryIdrompt') })}
+            className={classNames('form-select', { 'is-invalid': error?.errorsFor?.('CategoryId') })}
             id="CategoryId"
             name="CategoryId"
             required
@@ -92,7 +92,7 @@ function ResourceForm() {
               </option>
             ))}
           </select>
-          {error?.errorMessagesHTMLFor?.('proQuestionnaireIdmpt')}
+          {error?.errorMessagesHTMLFor?.('proQuestionnaireI')}
         </div>
         <div className="mb-3">
           <label htmlFor="name">Name:</label>

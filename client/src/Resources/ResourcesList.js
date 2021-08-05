@@ -41,8 +41,6 @@ function ResourcesList() {
                   <br />
                 </>
               )}
-              {resource.category}
-              <br />
               {resource.name}
               <br />
               {resource.orgtype}
