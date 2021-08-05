@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { StatusCodes } from 'http-status-codes';
 import classNames from 'classnames';
 
@@ -10,9 +10,12 @@ import ValidationError from '../ValidationError';
 
 function ResourceForm() {
   const { id } = useParams();
+  const query = new URLSearchParams(useLocation().search);
   const history = useHistory();
   const [error, setError] = useState(null);
+  const [categories, setCategories] = useState([]);
   const [resource, setResource] = useState({
+    CategoryId: query.get('CategoryId') || '',
     name: '',
     orgtype: '',
     contactperson: '',
@@ -28,9 +31,19 @@ function ResourceForm() {
 
   useEffect(
     function () {
-      if (id) {
-        Api.resources.get(id).then((response) => setResource(response.data));
-      }
+      Api.categories
+        .index()
+        .then((response) => {
+          setCategories(response.data);
+          if (id) {
+            return Api.resources.get(id);
+          }
+        })
+        .then((response) => {
+          if (response) {
+            setResource(response.data);
+          }
+        });
     },
     [id]
   );
@@ -64,6 +77,23 @@ function ResourceForm() {
     <main className="container">
       <h1>{id ? 'Edit' : 'New'} Resource</h1>
       <form onSubmit={onSubmit}>
+        <div className="mb-3">
+          <label htmlFor="CategoryId">Category</label>
+          <select
+            className={classNames('form-select', { 'is-invalid': error?.errorsFor?.('CategoryId') })}
+            id="CategoryId"
+            name="CategoryId"
+            required
+            onChange={onChange}
+            value={resource.CategoryId}>
+            {categories.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name}
+              </option>
+            ))}
+          </select>
+          {error?.errorMessagesHTMLFor?.('proQuestionnaireId')}
+        </div>
         <div className="mb-3">
           <label htmlFor="name">Name:</label>
           <input
