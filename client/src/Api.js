@@ -48,8 +48,12 @@ const Api = {
     },
   },
   resources: {
-    index() {
-      return instance.get('/api/resources');
+    index(categoryId) {
+      const options = {};
+      if (categoryId) {
+        options.params = { categoryId };
+      }
+      return instance.get('/api/resources', options);
     },
     create(data) {
       return instance.post('/api/resources', data);
