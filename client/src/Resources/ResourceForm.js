@@ -92,7 +92,7 @@ function ResourceForm() {
               </option>
             ))}
           </select>
-          {error?.errorMessagesHTMLFor?.('proQuestionnaireI')}
+          {error?.errorMessagesHTMLFor?.('proQuestionnaireId')}
         </div>
         <div className="mb-3">
           <label htmlFor="name">Name:</label>
