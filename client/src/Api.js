@@ -48,8 +48,12 @@ const Api = {
     },
   },
   resources: {
-    index() {
-      return instance.get('/api/resources');
+    index(categoryId) {
+      const options = {};
+      if (categoryId) {
+        options.params = { categoryId };
+      }
+      return instance.get('/api/resources', options);
     },
     create(data) {
       return instance.post('/api/resources', data);
@@ -117,6 +121,23 @@ const Api = {
     },
     delete(id) {
       return instance.delete(`/api/questionnaires/${id}`);
+    },
+  },
+  categories: {
+    index() {
+      return instance.get('/api/categories');
+    },
+    create(data) {
+      return instance.post('/api/categories', data);
+    },
+    get(id) {
+      return instance.get(`/api/categories/${id}`);
+    },
+    update(id, data) {
+      return instance.patch(`/api/categories/${id}`, data);
+    },
+    delete(id) {
+      return instance.delete(`/api/categories/${id}`);
     },
   },
   answers: {

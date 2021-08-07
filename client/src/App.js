@@ -12,6 +12,8 @@ import Login from './Login';
 import Passwords from './Passwords';
 import Register from './Register';
 import Users from './Users';
+
+import Categories from './Categories';
 import Resources from './Resources';
 import Forms from './Forms';
 import Questions from './Questions';
@@ -49,6 +51,9 @@ function App() {
           </Route>
           <Route path="/questionnaires">
             <Questionnaires />
+          </Route>
+          <Route path="/categories">
+            <Categories />
           </Route>
           <Route path="/answers">
             <Answers />
