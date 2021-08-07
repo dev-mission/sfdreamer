@@ -49,11 +49,16 @@ function Header() {
           <a href="/">Mock Application</a>
         </li>
         <li className={classNames('_item', { active })}>
-          <a href="/forms">AB-540 Forms</a>
+          <a href="/ab540forms">AB-540 Forms</a>
         </li>
         <li className={classNames('_item', { active })}>
           <Link onClick={() => setActive(false)} to="/resources">
             Resources
+          </Link>
+        </li>
+        <li className={classNames('_item', { active })}>
+          <Link onClick={() => setActive(false)} to="/forms">
+            Forms
           </Link>
         </li>
         <li className={classNames('_item', { active })}>
