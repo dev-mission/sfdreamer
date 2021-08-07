@@ -39,48 +39,31 @@ function Header() {
             <img src="/images/Logo.png" alt="SF Dreamer" />
           </Link>
         </li>
-        <li className={classNames('_item collapsed', { active })}>
-          <a href="/">Dream Act Info</a>
-        </li>
         <li className={classNames('_item', { active })}>
-          <a href="/questions/1">Eligibility Survey</a>
-        </li>
-        <li className={classNames('_item collapsed', { active })}>
-          <a href="/">Mock Application</a>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <a href="/ab540forms">AB-540 Forms</a>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/resources">
-            Resources
-          </Link>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/forms">
-            Forms
-          </Link>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/questionnaires">
-            Questionnaire
-          </Link>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/categories">
-            Categories
-          </Link>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/answers">
-            Answers
-          </Link>
-        </li>
-        <li className={classNames('_item collapsed', { active })}>
           <a href="/about">About</a>
         </li>
         {user && (
           <>
+            <li className={classNames('_item collapsed', { active })}>
+              <Link onClick={() => setActive(false)} to="/categories">
+                Categories
+              </Link>
+            </li>
+            <li className={classNames('_item collapsed', { active })}>
+              <Link onClick={() => setActive(false)} to="/resources">
+                Resources
+              </Link>
+            </li>
+            <li className={classNames('_item collapsed', { active })}>
+              <Link onClick={() => setActive(false)} to="/questionnaires">
+                Questionnaires
+              </Link>
+            </li>
+            <li className={classNames('_item collapsed', { active })}>
+              <Link onClick={() => setActive(false)} to="/forms">
+                Forms
+              </Link>
+            </li>
             <li className={classNames('_item collapsed', { active })}>
               <a href="/logout" onClick={onLogout}>
                 Log out
