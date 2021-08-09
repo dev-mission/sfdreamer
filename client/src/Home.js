@@ -1,6 +1,10 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.scss';
 
 function Home() {
+  const [active, setActive] = useState(false);
+
   return (
     <main className="home">
       <div className="Welcome">
@@ -11,45 +15,55 @@ function Home() {
       </div>
 
       <div className="container">
-        <div className="row">
-          <div className="col-md-3 step">
-            <h3>Step 1</h3>
-            <b>Learn About the Dream Act.</b>
-            <p>
-              The California Dream Act allows undocumented people who went to a california High School for 3 years or more, to get financial
-              aid from the state.
-            </p>
-            <a className="btn btn-primary" href="/">
-              Learn More
-            </a>
+        <Link onClick={() => setActive(false)} to="/resources">
+          <div className="category">
+            <h3>Resources</h3>
+            <b>Contact various resource centers.</b>
+            <p>San Francisco provides many resources to help with immigration,</p>
           </div>
-          <div className="col-md-3 step">
-            <h3>Step 2</h3>
+        </Link>
+
+        <Link onClick={() => setActive(false)} to="/">
+          <div className="category">
+            <h3>Employment</h3>
             <b>Find out if you're eligible.</b>
             <p>Take this short survey to see what options are available for you.</p>
-            <a className="btn btn-primary" href="/questions/1">
-              Take Survey
-            </a>
           </div>
-          <div className="col-md-3 step">
-            <h3>Step 3</h3>
+        </Link>
+
+        <Link onClick={() => setActive(false)} to="/">
+          <div className="category">
+            <h3>Housing</h3>
             <b>Learn about the application.</b>
             <p>
               Take the mock version of the Dream Act to learn about the forms and questions that you'll be asked in the real application.
             </p>
-            <a className="btn btn-primary" href="/">
-              Mock App
-            </a>
           </div>
-          <div className="col-md-3 step">
-            <h3>Step 4</h3>
+        </Link>
+
+        <Link onClick={() => setActive(false)} to="/">
+          <div className="category">
+            <h3>Dream Act</h3>
             <b>Find your AB-540 Form.</b>
             <p>Learn about AB-540 and find out which AB-540 form you will need to fill out.</p>
-            <a className="btn btn-primary" href="/forms">
-              Download Form
-            </a>
           </div>
-        </div>
+        </Link>
+
+        <Link onClick={() => setActive(false)} to="/">
+          <div className="category">
+            <h3>Financial Aid</h3>
+            <b>Find your AB-540 Form.</b>
+            <p>Learn about AB-540 and find out which AB-540 form you will need to fill out.</p>
+          </div>
+        </Link>
+
+        <Link onClick={() => setActive(false)} to="/">
+          <div className="category">
+            <h3>Immigration</h3>
+            <b>Find your AB-540 Form.</b>
+            <p>Learn about AB-540 and find out which AB-540 form you will need to fill out.</p>
+          </div>
+        </Link>
       </div>
     </main>
   );

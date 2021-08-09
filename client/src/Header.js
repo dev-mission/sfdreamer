@@ -40,39 +40,13 @@ function Header() {
           </Link>
         </li>
         <li className={classNames('_item collapsed', { active })}>
-          <a href="/">Dream Act Info</a>
+          <a href="/">Home</a>
         </li>
-        <li className={classNames('_item', { active })}>
-          <a href="/questions/1">Eligibility Survey</a>
+        <li className={classNames('_item collapsed', { active })}>
+          <a href="/about">About SF Dreamer</a>
         </li>
         <li className={classNames('_item collapsed', { active })}>
           <a href="/">Mock Application</a>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <a href="/forms">AB-540 Forms</a>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/resources">
-            Resources
-          </Link>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/questionnaires">
-            Questionnaire
-          </Link>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/categories">
-            Categories
-          </Link>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/answers">
-            Answers
-          </Link>
-        </li>
-        <li className={classNames('_item collapsed', { active })}>
-          <a href="/about">About</a>
         </li>
         {user && (
           <>
@@ -90,6 +64,35 @@ function Header() {
             </Link>
           </li>
         )}
+
+        <li className={classNames('_item', { active })}>
+          <a href="/questions/1">Eligibility Survey</a>
+        </li>
+
+        <li className={classNames('_item', { active })}>
+          <a href="/forms">AB-540 Forms</a>
+        </li>
+        <li className={classNames('_item', { active })}>
+          <Link onClick={() => setActive(false)} to="/questionnaires">
+            Questionnaire
+          </Link>
+        </li>
+        <li className={classNames('_item', { active })}>
+          <Link onClick={() => setActive(false)} to="/resources">
+            Resources
+          </Link>
+        </li>
+        <li className={classNames('_item', { active })}>
+          <Link onClick={() => setActive(false)} to="/categories">
+            Categories
+          </Link>
+        </li>
+        <li className={classNames('_item', { active })}>
+          <Link onClick={() => setActive(false)} to="/answers">
+            Answers
+          </Link>
+        </li>
+
         <li className="_toggle" onClick={() => setActive(!active)}>
           <span className="_bars"></span>
         </li>
