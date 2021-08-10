@@ -15,6 +15,12 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       logo: DataTypes.STRING,
+      logoUrl: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return this.assetUrl('logo', 'forms/logo');
+        },
+      },
       year: DataTypes.INTEGER,
       school: DataTypes.STRING,
       url: DataTypes.TEXT,
@@ -25,5 +31,10 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'Form',
     }
   );
+
+  Form.afterSave(async (form, options) => {
+    form.handleAssetFile('logo', 'forms/logo', options);
+  });
+
   return Form;
 };

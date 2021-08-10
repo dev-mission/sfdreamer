@@ -40,48 +40,32 @@ function Header() {
           </Link>
         </li>
         <li className={classNames('_item', { active })}>
-          <a href="/">Home</a>
-        </li>
-
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/resources">
-            Resources
-          </Link>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/dreamact">
-            Dream Act
-          </Link>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/immigration">
-            Immigration
-          </Link>
-        </li>
-
-        <li className={classNames('_item collapsed', { active })}>
-          <Link onClick={() => setActive(false)} to="/employment">
-            Employment
-          </Link>
-        </li>
-        <li className={classNames('_item collapsed', { active })}>
-          <Link onClick={() => setActive(false)} to="/housing">
-            Housing
-          </Link>
-        </li>
-        <li className={classNames('_item collapsed', { active })}>
-          <Link onClick={() => setActive(false)} to="/financialaid">
-            Financial Aid
-          </Link>
-        </li>
-        <li className={classNames('_item collapsed', { active })}>
           <Link onClick={() => setActive(false)} to="/about">
             About
           </Link>
         </li>
-
         {user && (
           <>
+            <li className={classNames('_item collapsed', { active })}>
+              <Link onClick={() => setActive(false)} to="/categories">
+                Categories
+              </Link>
+            </li>
+            <li className={classNames('_item collapsed', { active })}>
+              <Link onClick={() => setActive(false)} to="/resources">
+                Resources
+              </Link>
+            </li>
+            <li className={classNames('_item collapsed', { active })}>
+              <Link onClick={() => setActive(false)} to="/questionnaires">
+                Questionnaires
+              </Link>
+            </li>
+            <li className={classNames('_item collapsed', { active })}>
+              <Link onClick={() => setActive(false)} to="/forms">
+                Forms
+              </Link>
+            </li>
             <li className={classNames('_item collapsed', { active })}>
               <a href="/logout" onClick={onLogout}>
                 Log out
