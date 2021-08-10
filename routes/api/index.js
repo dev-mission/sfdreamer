@@ -12,6 +12,5 @@ router.use('/resources', require('./resources'));
 router.use('/questions', require('./questions'));
 router.use('/questionnaires', require('./questionnaires'));
 router.use('/users', require('./users'));
-router.use('/categories', require('./categories'));
 
 module.exports = router;
