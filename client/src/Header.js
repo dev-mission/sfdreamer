@@ -39,15 +39,47 @@ function Header() {
             <img src="/images/Logo.png" alt="SF Dreamer" />
           </Link>
         </li>
-        <li className={classNames('_item collapsed', { active })}>
+        <li className={classNames('_item', { active })}>
           <a href="/">Home</a>
         </li>
+
+        <li className={classNames('_item', { active })}>
+          <Link onClick={() => setActive(false)} to="/resources">
+            Resources
+          </Link>
+        </li>
+        <li className={classNames('_item', { active })}>
+          <Link onClick={() => setActive(false)} to="/dreamact">
+            Dream Act
+          </Link>
+        </li>
+        <li className={classNames('_item', { active })}>
+          <Link onClick={() => setActive(false)} to="/immigration">
+            Immigration
+          </Link>
+        </li>
+
         <li className={classNames('_item collapsed', { active })}>
-          <a href="/about">About SF Dreamer</a>
+          <Link onClick={() => setActive(false)} to="/employment">
+            Employment
+          </Link>
         </li>
         <li className={classNames('_item collapsed', { active })}>
-          <a href="/">Mock Application</a>
+          <Link onClick={() => setActive(false)} to="/housing">
+            Housing
+          </Link>
         </li>
+        <li className={classNames('_item collapsed', { active })}>
+          <Link onClick={() => setActive(false)} to="/financialaid">
+            Financial Aid
+          </Link>
+        </li>
+        <li className={classNames('_item collapsed', { active })}>
+          <Link onClick={() => setActive(false)} to="/about">
+            About
+          </Link>
+        </li>
+
         {user && (
           <>
             <li className={classNames('_item collapsed', { active })}>
@@ -64,34 +96,6 @@ function Header() {
             </Link>
           </li>
         )}
-
-        <li className={classNames('_item', { active })}>
-          <a href="/questions/1">Eligibility Survey</a>
-        </li>
-
-        <li className={classNames('_item', { active })}>
-          <a href="/forms">AB-540 Forms</a>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/questionnaires">
-            Questionnaire
-          </Link>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/resources">
-            Resources
-          </Link>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/categories">
-            Categories
-          </Link>
-        </li>
-        <li className={classNames('_item', { active })}>
-          <Link onClick={() => setActive(false)} to="/answers">
-            Answers
-          </Link>
-        </li>
 
         <li className="_toggle" onClick={() => setActive(!active)}>
           <span className="_bars"></span>

@@ -18,50 +18,42 @@ function Home() {
         <Link onClick={() => setActive(false)} to="/resources">
           <div className="category">
             <h3>Resources</h3>
-            <b>Contact various resource centers.</b>
-            <p>San Francisco provides many resources to help with immigration,</p>
+            <p>A list of very helpful resources in the Bay Area.</p>
           </div>
         </Link>
 
         <Link onClick={() => setActive(false)} to="/">
           <div className="category">
             <h3>Employment</h3>
-            <b>Find out if you're eligible.</b>
-            <p>Take this short survey to see what options are available for you.</p>
+            <p>Find employment opportunities for immigrants.</p>
           </div>
         </Link>
 
         <Link onClick={() => setActive(false)} to="/">
           <div className="category">
             <h3>Housing</h3>
-            <b>Learn about the application.</b>
-            <p>
-              Take the mock version of the Dream Act to learn about the forms and questions that you'll be asked in the real application.
-            </p>
+            <p>Look for various housing options in your area.</p>
           </div>
         </Link>
 
         <Link onClick={() => setActive(false)} to="/">
           <div className="category">
             <h3>Dream Act</h3>
-            <b>Find your AB-540 Form.</b>
-            <p>Learn about AB-540 and find out which AB-540 form you will need to fill out.</p>
+            <p>Learn about the Dream Act and if you qualify for it.</p>
           </div>
         </Link>
 
         <Link onClick={() => setActive(false)} to="/">
           <div className="category">
             <h3>Financial Aid</h3>
-            <b>Find your AB-540 Form.</b>
-            <p>Learn about AB-540 and find out which AB-540 form you will need to fill out.</p>
+            <p>Learn about financial aid for immigrant students.</p>
           </div>
         </Link>
 
         <Link onClick={() => setActive(false)} to="/">
           <div className="category">
             <h3>Immigration</h3>
-            <b>Find your AB-540 Form.</b>
-            <p>Learn about AB-540 and find out which AB-540 form you will need to fill out.</p>
+            <p>Find out more information about immigrations and your status.</p>
           </div>
         </Link>
       </div>
