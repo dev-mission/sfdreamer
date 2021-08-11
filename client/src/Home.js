@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.scss';
+import Api from './Api';
 
 function Home() {
   const [active, setActive] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(function () {
+    Api.categories.index().then((response) => setCategories(response.data));
+  }, []);
 
   return (
     <main className="home">
@@ -15,47 +21,16 @@ function Home() {
       </div>
 
       <div className="container">
-        <Link onClick={() => setActive(false)} to="/resources">
-          <div className="category">
-            <h3>Resources</h3>
-            <p>A list of very helpful resources in the Bay Area.</p>
-          </div>
-        </Link>
-
-        <Link onClick={() => setActive(false)} to="/">
-          <div className="category">
-            <h3>Employment</h3>
-            <p>Find employment opportunities for immigrants.</p>
-          </div>
-        </Link>
-
-        <Link onClick={() => setActive(false)} to="/">
-          <div className="category">
-            <h3>Housing</h3>
-            <p>Look for various housing options in your area.</p>
-          </div>
-        </Link>
-
-        <Link onClick={() => setActive(false)} to="/">
-          <div className="category">
-            <h3>Dream Act</h3>
-            <p>Learn about the Dream Act and if you qualify for it.</p>
-          </div>
-        </Link>
-
-        <Link onClick={() => setActive(false)} to="/">
-          <div className="category">
-            <h3>Financial Aid</h3>
-            <p>Learn about financial aid for immigrant students.</p>
-          </div>
-        </Link>
-
-        <Link onClick={() => setActive(false)} to="/">
-          <div className="category">
-            <h3>Immigration</h3>
-            <p>Find out more information about immigrations and your status.</p>
-          </div>
-        </Link>
+        {categories.map((category) => (
+          <Link onClick={() => setActive(false)} to={`/categories/${category.slug}`}>
+            <div className="category">
+              <h3>{category.name}</h3>
+              <br />
+              <p>{category.summary}</p>
+              <br />
+            </div>
+          </Link>
+        ))}
       </div>
     </main>
   );
