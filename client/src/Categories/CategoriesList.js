@@ -45,11 +45,11 @@ function CategoriesList() {
   if (slug) {
     return (
       <main className="categories-list">
-        <h1>Categories Resources</h1>
+        {categories.map((c) => c.slug === slug && <h1> {c.name}</h1>)}
         <div className="container">
-          {categories.map((category) => (
-            <h1>{Object.keys(category.slug)}</h1>
-          ))}
+          <div className="col-sm mb-3">
+            {resources.map((r) => r.CategoryId === categories.map((c) => c.slug === slug && c.id) && <p>{r.name}</p>)}
+          </div>
         </div>
       </main>
     );
