@@ -21,16 +21,18 @@ function Home() {
       </div>
 
       <div className="container">
-        {categories.map((category) => (
-          <Link onClick={() => setActive(false)} to={`/categories/${category.slug}`}>
-            <div className="category">
-              <h3>{category.name}</h3>
-              <br />
-              <p>{category.summary}</p>
-              <br />
-            </div>
-          </Link>
-        ))}
+        <div className="row">
+          {categories.map((category) => (
+            <Link onClick={() => setActive(false)} to={`/categories/${category.slug}`} className="col-md-4">
+              <div className="category">
+                <h3>{category.name}</h3>
+                <br />
+                <p>{category.summary}</p>
+                <br />
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </main>
   );
