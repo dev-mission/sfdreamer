@@ -130,11 +130,11 @@ const Api = {
     create(data) {
       return instance.post('/api/categories', data);
     },
-    get(id, slug) {
-      if (slug) {
-        return instance.get(`api/categories/${slug}`);
-      }
+    get(id) {
       return instance.get(`/api/categories/${id}`);
+    },
+    getSlug(slug){
+        return instance.get(`api/categories/${slug}`);
     },
     update(id, data) {
       return instance.patch(`/api/categories/${id}`, data);

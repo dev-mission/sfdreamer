@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useHistory, useParams } from 'react-router-dom';
 
 import './CategoriesList.scss';
 import { useAuthContext } from '../AuthContext';
@@ -8,31 +7,11 @@ import Api from '../Api';
 
 function CategoriesList() {
   const { user } = useAuthContext();
-  const { slug } = useParams();
   const [categories, setCategories] = useState([]);
-  const [resources, setResources] = useState([]);
 
-  useEffect(
-    function () {
-      if (slug) {
-        Api.categories
-          .index()
-          .then((response) => {
-            setCategories(response.data);
-            // if (slug) {
-            return Api.resources.get();
-            // }
-          })
-          .then((response) => {
-            if (response) {
-              setResources(response.data);
-            }
-          });
-      }
-      Api.categories.index().then((response) => setCategories(response.data));
-    },
-    [slug]
-  );
+  useEffect(function () {
+    Api.categories.index().then((response) => setCategories(response.data));
+  }, []);
 
   async function onDelete(category) {
     if (window.confirm(`Are you sure you wish to delete "${category.title}"?`)) {
@@ -42,22 +21,9 @@ function CategoriesList() {
     }
   }
 
-  if (slug) {
-    return (
-      <main className="categories-list">
-        {categories.map((c) => c.slug === slug && <h1> {c.name}</h1>)}
-        <div className="container">
-          <div className="col-sm mb-3">
-            {resources.map((r) => r.CategoryId === categories.map((c) => c.slug === slug && c.id) && <p>{r.name}</p>)}
-          </div>
-        </div>
-      </main>
-    );
-  }
-
   return (
     <main className="categories-list">
-      <h1>Categories {slug ? 'Resources' : 'Page'}</h1>
+      <h1>Categories Page</h1>
       <div className="container">
         {user && (
           <div className="mb-3">

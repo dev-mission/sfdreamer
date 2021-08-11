@@ -37,8 +37,11 @@ router.get('/:id', async (req, res) => {
 
 router.get('/:slug', async (req, res) => {
   const record = await models.Category.findOne({ where: { slug: req.params.slug } });
+  // const secondRecord = await models.Resource.findAll();
+  console.log('got one gggggggggggggg');
   if (record) {
     res.json(record.toJSON());
+    // res.json(secondRecord.toJSON());
   } else {
     res.status(HttpStatus.NOT_FOUND).end();
   }
