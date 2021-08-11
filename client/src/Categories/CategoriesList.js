@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import './CategoriesList.scss';
 import { useAuthContext } from '../AuthContext';
@@ -7,11 +8,31 @@ import Api from '../Api';
 
 function CategoriesList() {
   const { user } = useAuthContext();
+  const { slug } = useParams();
   const [categories, setCategories] = useState([]);
+  const [resources, setResources] = useState([]);
 
-  useEffect(function () {
-    Api.categories.index().then((response) => setCategories(response.data));
-  }, []);
+  useEffect(
+    function () {
+      if (slug) {
+        Api.categories
+          .index()
+          .then((response) => {
+            setCategories(response.data);
+            // if (slug) {
+            return Api.resources.get();
+            // }
+          })
+          .then((response) => {
+            if (response) {
+              setResources(response.data);
+            }
+          });
+      }
+      Api.categories.index().then((response) => setCategories(response.data));
+    },
+    [slug]
+  );
 
   async function onDelete(category) {
     if (window.confirm(`Are you sure you wish to delete "${category.title}"?`)) {
@@ -21,9 +42,22 @@ function CategoriesList() {
     }
   }
 
+  if (slug) {
+    return (
+      <main className="categories-list">
+        <h1>Categories Resources</h1>
+        <div className="container">
+          {categories.map((category) => (
+            <h1>{Object.keys(category.slug)}</h1>
+          ))}
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="categories-list">
-      <h1>Categories Page</h1>
+      <h1>Categories {slug ? 'Resources' : 'Page'}</h1>
       <div className="container">
         {user && (
           <div className="mb-3">
@@ -38,6 +72,9 @@ function CategoriesList() {
               {category.name}
               <br />
               {category.slug}
+              <Link className="btn btn-sm btn-primary me-3" to={`/categories/${category.slug}`}>
+                Resources
+              </Link>
               <br />
               {category.summary}
               <br />

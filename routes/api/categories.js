@@ -35,6 +35,15 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.get('/:slug', async (req, res) => {
+  const record = await models.Category.findOne({ where: { slug: req.params.slug } });
+  if (record) {
+    res.json(record.toJSON());
+  } else {
+    res.status(HttpStatus.NOT_FOUND).end();
+  }
+});
+
 router.patch('/:id', async (req, res) => {
   try {
     const record = await models.Category.findByPk(req.params.id);
