@@ -133,9 +133,6 @@ const Api = {
     get(id) {
       return instance.get(`/api/categories/${id}`);
     },
-    getSlug(slug) {
-      return instance.get(`/api/categories/${slug}/resources`);
-    },
     update(id, data) {
       return instance.patch(`/api/categories/${id}`, data);
     },

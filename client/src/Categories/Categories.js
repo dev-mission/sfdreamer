@@ -13,7 +13,7 @@ function Categories() {
       <Route exact path={path}>
         <CategoriesList />
       </Route>
-      <Route path={`${path}/:slug/resources`}>
+      <Route path={`${path}/:slug`}>
         <CategoriesSources />
       </Route>
       <AuthProtectedRoute path={`${path}/new`}>
