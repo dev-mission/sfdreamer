@@ -4,7 +4,6 @@ import './Home.scss';
 import Api from './Api';
 
 function Home() {
-  const [active, setActive] = useState(false);
   const [categories, setCategories] = useState([]);
 
   useEffect(function () {
@@ -23,7 +22,7 @@ function Home() {
       <div className="container">
         <div className="row">
           {categories.map((category) => (
-            <Link onClick={() => setActive(false)} to={`/categories/${category.slug}`} className="col-md-4">
+            <Link to={`/categories/${category.slug}`} className="col-md-4">
               <div className="category">
                 <h3>{category.name}</h3>
                 <br />
