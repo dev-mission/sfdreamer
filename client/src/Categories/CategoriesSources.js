@@ -5,10 +5,10 @@ import './CategoriesList.scss';
 import { useEffect, useState } from 'react';
 import Api from '../Api';
 
-function CategoriesList() {
+function CategoriesSources() {
   const { slug } = useParams();
   const [category, setCategory] = useState({});
-  // const [resources, setResources] = useState([]);
+  const [resources, setResources] = useState([]);
 
   useEffect(
     function () {
@@ -27,4 +27,4 @@ function CategoriesList() {
   );
 }
 
-export default CategoriesList;
+export default CategoriesSources;
