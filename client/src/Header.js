@@ -10,7 +10,15 @@ function Header() {
   const history = useHistory();
   const { user, setUser } = useAuthContext();
   const [active, setActive] = useState(false);
-
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
+  
+   useEffect(
+     function () {
+    setLoading(true);
+    Api.categories.index().then((response) => setCategories(response.data)).finally(() => {setLoading(false) });
+  }, [setLoading, setCategories]);
+  
   useEffect(
     function () {
       Api.users.me().then((response) => {
@@ -44,6 +52,12 @@ function Header() {
             About
           </Link>
         </li>
+        {loading ? <></> : categories.map(category=> (
+         <li className={classNames('_item', { active })}>
+          <Link onClick={() => setActive(false)} to={`/categories/${category.slug}`}>
+            ${category.name}
+          </Link>
+        </li>))}
         {user && (
           <>
             <li className={classNames('_item collapsed', { active })}>
