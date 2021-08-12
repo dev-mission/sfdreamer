@@ -38,7 +38,7 @@ function CategoriesList() {
               {category.name}
               <br />
               {category.slug}
-              <Link className="btn btn-sm btn-primary me-3" to={`/categories/${category.slug}`}>
+              <Link className="btn btn-sm btn-primary me-3" to={`/categories/${category.slug}/resources`}>
                 Resources
               </Link>
               <br />
