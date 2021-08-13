@@ -13,7 +13,7 @@ function CategoriesSources() {
     function () {
       if (slug) {
         Api.categories.get(slug).then((response) => setCategory(response.data));
-        Api.resources.index(category.id).then((response) => setResources(response.data));
+        Api.resources.index(slug).then((response) => setResources(response.data));
       }
     },
     [slug]
@@ -23,14 +23,11 @@ function CategoriesSources() {
     <main className="categories-list">
       <h1>{category.name}</h1>
       <div className="container"></div>
-      {resources.map(
-        (resource) =>
-          resource.CategoryId === category.id && (
-            <Link className="btn btn-sm btn-primary me-3" to={`/resources/${resource.id}/edit`}>
-              {resource.name}
-            </Link>
-          )
-      )}
+      {resources.map((resource) => (
+        <Link className="btn btn-sm btn-primary me-3" to={`/resources/${resource.id}/edit`}>
+          {resource.name}
+        </Link>
+      ))}
     </main>
   );
 }
