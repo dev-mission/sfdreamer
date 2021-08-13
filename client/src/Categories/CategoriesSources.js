@@ -24,7 +24,7 @@ function CategoriesSources() {
       <h1>{category.name}</h1>
       <div className="container"></div>
       {resources.map((resource) => (
-        <div key={category.id} className="row">
+        <div key={resource.id} className="row">
           <div className="col-sm mb-3">
             {resource.name}
             <br />
