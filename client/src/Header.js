@@ -65,7 +65,7 @@ function Header() {
           categories.map((category) => (
             <li className={classNames('_item', { active })}>
               <Link onClick={() => setActive(false)} to={`/categories/${category.slug}`}>
-                ${category.name}
+                {category.name}
               </Link>
             </li>
           ))
