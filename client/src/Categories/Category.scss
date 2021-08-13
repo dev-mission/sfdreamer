@@ -1,4 +1,4 @@
-.categories-list {
+.category {
   h1 {
     font-style: normal;
     font-weight: bold;
@@ -57,5 +57,10 @@
 
   p.s {
     padding: 0px;
+  }
+
+  .resource__logo {
+    max-width: 8rem;
+    height: auto;
   }
 }
