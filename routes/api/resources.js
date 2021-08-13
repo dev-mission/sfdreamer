@@ -6,7 +6,20 @@ const router = express.Router();
 const models = require('../../models');
 
 router.get('/', async (req, res) => {
-  const records = await models.Resource.findAll({ order: [['name', 'ASC']] });
+  const options = { order: [['name', 'ASC']] };
+  if (req.query.categoryId) {
+    options.include = [models.Category];
+    if (/^\d+$/.test(req.query.categoryId)) {
+      options.where = {
+        CategoryId: req.query.categoryId,
+      };
+    } else {
+      options.where = {
+        '$Category.slug$': req.query.categoryId,
+      };
+    }
+  }
+  const records = await models.Resource.findAll(options);
   res.json(records.map((record) => record.toJSON()));
 });
 
