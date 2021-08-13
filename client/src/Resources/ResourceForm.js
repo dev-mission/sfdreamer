@@ -132,7 +132,6 @@ function ResourceForm() {
             type="text"
             id="orgtype"
             name="orgtype"
-            required
             onChange={onChange}
             value={resource.orgtype}
           />
