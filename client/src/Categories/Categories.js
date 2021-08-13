@@ -13,15 +13,15 @@ function Categories() {
       <Route exact path={path}>
         <CategoriesList />
       </Route>
-      <Route path={`${path}/:slug`}>
-        <CategoriesSources />
-      </Route>
       <AuthProtectedRoute path={`${path}/new`}>
         <CategoryForm />
       </AuthProtectedRoute>
       <AuthProtectedRoute path={`${path}/:id/edit`}>
         <CategoryForm />
       </AuthProtectedRoute>
+      <Route path={`${path}/:slug`}>
+        <CategoriesSources />
+      </Route>
     </Switch>
   );
 }

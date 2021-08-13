@@ -23,14 +23,14 @@ function CategoriesSources() {
     <main className="categories-list">
       <h1>{category.name}</h1>
       <div className="container"></div>
-      {resources.map((resource) => (
-        <div key={resource.id} className="row">
-          <div className="col-sm mb-3">
-            {resource.name}
-            <br />
-          </div>
-        </div>
-      ))}
+      {resources.map(
+        (resource) =>
+          resource.CategoryId === category.id && (
+            <Link className="btn btn-sm btn-primary me-3" to={`/resources/${resource.id}/edit`}>
+              {resource.name}
+            </Link>
+          )
+      )}
     </main>
   );
 }
