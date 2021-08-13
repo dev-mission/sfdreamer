@@ -37,6 +37,11 @@ function CategoriesList() {
             <div className="col-sm mb-3">
               {category.name}
               <br />
+              {category.slug}
+              <Link className="btn btn-sm btn-primary me-3" to={`/categories/${category.slug}`}>
+                Resources
+              </Link>
+              <br />
               {category.summary}
               <br />
               <img src={category.iconUrl} alt={category.name} />
@@ -51,6 +56,7 @@ function CategoriesList() {
                   </button>
                 </div>
               )}
+              <hr />
             </div>
             <div className="col-sm mb-3"></div>
           </div>

@@ -14,6 +14,7 @@ function CategoryForm() {
   const [error, setError] = useState(null);
   const [category, setCategory] = useState({
     name: '',
+    slug: '',
     summary: '',
     icon: '',
   });
@@ -69,6 +70,19 @@ function CategoryForm() {
             value={category.name}
           />
           {error?.errorMessagesHTMLFor?.('name')}
+        </div>
+        <div className="mb-3">
+          <label htmlFor="name">Slug:</label>
+          <input
+            className={classNames('form-control', { 'is-invalid': error?.errorsFor?.('slug') })}
+            type="text"
+            id="slug"
+            name="slug"
+            required
+            onChange={onChange}
+            value={category.slug}
+          />
+          {error?.errorMessagesHTMLFor?.('slug')}
         </div>
         <div className="mb-3">
           <label htmlFor="summary">Summary:</label>

@@ -1,6 +1,15 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.scss';
+import Api from './Api';
 
 function Home() {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(function () {
+    Api.categories.index().then((response) => setCategories(response.data));
+  }, []);
+
   return (
     <main className="home">
       <div className="Welcome">
@@ -12,43 +21,16 @@ function Home() {
 
       <div className="container">
         <div className="row">
-          <div className="col-md-3 step">
-            <h3>Step 1</h3>
-            <b>Learn About the Dream Act.</b>
-            <p>
-              The California Dream Act allows undocumented people who went to a california High School for 3 years or more, to get financial
-              aid from the state.
-            </p>
-            <a className="btn btn-primary" href="/">
-              Learn More
-            </a>
-          </div>
-          <div className="col-md-3 step">
-            <h3>Step 2</h3>
-            <b>Find out if you're eligible.</b>
-            <p>Take this short survey to see what options are available for you.</p>
-            <a className="btn btn-primary" href="/questions/1">
-              Take Survey
-            </a>
-          </div>
-          <div className="col-md-3 step">
-            <h3>Step 3</h3>
-            <b>Learn about the application.</b>
-            <p>
-              Take the mock version of the Dream Act to learn about the forms and questions that you'll be asked in the real application.
-            </p>
-            <a className="btn btn-primary" href="/">
-              Mock App
-            </a>
-          </div>
-          <div className="col-md-3 step">
-            <h3>Step 4</h3>
-            <b>Find your AB-540 Form.</b>
-            <p>Learn about AB-540 and find out which AB-540 form you will need to fill out.</p>
-            <a className="btn btn-primary" href="/forms">
-              Download Form
-            </a>
-          </div>
+          {categories.map((category) => (
+            <Link to={`/categories/${category.slug}`} className="col-md-4">
+              <div className="category">
+                <h3>{category.name}</h3>
+                <br />
+                <p>{category.summary}</p>
+                <br />
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </main>

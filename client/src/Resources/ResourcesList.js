@@ -65,7 +65,6 @@ function ResourcesList() {
                 </div>
               )}
             </div>
-            <div className="col-sm mb-3">mapa columns</div>
           </div>
         ))}
       </div>

@@ -12,10 +12,10 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const record = await models.Category.create(_.pick(req.body, ['name', 'summary', 'icon']));
+    const record = await models.Category.create(_.pick(req.body, ['name', 'slug', 'summary', 'icon']));
     res.status(HttpStatus.CREATED).json(record.toJSON());
   } catch (error) {
-    if (error.name === 'SequelizeValidationError') {
+    if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
       res.status(HttpStatus.UNPROCESSABLE_ENTITY).json({
         status: HttpStatus.UNPROCESSABLE_ENTITY,
         errors: error.errors,
@@ -27,21 +27,41 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-  const record = await models.Category.findByPk(req.params.id);
-  if (record) {
-    res.json(record.toJSON());
+  if (/^\d+$/.test(req.params.id)) {
+    const record = await models.Category.findByPk(req.params.id);
+    if (record) {
+      res.json(record.toJSON());
+    } else {
+      res.status(HttpStatus.NOT_FOUND).end();
+    }
   } else {
-    res.status(HttpStatus.NOT_FOUND).end();
+    const categories = await models.Category.findOne({ where: { slug: req.params.id } });
+    if (categories) {
+      res.json(categories.toJSON());
+    } else {
+      res.status(HttpStatus.NOT_FOUND).end();
+    }
   }
 });
 
 router.patch('/:id', async (req, res) => {
-  const record = await models.Category.findByPk(req.params.id);
-  if (record) {
-    await record.update(_.pick(req.body, ['name', 'summary', 'icon']));
-    res.json(record.toJSON());
-  } else {
-    res.status(HttpStatus.NOT_FOUND).end();
+  try {
+    const record = await models.Category.findByPk(req.params.id);
+    if (record) {
+      await record.update(_.pick(req.body, ['name', 'slug', 'summary', 'icon']));
+      res.json(record.toJSON());
+    } else {
+      res.status(HttpStatus.NOT_FOUND).end();
+    }
+  } catch (error) {
+    if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
+      res.status(HttpStatus.UNPROCESSABLE_ENTITY).json({
+        status: HttpStatus.UNPROCESSABLE_ENTITY,
+        errors: error.errors,
+      });
+    } else {
+      res.status(HttpStatus.INTERNAL_SERVER_ERROR).end();
+    }
   }
 });
 

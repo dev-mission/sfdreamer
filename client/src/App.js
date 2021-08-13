@@ -12,13 +12,13 @@ import Login from './Login';
 import Passwords from './Passwords';
 import Register from './Register';
 import Users from './Users';
-
 import Categories from './Categories';
 import Resources from './Resources';
 import Forms from './Forms';
 import Questions from './Questions';
 import Questionnaires from './Questionnaires';
 import Answers from './Answers';
+import About from './About';
 
 function App() {
   return (
@@ -45,6 +45,9 @@ function App() {
           )}
           <Route path="/resources">
             <Resources />
+          </Route>
+          <Route path="/about">
+            <About />
           </Route>
           <Route path="/questions">
             <Questions />

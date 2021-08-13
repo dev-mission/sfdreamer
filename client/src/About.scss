@@ -1,4 +1,4 @@
-.resources-list {
+.about {
   h1 {
     font-style: normal;
     font-weight: bold;
@@ -11,10 +11,10 @@
     padding-bottom: 60px;
     color: #ffffff;
 
-    background-image: url('../images/Group1.png');
+    background-image: url('./images/about.png');
+    background-size: cover;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: rgba(19, 119, 255, 0.6);
 
     height: 526px;
   }
@@ -34,17 +34,6 @@
   .btn {
     border-radius: 50px;
     text-align: center;
-  }
-
-  div.row {
-    height: 25em;
-  }
-  div.col-sm {
-    height: 25em;
-  }
-
-  img.img-fluid {
-    height: 45%;
   }
 
   b {

@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
   Category.init(
     {
       name: DataTypes.STRING,
+      slug: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
       summary: DataTypes.TEXT,
       icon: DataTypes.STRING,
       iconUrl: {
