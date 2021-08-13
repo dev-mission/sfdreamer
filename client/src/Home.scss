@@ -51,19 +51,35 @@
     padding: 10px;
   }
 
-  div.category {
+  .category {
+    display: flex;
+    align-items: stretch;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .category__card {
     background-color: #1377ff;
     padding: 20px;
     margin-bottom: 30px;
     text-align: center;
     border-radius: 2rem;
-    height: 200px;
-    width: 100%;
-    position: relative;
     box-shadow: 0 0.4rem 0.6rem 0 rgba(0, 0, 0, 0.2), 0 0.8rem 1.2rem 0 rgba(0, 0, 0, 0.19);
-    transition: 0.5;
+    width: 100%;
 
-    text-decoration: none;
+    h3 {
+      color: #ffffff;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 30px;
+    }
+
+    p {
+      color: #00008b;
+      margin: 0;
+    }
   }
 
   div.row {
@@ -74,27 +90,12 @@
     width: 30%;
   }
 
-  h3 {
-    color: #ffffff;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 30px;
-
-    text-align: center;
-  }
-
   b {
     color: #00008b;
     font-style: normal;
     font-weight: 450;
     font-size: 15px;
 
-    text-align: center;
-  }
-
-  p {
-    color: #00008b;
-    font-size: 20px;
     text-align: center;
   }
 }

@@ -22,12 +22,10 @@ function Home() {
       <div className="container">
         <div className="row">
           {categories.map((category) => (
-            <Link to={`/categories/${category.slug}`} className="col-md-4">
-              <div className="category">
+            <Link to={`/categories/${category.slug}`} className="category col-md-4">
+              <div className="category__card">
                 <h3>{category.name}</h3>
-                <br />
                 <p>{category.summary}</p>
-                <br />
               </div>
             </Link>
           ))}
