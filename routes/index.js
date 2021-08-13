@@ -16,16 +16,6 @@ router.use('/libraries/jquery', express.static(path.join(__dirname, 'node_module
 /// serve some paths from other nested routers
 router.use('/api', require('./api'));
 
-router.use('/questionnaire', require('./questionnaire'));
-router.use('/questions', require('./questions'));
-router.use('/answer', require('./answer'));
-router.use('/resources', require('./resources'));
-router.use('/forms', require('./forms'));
-
-router.get('/', (req, res) => {
-  res.render('index');
-});
-
 /// serve up the client app for all other routes, per SPA client-side routing
 router.get('/*', (req, res, next) => {
   if (req.accepts('html')) {

@@ -27,20 +27,16 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
+  let record;
   if (/^\d+$/.test(req.params.id)) {
-    const record = await models.Category.findByPk(req.params.id);
-    if (record) {
-      res.json(record.toJSON());
-    } else {
-      res.status(HttpStatus.NOT_FOUND).end();
-    }
+    record = await models.Category.findByPk(req.params.id);
   } else {
-    const categories = await models.Category.findOne({ where: { slug: req.params.id } });
-    if (categories) {
-      res.json(categories.toJSON());
-    } else {
-      res.status(HttpStatus.NOT_FOUND).end();
-    }
+    record = await models.Category.findOne({ where: { slug: req.params.id } });
+  }
+  if (record) {
+    res.json(record.toJSON());
+  } else {
+    res.status(HttpStatus.NOT_FOUND).end();
   }
 });
 

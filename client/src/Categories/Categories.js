@@ -3,7 +3,7 @@ import { useRouteMatch, Route, Switch } from 'react-router-dom';
 import { AuthProtectedRoute } from '../AuthContext';
 import CategoriesList from './CategoriesList';
 import CategoryForm from './CategoryForm';
-import CategoriesSources from './CategoriesSources';
+import Category from './Category';
 
 function Categories() {
   const { path } = useRouteMatch();
@@ -20,7 +20,7 @@ function Categories() {
         <CategoryForm />
       </AuthProtectedRoute>
       <Route path={`${path}/:slug`}>
-        <CategoriesSources />
+        <Category />
       </Route>
     </Switch>
   );
