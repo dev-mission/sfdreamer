@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-import './CategoriesList.scss';
 import { useEffect, useState } from 'react';
 import Api from '../Api';
 
@@ -14,6 +13,7 @@ function CategoriesSources() {
     function () {
       if (slug) {
         Api.categories.get(slug).then((response) => setCategory(response.data));
+        Api.resources.index(category.id).then((response) => setResources(response.data));
       }
     },
     [slug]
@@ -23,6 +23,14 @@ function CategoriesSources() {
     <main className="categories-list">
       <h1>{category.name}</h1>
       <div className="container"></div>
+      {resources.map((resource) => (
+        <div key={category.id} className="row">
+          <div className="col-sm mb-3">
+            {resource.name}
+            <br />
+          </div>
+        </div>
+      ))}
     </main>
   );
 }
