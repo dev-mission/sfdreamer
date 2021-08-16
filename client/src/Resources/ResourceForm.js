@@ -26,6 +26,7 @@ function ResourceForm() {
     email: '',
     website: '',
     logo: '',
+    descriptivenote: '',
   });
   const [isUploading, setUploading] = useState(false);
 
