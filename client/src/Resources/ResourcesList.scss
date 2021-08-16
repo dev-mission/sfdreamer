@@ -28,7 +28,6 @@
   .container {
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
   }
 
   .btn {
@@ -44,7 +43,37 @@
   }
 
   img.img-fluid {
-    height: 45%;
+    width: 25%;
+  }
+
+  .resource__card {
+    background-color: #1377ff;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    border-radius: 2rem;
+    box-shadow: 0 0.4rem 0.6rem 0 rgba(0, 0, 0, 0.2), 0 0.8rem 1.2rem 0 rgba(0, 0, 0, 0.19);
+    width: 100%;
+
+    h3 {
+      color: #ffffff;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 30px;
+    }
+
+    p {
+      color: #00008b;
+      margin: 0;
+    }
+
+    p.contact-info {
+      color: white;
+    }
+  }
+
+  .contact-info {
+    color: white;
   }
 
   b {
@@ -61,7 +90,7 @@
     font-style: normal;
     font-weight: normal;
 
-    padding: 25px;
+    // padding: 25px;
   }
 
   u {
