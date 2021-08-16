@@ -163,7 +163,7 @@ function ResourceForm() {
         </div>
         <div className="mb-3">
           <label htmlFor="address">Address:</label>
-          <input
+          <textarea
             className={classNames('form-control', { 'is-invalid': error?.errorsFor?.('address') })}
             type="text"
             id="address"
@@ -220,6 +220,18 @@ function ResourceForm() {
             value={resource.website}
           />
           {error?.errorMessagesHTMLFor?.('website')}
+        </div>
+        <div className="mb-3">
+          <label htmlFor="descriptive-note">Descriptive Note:</label>
+          <textarea
+            className={classNames('form-control', { 'is-invalid': error?.errorsFor?.('descriptive-note') })}
+            type="text"
+            id="descriptive-note"
+            name="descriptive-note"
+            onChange={onChange}
+            value={resource.descriptivenote}
+          />
+          {error?.errorMessagesHTMLFor?.('descriptive-note')}
         </div>
         <button disabled={isUploading} className="btn btn-primary" type="submit">
           Submit
