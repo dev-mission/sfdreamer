@@ -26,7 +26,7 @@ function ResourceForm() {
     email: '',
     website: '',
     logo: '',
-    descriptivenote: '',
+    description: '',
   });
   const [isUploading, setUploading] = useState(false);
 
@@ -223,16 +223,16 @@ function ResourceForm() {
           {error?.errorMessagesHTMLFor?.('website')}
         </div>
         <div className="mb-3">
-          <label htmlFor="descriptive-note">Descriptive Note:</label>
+          <label htmlFor="description">Descriptive Note:</label>
           <textarea
-            className={classNames('form-control', { 'is-invalid': error?.errorsFor?.('descriptive-note') })}
+            className={classNames('form-control', { 'is-invalid': error?.errorsFor?.('description') })}
             type="text"
-            id="descriptive-note"
-            name="descriptive-note"
+            id="description"
+            name="description"
             onChange={onChange}
-            value={resource.descriptivenote}
+            value={resource.description}
           />
-          {error?.errorMessagesHTMLFor?.('descriptive-note')}
+          {error?.errorMessagesHTMLFor?.('description')}
         </div>
         <button disabled={isUploading} className="btn btn-primary" type="submit">
           Submit
