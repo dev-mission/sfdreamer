@@ -41,19 +41,25 @@ function ResourcesList() {
                   <br />
                 </>
               )}
-              {resource.name}
+              Name: {resource.name}
               <br />
-              {resource.orgtype}
+              Organization: {resource.orgtype}
               <br />
-              {resource.contactperson}
+              Contact Person: {resource.contactperson}
               <br />
-              {resource.address}
+              Address: {resource.address}
               <br />
-              {resource.phone}
+              City: {resource.city}
               <br />
-              {resource.email}
+              State: {resource.state}
               <br />
-              {resource.website}
+              ZIP Code: {resource.zip}
+              <br />
+              Phone Number: {resource.phone}
+              <br />
+              Email: {resource.email}
+              <br />
+              Website: {resource.website}
               {user && (
                 <div className="mt-1">
                   <Link className="btn btn-sm btn-primary me-3" to={`/resources/${resource.id}/edit`}>

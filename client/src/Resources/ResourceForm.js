@@ -26,6 +26,9 @@ function ResourceForm() {
     email: '',
     website: '',
     logo: '',
+    city: '',
+    state: '',
+    zip: '',
   });
   const [isUploading, setUploading] = useState(false);
 
@@ -172,6 +175,42 @@ function ResourceForm() {
             value={resource.address}
           />
           {error?.errorMessagesHTMLFor?.('address')}
+        </div>
+        <div className="mb-3">
+          <label htmlFor="city">City:</label>
+          <input
+            className={classNames('form-control', { 'is-invalid': error?.errorsFor?.('city') })}
+            type="text"
+            id="city"
+            name="city"
+            onChange={onChange}
+            value={resource.city}
+          />
+          {error?.errorMessagesHTMLFor?.('city')}
+        </div>
+        <div className="mb-3">
+          <label htmlFor="state">State:</label>
+          <input
+            className={classNames('form-control', { 'is-invalid': error?.errorsFor?.('state') })}
+            type="text"
+            id="state"
+            name="state"
+            onChange={onChange}
+            value={resource.state}
+          />
+          {error?.errorMessagesHTMLFor?.('state')}
+        </div>
+        <div className="mb-3">
+          <label htmlFor="zip">ZIP Code:</label>
+          <input
+            className={classNames('form-control', { 'is-invalid': error?.errorsFor?.('zip') })}
+            type="text"
+            id="zip"
+            name="zip"
+            onChange={onChange}
+            value={resource.zip}
+          />
+          {error?.errorMessagesHTMLFor?.('zip')}
         </div>
         <div className="mb-3">
           <label htmlFor="lat">Latitude:</label>
