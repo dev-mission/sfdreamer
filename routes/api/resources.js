@@ -26,7 +26,20 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const record = await models.Resource.create(
-      _.pick(req.body, ['name', 'logo', 'orgtype', 'contactperson', 'phone', 'address', 'lat', 'lng', 'email', 'website', 'CategoryId'])
+      _.pick(req.body, [
+        'name',
+        'logo',
+        'orgtype',
+        'contactperson',
+        'phone',
+        'address',
+        'lat',
+        'lng',
+        'email',
+        'website',
+        'CategoryId',
+        'description',
+      ])
     );
     res.status(HttpStatus.CREATED).json(record.toJSON());
   } catch (error) {
@@ -54,7 +67,20 @@ router.patch('/:id', async (req, res) => {
   const record = await models.Resource.findByPk(req.params.id);
   if (record) {
     await record.update(
-      _.pick(req.body, ['name', 'logo', 'orgtype', 'contactperson', 'phone', 'address', 'lat', 'lng', 'email', 'website', 'CategoryId'])
+      _.pick(req.body, [
+        'name',
+        'logo',
+        'orgtype',
+        'contactperson',
+        'phone',
+        'address',
+        'lat',
+        'lng',
+        'email',
+        'website',
+        'CategoryId',
+        'description',
+      ])
     );
     res.json(record.toJSON());
   } else {
