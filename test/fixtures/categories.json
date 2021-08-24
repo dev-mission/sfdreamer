@@ -1,0 +1,22 @@
+[
+  {
+    "model": "Category",
+    "data": {
+      "id": 1,
+      "name": "Housing",
+      "slug": "housing",
+      "summary": "This is the summary text for the Housing category.",
+      "icon": null
+    }
+  },
+  {
+    "model": "Category",
+    "data": {
+      "id": 2,
+      "name": "Immigration",
+      "slug": "immigration",
+      "summary": "This is the summary text for the Immigration category",
+      "icon": null
+    }
+  }
+]
