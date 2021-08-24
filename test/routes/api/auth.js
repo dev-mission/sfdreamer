@@ -4,14 +4,13 @@ const _ = require('lodash');
 const session = require('supertest-session');
 
 const helper = require('../../helper');
+
+process.env.REACT_APP_FEATURE_REGISTRATION = 'true';
+
 const app = require('../../../app');
 
 describe('/api/auth', () => {
   let testSession;
-
-  before(() => {
-    process.env.REACT_APP_FEATURE_REGISTRATION = 'true';
-  });
 
   beforeEach(async () => {
     await helper.loadFixtures(['users']);
