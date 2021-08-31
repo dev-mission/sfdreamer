@@ -46,6 +46,9 @@ function ResourcesList() {
                 <p>{resource.orgtype}</p>
                 <p>{resource.contactperson}</p>
                 <p>{resource.address}</p>
+                <p>{resource.city}</p>
+                <p>{resource.state}</p>
+                <p>{resource.zip}</p>
                 <p className="contact-info">{resource.phone}</p>
                 <p className="contact-info">{resource.email}</p>
                 <p className="contact-info">{resource.website}</p>

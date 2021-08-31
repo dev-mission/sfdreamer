@@ -39,6 +39,9 @@ router.post('/', interceptors.requireLogin, async (req, res) => {
         'email',
         'website',
         'CategoryId',
+        'city',
+        'state',
+        'zip',
         'description',
       ])
     );
@@ -80,6 +83,9 @@ router.patch('/:id', interceptors.requireLogin, async (req, res) => {
         'email',
         'website',
         'CategoryId',
+        'city',
+        'state',
+        'zip',
         'description',
       ])
     );
