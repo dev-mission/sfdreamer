@@ -29,6 +29,7 @@ function ResourceForm() {
     city: '',
     state: '',
     zip: '',
+    description: '',
   });
   const [isUploading, setUploading] = useState(false);
 
@@ -38,6 +39,9 @@ function ResourceForm() {
         .index()
         .then((response) => {
           setCategories(response.data);
+          if (response.data.length > 0) {
+            setResource((resource) => ({ ...resource, CategoryId: response.data[0].id }));
+          }
           if (id) {
             return Api.resources.get(id);
           }
@@ -166,7 +170,7 @@ function ResourceForm() {
         </div>
         <div className="mb-3">
           <label htmlFor="address">Address:</label>
-          <input
+          <textarea
             className={classNames('form-control', { 'is-invalid': error?.errorsFor?.('address') })}
             type="text"
             id="address"
@@ -259,6 +263,18 @@ function ResourceForm() {
             value={resource.website}
           />
           {error?.errorMessagesHTMLFor?.('website')}
+        </div>
+        <div className="mb-3">
+          <label htmlFor="description">Descriptive Note:</label>
+          <textarea
+            className={classNames('form-control', { 'is-invalid': error?.errorsFor?.('description') })}
+            type="text"
+            id="description"
+            name="description"
+            onChange={onChange}
+            value={resource.description}
+          />
+          {error?.errorMessagesHTMLFor?.('description')}
         </div>
         <button disabled={isUploading} className="btn btn-primary" type="submit">
           Submit

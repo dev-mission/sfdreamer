@@ -32,47 +32,40 @@ function ResourcesList() {
             </Link>
           </div>
         )}
-        {resources.map((resource) => (
-          <div key={resource.id} className="row">
-            <div className="col-sm mb-3">
-              {resource.logo && (
-                <>
-                  <img className="img-fluid" srcSet={`${resource.logoUrl} 2x`} src={resource.logoUrl} alt={resource.name} />
-                  <br />
-                </>
-              )}
-              Name: {resource.name}
-              <br />
-              Organization: {resource.orgtype}
-              <br />
-              Contact Person: {resource.contactperson}
-              <br />
-              Address: {resource.address}
-              <br />
-              City: {resource.city}
-              <br />
-              State: {resource.state}
-              <br />
-              ZIP Code: {resource.zip}
-              <br />
-              Phone Number: {resource.phone}
-              <br />
-              Email: {resource.email}
-              <br />
-              Website: {resource.website}
-              {user && (
-                <div className="mt-1">
-                  <Link className="btn btn-sm btn-primary me-3" to={`/resources/${resource.id}/edit`}>
-                    Edit
-                  </Link>
-                  <button onClick={() => onDelete(resource)} className="btn btn-sm btn-danger">
-                    Delete
-                  </button>
-                </div>
-              )}
+        <div className="row">
+          {resources.map((resource) => (
+            <div className="resource col-md-4">
+              <div className="resource__card">
+                {resource.logo && (
+                  <>
+                    <img className="img-fluid" srcSet={`${resource.logoUrl} 2x`} src={resource.logoUrl} alt={resource.name} />
+                    <br />
+                  </>
+                )}
+                <h3>{resource.name}</h3>
+                <p>{resource.orgtype}</p>
+                <p>{resource.contactperson}</p>
+                <p>{resource.address}</p>
+                <p>{resource.city}</p>
+                <p>{resource.state}</p>
+                <p>{resource.zip}</p>
+                <p className="contact-info">{resource.phone}</p>
+                <p className="contact-info">{resource.email}</p>
+                <p className="contact-info">{resource.website}</p>
+                {user && (
+                  <div className="mt-1">
+                    <Link className="btn btn-sm btn-primary me-3" to={`/resources/${resource.id}/edit`}>
+                      Edit
+                    </Link>
+                    <button onClick={() => onDelete(resource)} className="btn btn-sm btn-danger">
+                      Delete
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </main>
   );

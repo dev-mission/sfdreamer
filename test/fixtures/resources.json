@@ -1,0 +1,38 @@
+[
+  {
+    "model": "Resource",
+    "data": {
+      "id": 1,
+      "CategoryId": 1,
+      "name": "Housing Resource",
+      "logo": null,
+      "lat": null,
+      "lng": null,
+      "phone": null,
+      "contactperson": null,
+      "orgtype": null,
+      "email": null,
+      "website": "https://www.housingresource.org/",
+      "address": null,
+      "description": "This is a test Resource for the Housing Category"
+    }
+  },
+  {
+    "model": "Resource",
+    "data": {
+      "id": 2,
+      "CategoryId": 2,
+      "name": "Immigration Resource",
+      "logo": null,
+      "lat": null,
+      "lng": null,
+      "phone": null,
+      "contactperson": null,
+      "orgtype": null,
+      "email": null,
+      "website": "https://www.immigrationresource.org/",
+      "address": null,
+      "description": "This is a test Resource for the Immigration Category"
+    }
+  }
+]

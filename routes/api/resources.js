@@ -4,6 +4,7 @@ const _ = require('lodash');
 
 const router = express.Router();
 const models = require('../../models');
+const interceptors = require('../interceptors');
 
 router.get('/', async (req, res) => {
   const options = { order: [['name', 'ASC']] };
@@ -23,7 +24,7 @@ router.get('/', async (req, res) => {
   res.json(records.map((record) => record.toJSON()));
 });
 
-router.post('/', async (req, res) => {
+router.post('/', interceptors.requireLogin, async (req, res) => {
   try {
     const record = await models.Resource.create(
       _.pick(req.body, [
@@ -41,6 +42,7 @@ router.post('/', async (req, res) => {
         'city',
         'state',
         'zip',
+        'description',
       ])
     );
     res.status(HttpStatus.CREATED).json(record.toJSON());
@@ -65,7 +67,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', interceptors.requireLogin, async (req, res) => {
   const record = await models.Resource.findByPk(req.params.id);
   if (record) {
     await record.update(
@@ -84,6 +86,7 @@ router.patch('/:id', async (req, res) => {
         'city',
         'state',
         'zip',
+        'description',
       ])
     );
     res.json(record.toJSON());
