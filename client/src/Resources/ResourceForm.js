@@ -36,6 +36,9 @@ function ResourceForm() {
         .index()
         .then((response) => {
           setCategories(response.data);
+          if (response.data.length > 0) {
+            setResource((resource) => ({ ...resource, CategoryId: response.data[0].id }));
+          }
           if (id) {
             return Api.resources.get(id);
           }

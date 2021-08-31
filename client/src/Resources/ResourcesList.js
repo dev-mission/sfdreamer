@@ -34,7 +34,7 @@ function ResourcesList() {
         )}
         <div className="row">
           {resources.map((resource) => (
-            <Link to={`/resources/${resource.slug}`} className="resource col-md-4">
+            <div className="resource col-md-4">
               <div className="resource__card">
                 {resource.logo && (
                   <>
@@ -60,7 +60,7 @@ function ResourcesList() {
                   </div>
                 )}
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
