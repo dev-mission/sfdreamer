@@ -1,17 +1,16 @@
-version: '2'
 services:
   db:
-    image: postgres:12
+    image: postgres:17.2
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
   mailcatcher:
-    image: dockage/mailcatcher:0.7.1
+    image: dockage/mailcatcher:0.9.0
     ports:
       - 1080:1080
       - 1025:1025
   server:
     build: .
-    image: devmission/full-stack-starter:2.0.0
+    image: devmission/sfdreamer:0.1.0
     command: bash -l -c "bin/init; nf start -j Procfile.dev"
     volumes:
       - .:/opt/node/app
